@@ -102,6 +102,12 @@ table {
   border-radius: 8px;
 }
 
+@media (max-width: 800px) {
+  .card-container {
+    width: 150px;
+  }
+}
+
 .card-container img {
   width: 100%;
   justify-content: center;
