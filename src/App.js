@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import CardDisplay from './Components/CardDisplay'
 
 const INFO_URL = "https://omgvamp-hearthstone-v1.p.mashape.com/info";
 const CARD_URL = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/types/Minion?collectible=1";
@@ -10,8 +11,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div class="tab-container">
-          <h1 class="title">Look Up Cards by Mana Cost</h1>
+        <div className="tab-container">
+          <h1 className="title">Look Up Cards by Mana Cost</h1>
           <CardLookup />
         </div>
       </div>
@@ -117,15 +118,15 @@ class CardLookup extends Component {
     }
     return (
       <div>
-        <form class="form-container" onSubmit={this.handleSubmit}>
+        <form className="form-container" onSubmit={this.handleSubmit}>
           <Input label="MANA" type="number" placeHolder="Any" handleChange={this.handleCostChange} />
-          <div class="spacer-10px" />
+          <div className="spacer-10px" />
           <Button label="Look Up" handleClick={this.handleSubmit} />
         </form>
-        <div class="spacer-25px" />
-        <div class="spacer-10px" />
+        <div className="spacer-25px" />
+        <div className="spacer-10px" />
         <StatsDisplay data={this.state.filteredCardData} />
-        <div class="spacer-10px" />
+        <div className="spacer-10px" />
         <CardDisplay data={this.state.filteredCardData} />
       </div>
     );
@@ -138,8 +139,8 @@ class CardLookup extends Component {
 
 const Input = (props) => {
   return (
-    <div class="input-field">
-      <p class="label">{props.label}</p>
+    <div className="input-field">
+      <p className="label">{props.label}</p>
       <input 
         type={props.type} 
         placeholder={props.placeHolder}
@@ -155,7 +156,7 @@ const Input = (props) => {
 const Button = (props) => {
   return (
     <button 
-      class="lookup-button" 
+      className="lookup-button" 
       onClick={props.handleClick}>
       {props.label}
     </button>
@@ -258,16 +259,17 @@ class StatsDisplay extends Component {
   render() {
     if (!this.props.data || this.props.data.length === 0) {
       return (
-        <div/>
+        <></>
       );
     }
     return (
       <div>
-        <div class="stats-display">
+        <div className="stats-display">
           <h1>{this.state.numCards} cards</h1>
         </div>
-        <div class="spacer-10px"/>
-        <div class="stats-display">
+        <div className="spacer-10px"/>
+        <div className="stats-display">
+          <h2>Quick Look</h2>
           <table>
             <tbody>
               <tr>
@@ -296,47 +298,5 @@ class StatsDisplay extends Component {
   }
 
 }
-
-
-
-
-
-class CardDisplay extends Component {
-
-  constructor(props) {
-    super(props);
-    this.data = props.data;
-  }
-
-  render() {
-    if (!this.props.data) {
-      return (
-        <div></div>
-      );
-    }
-
-    if (this.props.data.length === 0) {
-      return (
-        <div>No results found.</div>
-      );
-    }
-
-    return (
-      <div>
-        <div class="card-display">
-          {this.props.data.map((_card) => (
-            <div key={_card.cardId} class="card-container">
-              <img src={_card.img} alt={_card.name}></img>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
-
-
-
-
 
 export default App;
