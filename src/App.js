@@ -65,6 +65,8 @@ class CardLookup extends Component {
       infoData: _infoDataJson,
       cardData: _cardDataJson,
     });
+
+
   }
 
   /* handleSubmit is called when the big Look Up button is pressed. 
@@ -78,8 +80,6 @@ class CardLookup extends Component {
     if (this.state.cardData && this.state.infoData) {
       _filteredCardData = [];
       _standardSets = this.state.infoData.standard;
-
-      console.log(this.state.costFilter);
 
       this.state.cardData.map((_card) => {
         let _setMatch = (IS_WILD === true || (_standardSets.indexOf(_card.cardSet) > -1));

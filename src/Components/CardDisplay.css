@@ -1,3 +1,20 @@
 .CardDisplay {
   width: 100%;
 }
+
+.CardDisplay .-pagination {
+  border-radius: 0 0 8px 8px;
+}
+
+.CardDisplay .-pagination .-pageJump input {
+  background-color: #424242;
+}
+
+.CardDisplay .-pagination select {
+  background-color: #424242;
+}
+
+.CardDisplay .-pagination .-btn {
+  color: white;
+}
+

@@ -112,6 +112,7 @@ table {
 @media (max-width: 800px) {
   body {
     font-size: 12px;
+    padding: 5px; 
   }
 
   .card-container {

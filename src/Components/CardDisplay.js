@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './CardDisplay.css';
+
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import './CardDisplay.css';
 
 class CardDisplay extends Component {
 
@@ -10,7 +11,6 @@ class CardDisplay extends Component {
   }
 
   render() {
-    console.log(this.props.data);
     if (this.props.data === null) {
       return (
         <div>Try entering a mana cost above! (e.g. 8) </div>
@@ -25,7 +25,7 @@ class CardDisplay extends Component {
     
 
     const columns = [
-      {Header: 'Cost', accessor: 'cost', maxWidth: 50},
+      {Header: 'Cost', accessor: 'cost', maxWidth: 45},
       {Header: 'Name', accessor: 'name', maxWidth: 150, style:{ 'whiteSpace': 'unset'}},
       {Header: 'Attack', accessor: 'attack', maxWidth: 60},
       {Header: 'Health', accessor: 'health', maxWidth: 60},
@@ -52,10 +52,10 @@ class CardDisplay extends Component {
   formatCardText(text) {
     if (!text) return "";
     // remove tags
-    text = text.replace(/<.*?>|#|\[x\]|@.*/g, "");
+    text = text.replace(/#|\[x\]|@.*/g, "");
     // replace weird characters with a space
     text = text.replace(/_|\\n/g, " ")
-    return text;
+    return <div dangerouslySetInnerHTML={{__html: text}}/>;
   }
 }
 
