@@ -1,0 +1,105 @@
+
+.FilterForm {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.input-field {
+  flex-grow: 1;
+  background-color: #424242;
+  border: 1px solid #616161;
+  border-radius: 8px;
+  margin: 0.5em 0;
+  padding: 0 1em;
+}
+
+.input-field p {
+  font-size: 15px;
+  margin-top: 0.5em;
+}
+
+.input-field input {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 8px 0px;
+  font-size: 20px;
+}
+
+.input-field select {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 8px 0px;
+  font-size: 20px;
+}
+
+.input-field select option {
+  background-color: #424242; 
+}
+
+label {
+  margin: 1em;
+}
+
+.lookup-button {
+  background-color: #ef6c00;
+  border:none;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 15px;
+  width: 100%;
+  color: papayawhip;
+  margin: 1em 0;
+}
+
+  .lookup-button:hover {
+    background-color: #f57c00;
+    cursor: pointer;
+  }
+
+  .lookup-button:active {
+    background-color: #ff5722;
+  }
+
+.reset-button {
+  background-color: #9e8c7d;
+  border:none;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 12px;
+  min-width: 30%;
+  color: white;
+  margin: auto;
+}
+
+  .reset-button:hover {
+    background-color: #af9c8d;
+    cursor: pointer;
+  }
+
+  .reset-button:active {
+    background-color: #867669;
+  }
+
+  
+@media (max-width: 800px) {
+  .input-field p {
+    font-size: 12px;
+  }
+
+  .input-field input {
+    font-size: 16px;
+  }
+
+  .input-field select {
+    font-size: 16px;
+  }
+  
+  .lookup-button {
+    font-size: 16px;
+  }
+}
