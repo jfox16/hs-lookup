@@ -110,7 +110,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Look Up Hearthstone Cards</h1>
+        <div className="title-div">
+          <h1>Hearthstone Lookup</h1>
+        </div>
         {this.renderBody()}
         <Footer />
       </div>
