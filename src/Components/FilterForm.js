@@ -26,7 +26,7 @@ class FilterForm extends Component {
     if (value.length === 0) {
       value = null;
     }
-    console.log("changing " + key + " to " + value);
+    // console.log("changing " + key + " to " + value);
     let filters = this.state.filters;
     if (key in filters) {
       filters[key] = value;

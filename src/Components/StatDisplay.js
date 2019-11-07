@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./StatDisplay.css";
 
 class StatDisplay extends Component {
 
@@ -95,13 +96,10 @@ class StatDisplay extends Component {
       );
     }
     return (
-      <div>
-        <div className="stats-display">
-          <h1>{this.state.numCards} cards</h1>
-        </div>
-        <div className="spacer-10px"/>
-        <div className="stats-display">
-          <h2>Quick Look</h2>
+      <div className="StatDisplay">
+        <h2>Quick Look</h2>
+        <p className="card-count">{this.state.numCards} cards</p>
+        <div>
           <table>
             <tbody>
               <tr>

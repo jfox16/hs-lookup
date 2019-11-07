@@ -1,0 +1,11 @@
+.StatDisplay {
+  background-color: #424242;
+  border: 1px solid #616161;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 1em auto;
+}
+
+.StatDisplay .card-count {
+  font-size: 40px;
+}

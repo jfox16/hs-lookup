@@ -16,13 +16,6 @@ h1 {
   margin-top: 1em;
 }
 
-.stats-display {
-  background-color: #424242;
-  border: 1px solid #616161;
-  border-radius: 8px;
-  padding: 8px;
-}
-
 .Loader {
   width: 100%;
   margin-top: 5em;

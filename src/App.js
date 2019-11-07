@@ -46,27 +46,27 @@ class App extends Component {
     });
 
     let filters = {
-      wildOrStandard: "standard",
+      wildOrStandard: "Standard",
       cost: null,
       race: null,
     }
 
     // TODO: remove for build version
-    console.log(this.state);
+    // console.log(this.state);
     this.filterData(filters);
   }
 
   // Filters cardData through fiven filter value. The result is stored in filteredCardData.
   filterData(filters) {
 
-    console.log(filters);
+    // console.log(filters);
 
     if (!this.state.infoData || !this.state.cardData) return;
 
     let filteredCardData = this.state.cardData.slice(); // make a copy of cardData to work with
 
     // Filter by wild/standard
-    if (filters.wildOrStandard === "standard") {
+    if (filters.wildOrStandard === "Standard") {
       const standardSets = this.state.infoData.standard;
       filteredCardData = filteredCardData.filter((card) => {
         return standardSets.includes(card.cardSet);
