@@ -69,6 +69,8 @@ class FilterForm extends Component {
 
   render() {
     return <form className="FilterForm">
+      <h2>Filters</h2>
+      <div style={{height:"10px"}}></div>
       {this.renderWildOrStandardRadio()}
       <CostInput handleChange={this.handleChange} />
       <RaceInput handleChange={this.handleChange} races={this.props.infoData.races} />
