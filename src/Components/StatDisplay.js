@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import "./StatDisplay.css";
 
+import StatSummary from './DataDisplays/StatSummary';
+import StatHistogram from './DataDisplays/StatHistogram';
+import KeywordDisplay from './DataDisplays/KeywordDisplay';
+
 class StatDisplay extends Component {
 
   constructor(props) {
@@ -14,12 +18,20 @@ class StatDisplay extends Component {
       meanHealth: 0,
       medHealth: 0,
       stdevHealth: 0,
+      dataBuckets: {},
     }
+
+    this.updateBuckets = this.updateBuckets.bind(this);
   }
 
   updateStats(cardData) {
+
     if (!cardData) return;
 
+    let minAttack = Number.POSITIVE_INFINITY;
+    let maxAttack = Number.NEGATIVE_INFINITY;
+    let minHealth = Number.POSITIVE_INFINITY;
+    let maxHealth = Number.NEGATIVE_INFINITY;
     var _sumAttack = 0;
     var _sumHealth = 0;
     var _attackArray = [];
@@ -27,16 +39,30 @@ class StatDisplay extends Component {
 
     cardData.map((_card) => {
       if (isNaN(_card.attack)===false) {
+        if (_card.attack < minAttack) {
+          minAttack = _card.attack;
+        }
+        if (_card.attack > maxAttack) {
+          maxAttack = _card.attack;
+        }
         _sumAttack+=_card.attack;
         _attackArray.push(_card.attack);
       }
       else _attackArray.push(0);
 
       if (isNaN(_card.health)===false) {
+        if (_card.health < minHealth) {
+          minHealth = _card.health;
+        }
+        if (_card.health > maxHealth) {
+          maxHealth = _card.health;
+        }
         _sumHealth+=_card.health;
         _healthArray.push(_card.health);
       }
       else _healthArray.push(0);
+
+      return _card;
     });
 
     var _meanAttack = _sumAttack/cardData.length;
@@ -58,34 +84,117 @@ class StatDisplay extends Component {
     var _sumDiffSqAttack = 0;
     _attackArray.map((_attack) => {
       _sumDiffSqAttack += Math.pow((_attack - _meanAttack), 2);
+      return _attack;
     });
     var _stdevAttack = Math.sqrt(_sumDiffSqAttack/cardData.length);
 
     var _sumDiffSqHealth = 0;
     _healthArray.map((_health) => {
       _sumDiffSqHealth += Math.pow((_health - _meanHealth), 2);
+      return _health;
     });
     var _stdevHealth = Math.sqrt(_sumDiffSqHealth/cardData.length);
 
     this.setState({
       oldData: cardData,
       numCards: cardData.length,
+
+      minAttack: minAttack,
+      maxAttack: maxAttack,
       meanAttack: _meanAttack,
       medAttack: _medAttack,
       stdevAttack: _stdevAttack,
+
+      minHealth: minHealth,
+      maxHealth: maxHealth,
       meanHealth: _meanHealth,
       medHealth: _medHealth,
       stdevHealth: _stdevHealth,
     });
   }
 
+  updateBuckets(cardData) {
+
+    if (!cardData) return;
+    
+    let attackCounts = {};
+    let healthCounts = {};
+    let keywordCounts = {};
+
+    cardData.forEach(card => {
+
+      // Add attack value
+      if (card.attack === undefined) {
+        card.attack = 0;
+      }
+      if (attackCounts[card.attack] === undefined) {
+        attackCounts[card.attack] = 1;
+      }
+      else {
+        attackCounts[card.attack] += 1;
+      }
+
+      // Add health value
+      if (card.health === undefined) {
+        card.health = 0;
+      }
+      if (healthCounts[card.health] === undefined) {
+        healthCounts[card.health] = 1;
+      }
+      else {
+        healthCounts[card.health] += 1;
+      }
+
+      // Add keyword
+      if (card.mechanics !== undefined) {
+        for (let i = 0; i < card.mechanics.length; i++) {
+          let keyword = card.mechanics[i].name;
+          if (keywordCounts[keyword] === undefined) {
+            keywordCounts[keyword] = 1;
+          }
+          else {
+            keywordCounts[keyword]++;
+          }
+        }
+      }
+    });
+
+    let maxAttackCount = 0;
+    for (let key in attackCounts) {
+      if (attackCounts[key] > maxAttackCount) {
+        maxAttackCount = attackCounts[key];
+      }
+    }
+    let maxHealthCount = 0;
+    for (let key in healthCounts) {
+      if (healthCounts[key] > maxHealthCount) {
+        maxHealthCount = healthCounts[key];
+      }
+    }
+
+    let dataBuckets = {
+      attackCounts: attackCounts,
+      healthCounts: healthCounts,
+      maxAttackCount: maxAttackCount,
+      maxHealthCount: maxHealthCount,
+      keywordCounts: keywordCounts
+    }
+    this.setState({ 
+      dataBuckets: dataBuckets 
+    });
+
+    console.log(dataBuckets);
+  }
+
   componentDidMount() {
     this.updateStats(this.props.cardData);
+    this.updateBuckets(this.props.cardData);
   }
 
   componentDidUpdate() {
     if (this.props.cardData !== this.state.oldData) {
       this.updateStats(this.props.cardData);
+      this.updateBuckets(this.props.cardData);
     }
   }
 
@@ -99,30 +208,49 @@ class StatDisplay extends Component {
       <div className="StatDisplay">
         <h2>Quick Look</h2>
         <p className="card-count">{this.state.numCards} cards</p>
-        <div>
-          <table>
-            <tbody>
-              <tr>
-                <th></th>
-                <th> Mean </th>
-                <th> Median </th>
-                <th> StDev </th>
-              </tr>
-              <tr>
-                <th>Attack:</th>
-                <td>{this.state.meanAttack.toFixed(2)}</td>
-                <td>{this.state.medAttack.toFixed(2)}</td>
-                <td>{this.state.stdevAttack.toFixed(2)}</td>
-              </tr>
-              <tr>
-                <th>Health:</th>
-                <td>{this.state.meanHealth.toFixed(2)}</td>
-                <td>{this.state.medHealth.toFixed(2)}</td>
-                <td>{this.state.stdevHealth.toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table>
+
+
+        <div className="elements">
+          <div>
+            <h2>Attack</h2>
+            <StatSummary 
+              mean={this.state.meanAttack}
+              median={this.state.medAttack}
+              stdev={this.state.stdevAttack}
+            />
+            <StatHistogram 
+              label="Attack" 
+              color='#FEDC42'
+              data={this.state.dataBuckets.attackCounts}
+              minX={this.state.minAttack}
+              maxX={this.state.maxAttack}
+              maxY={this.state.dataBuckets.maxAttackCount}
+            />
+          </div>
+
+          <div>
+            <h2>Health</h2>
+            <StatSummary 
+              mean={this.state.meanHealth}
+              median={this.state.medHealth}
+              stdev={this.state.stdevHealth}
+            />
+            <StatHistogram 
+              label="Health"
+              color='#FE4756'
+              data={this.state.dataBuckets.healthCounts}
+              minX={this.state.minHealth}
+              maxX={this.state.maxHealth}
+              maxY={this.state.dataBuckets.maxHealthCount}
+            />
+          </div>
+
         </div>
+
+        <KeywordDisplay 
+          data={this.state.dataBuckets.keywordCounts}
+          numCards={this.state.numCards}
+        />
       </div>
     );
   }

@@ -4,8 +4,16 @@
   border-radius: 8px;
   padding: 1em;
   margin: 1em auto;
+  max-width: 600px;
 }
 
 .StatDisplay .card-count {
   font-size: 40px;
+}
+
+.StatDisplay .elements {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

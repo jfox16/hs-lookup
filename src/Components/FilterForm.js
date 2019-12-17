@@ -4,8 +4,6 @@ import './FilterForm.css';
 
 class FilterForm extends Component {
 
-  rarities = ["Common", "Rare", "Epic", "Legendary"]
-
   constructor() {
     super();
 
@@ -13,7 +11,9 @@ class FilterForm extends Component {
       filters: {
         wildOrStandard: "Standard",
         cost: null,
+        class: null,
         race: null,
+        rarity: null
       }
     };
 
@@ -26,7 +26,7 @@ class FilterForm extends Component {
     if (value.length === 0) {
       value = null;
     }
-    // console.log("changing " + key + " to " + value);
+    console.log("Changing " + key + " to " + value);
     let filters = this.state.filters;
     if (key in filters) {
       filters[key] = value;
@@ -73,7 +73,9 @@ class FilterForm extends Component {
       <div style={{height:"10px"}}></div>
       {this.renderWildOrStandardRadio()}
       <CostInput handleChange={this.handleChange} />
+      <ClassInput handleChange={this.handleChange} classes={this.props.infoData.classes} />
       <RaceInput handleChange={this.handleChange} races={this.props.infoData.races} />
+      <RarityInput handleChange={this.handleChange} rarities={this.props.infoData.qualities} />
       <button className="lookup-button" onClick={this.handleSubmit}>Look Up</button>
       {/* <input className="reset-button" type="reset" value="Reset"/> */}
     </form>
@@ -99,6 +101,20 @@ function CostInput(props) {
   );
 }
 
+function ClassInput(props) {
+  return (
+    <div className="input-field">
+      <p>CLASS</p>
+      <select defaultValue="" onChange={(e) => {props.handleChange(e, "class")}}>
+        <option value="">Any</option>
+        {props.classes.map((_class) => {
+          return <option value={_class} key={_class}>{_class}</option>
+        })}
+      </select>
+    </div>
+  );
+}
+
 function RaceInput(props) {
   return (
     <div className="input-field">
@@ -107,6 +123,20 @@ function RaceInput(props) {
         <option value="">Any</option>
         {props.races.map((race) => {
           return <option value={race} key={race}>{race}</option>
+        })}
+      </select>
+    </div>
+  );
+}
+
+function RarityInput(props) {
+  return (
+    <div className="input-field">
+      <p>RARITY</p>
+      <select defaultValue="" onChange={(e) => {props.handleChange(e, "rarity")}}>
+        <option value="">Any</option>
+        {props.rarities.map((rarity) => {
+          return <option value={rarity} key={rarity}>{rarity}</option>
         })}
       </select>
     </div>

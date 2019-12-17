@@ -1,0 +1,11 @@
+.KeywordDisplay {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.keywordDiv {
+  margin: 10px;
+  text-align: center;
+}

@@ -3,6 +3,9 @@ import './App.css';
 
 import ClipLoader from 'react-spinners/ClipLoader';
 
+// import react-vis css
+import '../node_modules/react-vis/dist/style.css';
+
 import Footer from './Components/Footer';
 import FilterForm from './Components/FilterForm';
 import CardDisplay from './Components/CardDisplay';
@@ -48,18 +51,18 @@ class App extends Component {
     let filters = {
       wildOrStandard: "Standard",
       cost: null,
+      class: null,
       race: null,
+      rarity: null,
     }
 
     // TODO: remove for build version
-    // console.log(this.state);
+    console.log(this.state);
     this.filterData(filters);
   }
 
-  // Filters cardData through fiven filter value. The result is stored in filteredCardData.
+  // Filters cardData through specified filters. The result is stored in filteredCardData.
   filterData(filters) {
-
-    // console.log(filters);
 
     if (!this.state.infoData || !this.state.cardData) return;
 
@@ -80,10 +83,24 @@ class App extends Component {
       });
     }
 
+    // Filter by class
+    if (filters.class !== null) {
+      filteredCardData = filteredCardData.filter((card) => {
+        return (card.playerClass === filters.class);
+      });
+    }
+
     // Filter by race
     if (filters.race !== null) {
       filteredCardData = filteredCardData.filter((card) => {
         return (card.race === filters.race);
+      });
+    }
+
+    // Filter by rarity
+    if (filters.rarity !== null) {
+      filteredCardData = filteredCardData.filter((card) => {
+        return (card.rarity === filters.rarity);
       });
     }
 
@@ -97,7 +114,7 @@ class App extends Component {
       return (
         <>
         <FilterForm filterData={this.filterData} infoData={this.state.infoData} />
-        <StatDisplay cardData={this.state.filteredCardData} />
+        <StatDisplay cardData={this.state.filteredCardData} dataBuckets={this.state.dataBuckets}/>
         <CardDisplay cardData={this.state.filteredCardData} />
         </>
       );
