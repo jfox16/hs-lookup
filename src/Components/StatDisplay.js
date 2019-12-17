@@ -206,7 +206,8 @@ class StatDisplay extends Component {
     }
     return (
       <div className="StatDisplay">
-        <h2>Quick Look</h2>
+        {/* <h2>Quick Look</h2> */}
+        <p className="filter-description">{this.props.filterDescription}</p>
         <p className="card-count">{this.state.numCards} cards</p>
 
 
@@ -248,7 +249,7 @@ class StatDisplay extends Component {
         </div>
 
         <KeywordDisplay 
-          data={this.state.dataBuckets.keywordCounts}
+          keywordCounts={this.state.dataBuckets.keywordCounts}
           numCards={this.state.numCards}
         />
       </div>

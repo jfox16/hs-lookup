@@ -23,6 +23,7 @@ class App extends Component {
       infoData: null,
       cardData: null,
       filteredCardData: null,
+      filterDescription: '',
     };
 
     this.filterData = this.filterData.bind(this);
@@ -104,17 +105,47 @@ class App extends Component {
       });
     }
 
+    let filterDescription = this.getFilterDescription(filters);
     this.setState({
-      filteredCardData: filteredCardData
+      filteredCardData: filteredCardData,
+      filterDescription: filterDescription
     });
+  }
+
+  getFilterDescription(filters) {
+    let filterDescription = "";
+    if (filters.cost) {
+      filterDescription += filters.cost + "-cost ";
+    }
+    if (filters.rarity) {
+      filterDescription += filters.rarity + " ";
+    }
+    if (filters.class) {
+      filterDescription += filters.class + " ";
+    }
+    if (filters.race) {
+      filterDescription += filters.race + "s ";
+    }
+    else {
+      filterDescription += "Minions ";
+    }
+    if (filters.wildOrStandard) {
+      filterDescription += "in " + filters.wildOrStandard;
+    }
+    return filterDescription;
   }
 
   renderBody() {
     if (this.state.infoData && this.state.cardData) {
       return (
         <>
-        <FilterForm filterData={this.filterData} infoData={this.state.infoData} />
-        <StatDisplay cardData={this.state.filteredCardData} dataBuckets={this.state.dataBuckets}/>
+        <FilterForm 
+          filterData={this.filterData} 
+          infoData={this.state.infoData} />
+        <StatDisplay 
+          cardData={this.state.filteredCardData} 
+          dataBuckets={this.state.dataBuckets} 
+          filterDescription={this.state.filterDescription}/>
         <CardDisplay cardData={this.state.filteredCardData} />
         </>
       );

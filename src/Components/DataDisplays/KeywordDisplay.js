@@ -4,6 +4,7 @@ import './KeywordDisplay.css';
 class KeywordDisplay extends Component {
 
   keywordsToDisplay = [
+    "Battlecry",
     "Deathrattle",
     "Divine Shield",
     "Taunt",
@@ -16,19 +17,20 @@ class KeywordDisplay extends Component {
   ]
 
   render() {
-    console.log(this.props);
-    if (!this.props.data) return <></>;
-    let keywordCounts = this.props.data;
-    let keys = Object.keys(keywordCounts).sort();
 
-    let keywordDivs = keys.map((key) => {
-      if (this.keywordsToDisplay.includes(key)) {
-        let percentage = ((keywordCounts[key] / this.props.numCards)*100).toFixed(1);
-        return <div className="keywordDiv" key={key + percentage}>
-          <p>{key}</p>
-          <h3>{percentage + "%"}</h3>
-        </div>
-      }
+    if (!this.props.keywordCounts) return <></>;
+
+    let keywordCounts = this.props.keywordCounts;
+    let keywordsToDisplay = this.keywordsToDisplay.filter((keyword) => {
+      return (keywordCounts[keyword] !== undefined);
+    });
+    let keywordDivs = keywordsToDisplay.map((keyword) => {
+      let count = keywordCounts[keyword];
+      let percentage = ((count / this.props.numCards)*100).toFixed(1);
+      return <div className="keywordDiv" key={keyword + percentage}>
+        <p>{keyword}</p>
+        <h3>{percentage + "%"}</h3>
+      </div>
     });
 
     return (
