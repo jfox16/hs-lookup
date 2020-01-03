@@ -111,6 +111,13 @@ function CostInput(props) {
 }
 
 function ClassInput(props) {
+  const classesToHide = ["Death Knight", "Dream"];
+  for (let i = 0; i < classesToHide.length; i++) {
+    let index = props.classes.indexOf(classesToHide[i]);
+    if (index > -1) {
+      props.classes.splice(index, 1);
+    }
+  }
   return (
     <div className="input-field">
       <p>CLASS</p>
