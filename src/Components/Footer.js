@@ -6,7 +6,7 @@ import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 export default function Footer() {
   return(
     <div className="Footer">
-      <p>Made by Jonathan Paul Fox in 2019</p>
+      <p>Copyright © {new Date().getFullYear()} Jonathan Paul Fox </p>
       <a href="mailto:FoxJonathanP@gmail.com">FoxJonathanP@gmail.com</a>
       <div className="icons">
         <p>

@@ -3,11 +3,11 @@
   flex-direction: column;
   text-align: center;
   margin-top: 3em;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .Footer .icons {
-  font-size: 40px;
+  font-size: 32px;
   margin-top: 0.1em;
 }
 
@@ -17,9 +17,9 @@
 
 @media (max-width: 800px) {
   .Footer {
-    font-size: 16px;
+    font-size: 12px;
   }
   .Footer .icons {
-    font-size: 32px;
+    font-size: 28px;
   }
 }

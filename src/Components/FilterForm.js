@@ -12,6 +12,7 @@ class FilterForm extends Component {
         wildOrStandard: "Standard",
         cost: null,
         class: null,
+        includeNeutral: false,
         race: null,
         rarity: null
       }
@@ -19,6 +20,7 @@ class FilterForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setIncludeNeutral = this.setIncludeNeutral.bind(this);
   }
 
   handleChange(e, key) {
@@ -26,7 +28,7 @@ class FilterForm extends Component {
     if (value.length === 0) {
       value = null;
     }
-    console.log("Changing " + key + " to " + value);
+    // console.log("Changing " + key + " to " + value);
     let filters = this.state.filters;
     if (key in filters) {
       filters[key] = value;
@@ -34,6 +36,14 @@ class FilterForm extends Component {
         filters: filters
       });
     }
+  }
+
+  setIncludeNeutral(includeNeutral) {
+    let filters = this.state.filters;
+    filters["includeNeutral"] = includeNeutral;
+    this.setState({
+      filters: filters
+    })
   }
 
   renderWildOrStandardRadio() {
@@ -46,8 +56,7 @@ class FilterForm extends Component {
             value="Wild"
             onChange={(e) => {this.handleChange(e, "wildOrStandard")}}
             checked={this.state.filters.wildOrStandard === "Wild"}
-          />
-          WILD
+          /> WILD
         </label>
         <label>
           <input
@@ -56,8 +65,7 @@ class FilterForm extends Component {
             value="Standard"
             onChange={(e) => {this.handleChange(e, "wildOrStandard")}}
             checked={this.state.filters.wildOrStandard === "Standard"}
-          />
-          STANDARD
+          /> STANDARD
         </label>
       </div>
     );}
@@ -74,6 +82,7 @@ class FilterForm extends Component {
       {this.renderWildOrStandardRadio()}
       <CostInput handleChange={this.handleChange} />
       <ClassInput handleChange={this.handleChange} classes={this.props.infoData.classes} />
+      <IncludeNeutralInput setIncludeNeutral={this.setIncludeNeutral} />
       <RaceInput handleChange={this.handleChange} races={this.props.infoData.races} />
       <RarityInput handleChange={this.handleChange} rarities={this.props.infoData.qualities} />
       <button className="lookup-button" onClick={this.handleSubmit}>Look Up</button>
@@ -111,6 +120,21 @@ function ClassInput(props) {
           return <option value={_class} key={_class}>{_class}</option>
         })}
       </select>
+    </div>
+  );
+}
+
+function IncludeNeutralInput(props) {
+  return (
+    <div>
+      <label>
+        <input 
+          type="checkbox" 
+          onChange={(e) => {
+            props.setIncludeNeutral(e.target.checked)}
+          } 
+        /> Include neutral minions (for Discover)
+      </label>
     </div>
   );
 }

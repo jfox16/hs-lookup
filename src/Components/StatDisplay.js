@@ -183,7 +183,7 @@ class StatDisplay extends Component {
       dataBuckets: dataBuckets 
     });
 
-    console.log(dataBuckets);
+    // console.log(dataBuckets);
   }
 
   componentDidMount() {

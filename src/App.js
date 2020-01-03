@@ -58,7 +58,7 @@ class App extends Component {
     }
 
     // TODO: remove for build version
-    console.log(this.state);
+    // console.log(this.state);
     this.filterData(filters);
   }
 
@@ -68,6 +68,8 @@ class App extends Component {
     if (!this.state.infoData || !this.state.cardData) return;
 
     let filteredCardData = this.state.cardData.slice(); // make a copy of cardData to work with
+
+    // console.log(filters);
 
     // Filter by wild/standard
     if (filters.wildOrStandard === "Standard") {
@@ -87,7 +89,7 @@ class App extends Component {
     // Filter by class
     if (filters.class !== null) {
       filteredCardData = filteredCardData.filter((card) => {
-        return (card.playerClass === filters.class);
+        return (card.playerClass === filters.class || (filters.includeNeutral === true && card.playerClass === "Neutral"));
       });
     }
 
