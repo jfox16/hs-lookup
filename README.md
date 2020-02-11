@@ -1,5 +1,5 @@
 # Hearthstone Card Lookup
-## Try it out here: http://tinyurl.com/hs-lookup
+## It's LIVE! -> http://hslookup.net
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
