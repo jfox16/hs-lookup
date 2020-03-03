@@ -1,5 +1,7 @@
-# Hearthstone Card Lookup
+# HSLookup.com
 ## [👉Try it here!💻](http://hslookup.net)
+
+A ReactJS webapp to look up Hearthstone cards and generate useful statistics.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
