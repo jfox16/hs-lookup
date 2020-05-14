@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdFilterList } from 'react-icons/md'
 import { GrFormClose } from 'react-icons/gr';
+import Footer from '../App/Footer';
 
 import './SlidingDrawerLeft.css';
 
@@ -8,7 +9,7 @@ function SlidingDrawerLeft(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsOpen(true), 1500);
+    setTimeout(() => setIsOpen(true), 2000);
   }, []);
 
   const handleButtonClick = (event) => {
@@ -43,6 +44,8 @@ function SlidingDrawerLeft(props) {
       </div>
       <div className='SlidingDrawerLeftContents'>
         {props.children}
+        <div className='SlidingDrawerCloseButton' onClick={e => setIsOpen(false)} >BACK TO CARDS</div>
+        <Footer />
       </div>
     </div>
   </>

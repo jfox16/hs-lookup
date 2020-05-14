@@ -44,7 +44,17 @@
 
 .SlidingDrawerCloseButton {
   background-color: snow;
+  font-weight: bolder;
   border-radius: 5px;
+  margin: 24px 5px;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+  padding: 12px;
+}
+
+.SlidingDrawerCloseButton:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {

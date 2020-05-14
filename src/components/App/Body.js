@@ -3,7 +3,6 @@ import FilterForm from '../Body/FilterForm';
 import CardImageDisplay from '../Body/CardImageDisplay';
 import StatDisplay from '../Body/StatDisplay';
 import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
-import Footer from '../App/Footer';
 
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
 
@@ -62,7 +61,6 @@ function Body(props) {
     <div className='Body'>
       <SlidingDrawerLeft width='350px'>
         <FilterForm metadata={metadata} setFilters={setFilters} />
-        <Footer />
       </SlidingDrawerLeft>
       <div className='BodyRight'>
         <StatDisplay cards={filteredCards} metadata={metadata} filterDescription={filterDescription} />
