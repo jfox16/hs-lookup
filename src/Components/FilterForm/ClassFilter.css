@@ -1,0 +1,48 @@
+
+.ClassFilter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ClassFilterButton {
+  margin: 2px 2px;
+}
+
+.ClassFilterButton:hover {
+  cursor: pointer;
+}
+
+.ClassFilterButtonIcon {
+  margin: 0 auto;
+  height: 38px;
+  width: 38px;
+  background-color: grey;
+  border-radius: 50%;
+  background-position: center;
+  background-size: 105% 105%;
+}
+
+.ClassFilterButtonLabel {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 13px;
+  width: 50px;
+}
+
+@media screen and (max-width: 700px) {
+  .ClassFilterButton {
+    margin: 1px 1px;
+  }
+
+  .ClassFilterButtonIcon {
+    height: 34px;
+    width: 34px;
+  }
+
+  .ClassFilterButtonLabel {
+    font-size: 12px;
+    width: 45px;
+  }
+}

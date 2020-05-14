@@ -7,6 +7,8 @@ export default function Footer() {
   return(
     <div className="Footer">
       <p>Copyright © {new Date().getFullYear()} Jonathan Paul Fox </p>
+      <p>Hearthstone is a trademark or registered trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries.</p>
+      <div style={{height: '8px'}}/>
       <a href="mailto:FoxJonathanP@gmail.com">FoxJonathanP@gmail.com</a>
       <div className="icons">
         <p>

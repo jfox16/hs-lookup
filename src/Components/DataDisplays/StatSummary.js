@@ -1,29 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './StatSummary.css';
 
-class StatSummary extends Component {
-  render() {
-    return (
-      <div className="StatSummary">
-      <table>
-      <tbody>
-        <tr>
-          <th></th>
-          <th> Mean </th>
-          <th> Median </th>
-          <th> StDev </th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>{this.props.mean.toFixed(2)}</td>
-          <td>{this.props.median.toFixed(2)}</td>
-          <td>{this.props.stdev.toFixed(2)}</td>
-        </tr>
-      </tbody>
-      </table>
+function StatSummary(props) {
+  return (
+    <div className="StatSummary">
+      <div className='StatSummaryColumn'>
+        <p className='StatSummaryLabel'>Mean</p>
+        <p className='StatSummaryValue'>{props.mean.toFixed(2)}</p>
       </div>
-    );
-  }
+      <div className='StatSummaryColumn'>
+        <p className='StatSummaryLabel'>Median</p>
+        <p className='StatSummaryValue'>{props.median.toFixed(2)}</p>
+      </div>
+      <div className='StatSummaryColumn'>
+        <p className='StatSummaryLabel'>StDev</p>
+        <p className='StatSummaryValue'>{props.stdev.toFixed(2)}</p>
+      </div>
+    </div>
+  );
 }
 
 export default StatSummary;

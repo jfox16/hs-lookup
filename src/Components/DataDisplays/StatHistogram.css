@@ -1,3 +1,9 @@
+.StatHistogramDiv {
+  position: relative;
+  width: 100%;
+  z-index: -1;
+}
+
 .rv-xy-plot__axis__tick__text {
   fill: white;
 }

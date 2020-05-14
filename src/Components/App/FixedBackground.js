@@ -1,0 +1,20 @@
+import React from 'react';
+
+function FixedBackground(props) {
+  return (
+    <div className='StaticBackground' style={{
+      position: 'fixed',
+      left: 0,
+      right: 0,
+      zIndex: -9000,
+      height: '100vh',
+      width: '100vw',
+      backgroundImage: `url(${props.bgImage})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+    }} />
+  );
+}
+
+export default FixedBackground;

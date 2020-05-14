@@ -1,0 +1,20 @@
+
+.FilterFormLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+}
+
+.FilterFormLabelLabel {
+  font-size: 14px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.FilterFormLabelLine {
+  margin: 0;
+  flex: 1 0 0;
+  height: 1px;
+  background-color: hsl(0, 0%, 28%);
+}

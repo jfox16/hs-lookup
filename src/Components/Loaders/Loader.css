@@ -1,0 +1,10 @@
+
+.Loader {
+  width: 100%;
+  margin-top: 5em;
+  text-align: center;
+}
+
+.LoaderText {
+  font-size: 20px;
+}

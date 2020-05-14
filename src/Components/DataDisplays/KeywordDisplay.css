@@ -1,11 +1,20 @@
 .KeywordDisplay {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  border: solid 1px hsl(0, 0%, 28%);
+  border-radius: 6px;
+  background-color: hsla(0, 0%, 14%, 80%);
+  padding: 5px;
+  margin: 3px 2px;
 }
 
-.keywordDiv {
-  margin: 10px;
+.KeywordDisplayDiv {
+  margin: 5px 8px;
   text-align: center;
+}
+
+.KeywordPercentage {
+  font-size: 18px;
 }

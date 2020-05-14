@@ -1,0 +1,8 @@
+.NumericFilters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.NumericFilters > div + div {
+  margin-left: 5px;
+}

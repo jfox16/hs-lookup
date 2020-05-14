@@ -3,7 +3,11 @@
   flex-direction: column;
   text-align: center;
   margin-top: 3em;
-  font-size: 16px;
+  font-size: 12px;
+}
+
+.Footer * {
+  color: snow;
 }
 
 .Footer .icons {

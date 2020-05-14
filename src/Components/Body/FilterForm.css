@@ -1,53 +1,9 @@
 
 .FilterForm {
-  padding: 1em 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 1em auto;
-  max-width: 500px;
-  background-color: #424242;
-  border: 1px solid #616161;
-  border-radius: 8px;
-  padding: 1em;
-}
-
-.input-field {
-  flex-grow: 1;
-  background-color: #424242;
-  border: 1px solid #616161;
-  border-radius: 8px;
-  margin: 0.5em 0;
-  padding: 0 1em;
-}
-
-.input-field p {
-  font-size: 15px;
-  margin-top: 0.5em;
-}
-
-.input-field input {
-  background: none;
-  border: none;
   width: 100%;
-  padding: 8px 0px;
-  font-size: 20px;
-}
-
-.input-field select {
-  background: none;
-  border: none;
-  width: 100%;
-  padding: 8px 0px;
-  font-size: 20px;
-}
-
-.input-field select option {
-  background-color: #424242; 
-}
-
-label {
-  margin: 1em;
+  margin: 12px 0;
 }
 
 .lookup-button {
@@ -70,9 +26,13 @@ label {
     background-color: #ff5722;
   }
 
+.FilterForm > div {
+  margin: 5px 5px;
+}
+
 .reset-button {
   background-color: #9e8c7d;
-  border:none;
+  border: none;
   border-radius: 8px;
   font-size: 15px;
   padding: 12px;

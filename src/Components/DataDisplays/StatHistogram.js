@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './StatHistogram.css';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalRectSeries} from 'react-vis';
+import { withResizeDetector } from 'react-resize-detector';
 
 
-class StatHistogram extends Component {
+function StatHistogram(props) {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      maxValue: null
-    }
-  }
-
-  histogramify(data, minX, maxX) {
+  const histogramify = (data, minX, maxX) => {
     const barWidth = 0.9;
 
     let resultArr = [];
@@ -42,7 +35,7 @@ class StatHistogram extends Component {
     return resultArr;
   }
 
-  renderYAxis(maxY) {
+  const renderYAxis = (maxY) => {
     if (!maxY) return;
     if (maxY >= 5) {
       return <YAxis />;
@@ -52,7 +45,7 @@ class StatHistogram extends Component {
     }
   }
 
-  renderHorizontalGridLines(maxY) {
+  const renderHorizontalGridLines = (maxY) => {
     if (!maxY) return;
     if (maxY >= 5) {
       return <HorizontalGridLines />;
@@ -62,21 +55,19 @@ class StatHistogram extends Component {
     }
   }
 
-  render() {
-    return (
-      <div>
-        <XYPlot height={200} width={300}>
-          <XAxis />
-          {this.renderYAxis(this.props.maxY)}
-          {this.renderHorizontalGridLines(this.props.maxY)}
-          <VerticalRectSeries 
-            color={this.props.color}
-            data={this.histogramify(this.props.data, this.props.minX, this.props.maxX)}
-          />
-        </XYPlot>
-      </div>
-    );
-  }
+  return (
+    <div className='StatHistogramDiv'>
+      <XYPlot height={160} width={props.width}>
+        <XAxis />
+        {renderYAxis(props.maxY)}
+        {renderHorizontalGridLines(props.maxY)}
+        <VerticalRectSeries 
+          color={props.color}
+          data={histogramify(props.data, props.minX, props.maxX)}
+        />
+      </XYPlot>
+    </div>
+  );
 }
 
-export default StatHistogram;
+export default withResizeDetector(StatHistogram);

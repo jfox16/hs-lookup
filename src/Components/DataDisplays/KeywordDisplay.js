@@ -1,44 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './KeywordDisplay.css';
 
-class KeywordDisplay extends Component {
+function KeywordDisplay(props) {
+  if (!props.keywordTotals || !props.keywordTotals.shouldBeDisplayed || !props.cards ) return <></>
 
-  keywordsToDisplay = [
-    "Battlecry",
-    "Deathrattle",
-    "Divine Shield",
-    "Taunt",
-    "Reborn",
-    "Rush",
-    "Charge",
-    "Lifesteal",
-    "Poisonous",
-    "Spell Damage",
-  ]
-
-  render() {
-
-    if (!this.props.keywordCounts) return <></>;
-
-    let keywordCounts = this.props.keywordCounts;
-    let keywordsToDisplay = this.keywordsToDisplay.filter((keyword) => {
-      return (keywordCounts[keyword] !== undefined);
-    });
-    let keywordDivs = keywordsToDisplay.map((keyword) => {
-      let count = keywordCounts[keyword];
-      let percentage = ((count / this.props.numCards)*100).toFixed(1);
-      return <div className="keywordDiv" key={keyword + percentage}>
-        <p>{keyword}</p>
-        <h3>{percentage + "%"}</h3>
-      </div>
-    });
-
-    return (
-      <div className="KeywordDisplay">
-        {keywordDivs}
-      </div>
-    );
-  }
+  return (
+    <div style={{textAlign: 'center'}}>
+    <div className="KeywordDisplay">
+      {Object.values(props.keywordTotals.keywords).map(total => {
+        if (total.count === 0) return <></>
+        return (
+          <div className='KeywordDisplayDiv' key={'' + total.name + total.count + props.cards.length}>
+            <p>{total.name}</p>
+            <p className='KeywordPercentage'>{((total.count / props.cards.length)*100).toFixed(1) + '%'}</p>
+          </div>
+        );
+      })}
+    </div>
+    </div>
+  );
 }
 
 export default KeywordDisplay;
