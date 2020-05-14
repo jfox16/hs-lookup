@@ -1,6 +1,6 @@
 {
-  "name": "hs-lookup",
-  "version": "0.1.0",
+  "name": "hslookup",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
     "@babel/helper-call-delegate": "^7.8.7",
