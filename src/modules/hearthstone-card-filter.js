@@ -106,10 +106,10 @@ const descriptionTokens = {
     neutral: ' Neutral'
   },
   rarity: {
-    free: ' free',
-    common: ' common',
-    rare: ' rare',
-    epic: ' epic',
+    free: ' Free',
+    common: ' Common',
+    rare: ' Rare',
+    epic: ' Epic',
     legendary: ' Legendary'
   },
   cardType: {
@@ -118,6 +118,17 @@ const descriptionTokens = {
     minion: ' minions',
     spell: ' spells',
     weapon: ' weapons',
+  },
+  minionType: {
+    murloc: ' Murlocs',
+    demon: ' Demons',
+    mech: ' Mechs',
+    elemental: ' Elementals',
+    beast: ' Beasts',
+    totem: ' Totems',
+    pirate: ' Pirates',
+    dragon: ' Dragons',
+    all: "'All'-type minions",
   },
   isStandard: {
     false: ' in Wild',
@@ -170,9 +181,15 @@ function generateFilterDescription(filters) {
   // Rarity
   if (filters.rarity) filterDescription += descriptionTokens.rarity[filters.rarity];
 
-  // Card Type
-  if (filters.cardType) filterDescription += descriptionTokens.cardType[filters.cardType];
-  else filterDescription += descriptionTokens.cardType.default;
+  if (filters.minionType) {
+    filterDescription += descriptionTokens.minionType[filters.minionType];
+  }
+  else if (filters.cardType) {
+    filterDescription += descriptionTokens.cardType[filters.cardType];
+  }
+  else {
+    filterDescription += descriptionTokens.cardType.default;
+  }
 
   // Format
   filterDescription += descriptionTokens.isStandard[filters.isStandard];

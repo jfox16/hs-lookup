@@ -43,9 +43,13 @@ function generateStatTotals(cards) {
   
       // Find Median
       totals[stat].array.sort((a,b) => a - b);
-      let midPoint = Math.floor(totals[stat].array.length/2);
-      if (cards.length % 2 !== 0) totals[stat].median = totals[stat].array[midPoint];
-      else totals[stat].median = (totals[stat].array[midPoint-1] + totals[stat].array[midPoint+1]) / 2;
+      let midPoint = Math.floor((totals[stat].array.length-1)/2);
+      if (cards.length % 2 !== 0) {
+        totals[stat].median = totals[stat].array[midPoint]; // middle number
+      }
+      else {
+        totals[stat].median = ((totals[stat].array[midPoint] + totals[stat].array[midPoint+1])/2); // avg of middle two numbers
+      }
   
       // Find StDev
       let sumDiffSq = 0;
@@ -54,6 +58,7 @@ function generateStatTotals(cards) {
     }
   });
 
+  console.log('statTotals', totals);
   return totals;
 }
 
