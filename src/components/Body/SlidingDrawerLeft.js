@@ -8,10 +8,6 @@ import './SlidingDrawerLeft.css';
 function SlidingDrawerLeft(props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setIsOpen(true), 2000);
-  }, []);
-
   const handleButtonClick = (event) => {
     setIsOpen(!isOpen);
   }
