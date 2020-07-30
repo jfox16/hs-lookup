@@ -11,13 +11,13 @@ import './Body.css';
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
 
 function Body(props) {
-  const [region, setRegion] = useState('us');
-  const [locale, setLocale] = useState('en_US');
+  const [region] = useState('us');
+  const [locale] = useState('en_US');
   const [metadata, setMetadata] = useState(null);
   const [cardData, setCardData] = useState(null);
   const [filters, setFilters] = useState({});
   const [filteredCards, setFilteredCards] = useState(null);
-  const [sortValue, setSortValue] = useState('manaCost');
+  // const [sortValue, setSortValue] = useState('manaCost');
   const [filterDescription, setFilterDescription] = useState('');
 
   // On component load

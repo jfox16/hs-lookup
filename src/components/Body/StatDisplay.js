@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "./StatDisplay.css";
 
 import { generateStatTotals, generateKeywordTotals } from '../../modules/hearthstone-card-stats';
@@ -37,8 +37,8 @@ function StatDisplay(props) {
           let totals = statTotals[stat.accessor];
           if (totals.shouldBeDisplayed) {
             return (
-              <div className='StatDisplayDataGridDiv'>
-                <div className="StatDisplayDataGroup" key={stat.name + 'summary'}>
+              <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
+                <div className="StatDisplayDataGroup">
                   <div className='StatDisplayDataGroupHeader'>
                     <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
                     <p className='StatDisplayDataGroupTitle'>{stat.name}</p>

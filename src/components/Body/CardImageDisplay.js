@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 
 import placeholder from '../../img/card-placeholder.png';

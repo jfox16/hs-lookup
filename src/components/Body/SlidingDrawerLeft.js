@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MdFilterList } from 'react-icons/md'
 import { GrFormClose } from 'react-icons/gr';
 import Footer from '../App/Footer';

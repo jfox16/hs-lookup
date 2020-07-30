@@ -11,7 +11,7 @@ import Body from './components/App/Body';
 // import react-vis css for charts
 import 'react-vis/dist/style.css';
 
-import bgImage from './img/bg/ashes-of-outland-bg.png';
+import bgImage from './img/bg/scholomance-academy-bg.png';
 
 
 

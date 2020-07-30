@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import './StatHistogram.css';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalRectSeries} from 'react-vis';
 import { withResizeDetector } from 'react-resize-detector';
 
 
-function StatHistogram(props) {
+const StatHistogram = (props) => {
 
   const histogramify = (data, minX, maxX) => {
     const barWidth = 0.9;
@@ -55,9 +55,11 @@ function StatHistogram(props) {
     }
   }
 
+  const width = props.width ? props.width : 0;
+
   return (
     <div className='StatHistogramDiv'>
-      <XYPlot height={160} width={props.width}>
+      <XYPlot height={160} width={width}>
         <XAxis />
         {renderYAxis(props.maxY)}
         {renderHorizontalGridLines(props.maxY)}

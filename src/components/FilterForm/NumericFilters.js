@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FilterFormLabel from './FilterFormLabel';
 import FilterFormNumeric from './FilterFormNumeric';
 import './NumericFilters.css';

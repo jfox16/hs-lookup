@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SetFilter from '../FilterForm/SetFilter';
 import ClassFilter from '../FilterForm/ClassFilter';
 import CardTypeFilter from '../FilterForm/CardTypeFilter';
@@ -22,6 +22,10 @@ function FilterForm(props) {
 
   if (!props.metadata) {
     return <Loader text='Fetching metadata...'/>
+  }
+
+  if (props.metadata === 'error') {
+    return <div>Something wrong!</div>
   }
 
   return (
