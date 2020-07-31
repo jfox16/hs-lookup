@@ -3,7 +3,7 @@ import FilterFormDropdown from './FilterFormDropdown';
 import FilterFormLabel from './FilterFormLabel';
 
 function MinionTypeFilter(props) {
-  const [selectedMinionType, setSelectedMinionType] = useState('');
+  const [selectedMinionType, setSelectedMinionType] = useState(props.value ? props.value : '');
 
   useEffect(() => {
     props.setFilterValue('minionType', selectedMinionType);

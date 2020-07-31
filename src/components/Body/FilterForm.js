@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SetFilter from '../FilterForm/SetFilter';
 import ClassFilter from '../FilterForm/ClassFilter';
 import CardTypeFilter from '../FilterForm/CardTypeFilter';
+import KeywordFilter from '../FilterForm/KeywordFilter';
 import RarityFilter from '../FilterForm/RarityFilter';
 import MinionTypeFilter from '../FilterForm/MinionTypeFilter';
 import NumericFilters from '../FilterForm/NumericFilters';
@@ -38,6 +39,7 @@ function FilterForm(props) {
       <div><CardTypeFilter cardTypes={props.metadata.types} setFilterValue={setFilterValue} value={'minion'} /></div>
       <div><RarityFilter rarities={props.metadata.rarities} setFilterValue={setFilterValue} /></div>
       <div><MinionTypeFilter minionTypes={props.metadata.minionTypes} setFilterValue={setFilterValue} /></div>
+      <div><KeywordFilter keywords={props.metadata.keywords} setFilterValue={setFilterValue} /></div>
     </div>
   );
 }

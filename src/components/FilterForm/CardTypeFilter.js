@@ -3,7 +3,7 @@ import FilterFormLabel from './FilterFormLabel';
 import FilterFormDropdown from './FilterFormDropdown';
 
 function CardTypeFilter(props) {
-  const [selectedCardType, setSelectedCardType] = useState(props.value);
+  const [selectedCardType, setSelectedCardType] = useState(props.value ? props.value : '');
 
   useEffect(() => {
     props.setFilterValue('cardType', selectedCardType);

@@ -1,3 +1,5 @@
+const { descriptionTokens, keywordMinionExclusions } = require('./filterConstants');
+
 function filterCards(metadata, cardData, filters) {
   if (!metadata || typeof metadata === 'string' 
     || !cardData || typeof cardData === 'string' 
@@ -6,7 +8,7 @@ function filterCards(metadata, cardData, filters) {
     return null;
   }
 
-  console.log('filtering with: ', filters);
+  // console.log('filtering with: ', filters);
 
   let cards = cardData.cards;
 
@@ -67,9 +69,20 @@ function filterCards(metadata, cardData, filters) {
   // Filter by Minion Type
   if (filters.minionType && metadata.minionTypes && (!filters.cardType || filters.cardType === 'minion')) {
     const selectedMinionType = metadata.minionTypes.find(minionType => minionType.slug === filters.minionType);
-    console.log(selectedMinionType);
     if (selectedMinionType) {
       cards = cards.filter(card => card.minionTypeId === selectedMinionType.id);
+    }
+  }
+
+  // Filter by Keyword
+  if (filters.keyword && metadata.keywords) {
+    const selectedKeyword = metadata.keywords.find(keyword => keyword.slug === filters.keyword);
+    if (selectedKeyword) {
+      cards = cards.filter(card => (
+        card.keywordIds
+        && card.keywordIds.includes(selectedKeyword.id)
+        && !(keywordMinionExclusions[selectedKeyword.slug] && keywordMinionExclusions[selectedKeyword.slug][card.id])
+      ));
     }
   }
 
@@ -89,52 +102,7 @@ function filterCards(metadata, cardData, filters) {
   }
 
   return cards;
-} 
-
-const descriptionTokens = {
-  classes: {
-    demonhunter: ' Demon Hunter',
-    druid: ' Druid',
-    hunter: ' Hunter',
-    mage: ' Mage',
-    paladin: ' Paladin',
-    priest: ' Priest',
-    rogue: ' Rogue',
-    shaman: ' Shaman',
-    warlock: ' Warlock',
-    warrior: ' Warrior',
-    neutral: ' Neutral'
-  },
-  rarity: {
-    free: ' Free',
-    common: ' Common',
-    rare: ' Rare',
-    epic: ' Epic',
-    legendary: ' Legendary'
-  },
-  cardType: {
-    default: ' cards',
-    hero: ' hero cards',
-    minion: ' minions',
-    spell: ' spells',
-    weapon: ' weapons',
-  },
-  minionType: {
-    murloc: ' Murlocs',
-    demon: ' Demons',
-    mech: ' Mechs',
-    elemental: ' Elementals',
-    beast: ' Beasts',
-    totem: ' Totems',
-    pirate: ' Pirates',
-    dragon: ' Dragons',
-    all: "'All'-type minions",
-  },
-  isStandard: {
-    false: ' in Wild',
-    true: ' in Standard'
-  }
-};
+}
 
 function generateFilterDescription(filters) {
   let filterDescription = 'Showing all';
@@ -181,6 +149,10 @@ function generateFilterDescription(filters) {
   // Rarity
   if (filters.rarity) filterDescription += descriptionTokens.rarity[filters.rarity];
 
+  // Keyword
+  if (filters.keyword) filterDescription += descriptionTokens.keyword[filters.keyword];
+
+  // minion type / card type
   if (filters.minionType) {
     filterDescription += descriptionTokens.minionType[filters.minionType];
   }

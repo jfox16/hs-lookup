@@ -3,7 +3,7 @@ import FilterFormLabel from './FilterFormLabel';
 import FilterFormDropdown from './FilterFormDropdown';
 
 function RarityFilter(props) {
-  const [selectedRarity, setSelectedRarity] = useState('');
+  const [selectedRarity, setSelectedRarity] = useState(props.value ? props.value : '');
 
   useEffect(() => {
     props.setFilterValue('rarity', selectedRarity);

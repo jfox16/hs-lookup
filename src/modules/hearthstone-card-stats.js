@@ -1,3 +1,5 @@
+const { descriptionTokens, keywordMinionExclusions } = require('./filterConstants');
+
 function generateStatTotals(cards) {
 
   const totals = {};
@@ -58,13 +60,9 @@ function generateStatTotals(cards) {
     }
   });
 
-  console.log('statTotals', totals);
+  // console.log('statTotals', totals);
   return totals;
 }
-
-
-const keywordsToTrack = ['taunt', 'spellpower', 'divine-shield', 'charge', 'stealth', 'windfury', 
-  'deathrattle', 'inspire', 'poisonous', 'lifesteal', 'rush', 'reborn'];
 
 function generateKeywordTotals(cards, metadata) {
 
@@ -72,14 +70,14 @@ function generateKeywordTotals(cards, metadata) {
     return null;
   }
 
-  const keywords = {};
+  const keywordStats = {};
   const keywordSlugs = {};
   let shouldBeDisplayed = false;
   
   // Populate dicts
   metadata.keywords.forEach(keyword => {
-    if (keywordsToTrack.includes(keyword.slug)) {
-      keywords[keyword.slug] = {
+    if (descriptionTokens.keyword[keyword.slug]) {
+      keywordStats[keyword.slug] = {
         name: keyword.name,
         count: 0
       };
@@ -90,19 +88,17 @@ function generateKeywordTotals(cards, metadata) {
   // Count keywords
   cards.forEach(card => {
     if (card.cardTypeId === 4 && card.keywordIds) {
-      card.keywordIds.forEach(id => {
-        let slug = keywordSlugs[id];
-        if (keywords[slug]) {
-          keywords[slug].count++;
+      card.keywordIds.forEach(keywordId => {
+        let slug = keywordSlugs[keywordId];
+        if (keywordStats[slug] && !(keywordMinionExclusions[slug] && keywordMinionExclusions[slug][card.id])) {
+          keywordStats[slug].count++;
           shouldBeDisplayed = true;
         }
       })
     }
   });
 
-  console.log('keywords:', keywords);
-
-  return { keywords, shouldBeDisplayed };
+  return { keywordStats, shouldBeDisplayed };
 }
 
 

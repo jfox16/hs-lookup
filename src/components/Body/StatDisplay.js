@@ -25,6 +25,12 @@ function StatDisplay(props) {
   const statTotals = generateStatTotals(props.cards);
   const keywordTotals = generateKeywordTotals(props.cards, props.metadata);
 
+  const statsToDisplay = [];
+  statsToTrack.forEach((statToTrack) => {
+    const totals = statTotals[statToTrack.accessor];
+    if (totals.shouldBeDisplayed) statsToDisplay.push(statToTrack);
+  });
+
   return (
     <div className="StatDisplay">
       <div className='StatDisplayHeader'>
@@ -33,40 +39,35 @@ function StatDisplay(props) {
       </div>
 
       <div className="StatDisplayData">
-        {statsToTrack.map(stat => {
+        {statsToDisplay.map(stat => {
           let totals = statTotals[stat.accessor];
-          if (totals.shouldBeDisplayed) {
-            return (
-              <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
-                <div className="StatDisplayDataGroup">
-                  <div className='StatDisplayDataGroupHeader'>
-                    <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
-                    <p className='StatDisplayDataGroupTitle'>{stat.name}</p>
-                  </div>
-                  <div className='StatDisplayDataGroupData'>
-                    <StatHistogram
-                      label={stat.name}
-                      color={stat.color}
-                      data={totals.frequencies}
-                      minX={totals.min}
-                      maxX={totals.max}
-                      maxY={totals.maxFrequency}
+          return (
+            <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
+              <div className="StatDisplayDataGroup">
+                <div className='StatDisplayDataGroupHeader'>
+                  <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
+                  <p className='StatDisplayDataGroupTitle'>{stat.name}</p>
+                </div>
+                <div className='StatDisplayDataGroupData'>
+                  <StatHistogram
+                    label={stat.name}
+                    color={stat.color}
+                    data={totals.frequencies}
+                    minX={totals.min}
+                    maxX={totals.max}
+                    maxY={totals.maxFrequency}
+                  />
+                  <div className='StatSummaryDiv'>
+                    <StatSummary
+                      mean={totals.mean}
+                      median={totals.median}
+                      stdev={totals.stdev}
                     />
-                    <div className='StatSummaryDiv'>
-                      <StatSummary
-                        mean={totals.mean}
-                        median={totals.median}
-                        stdev={totals.stdev}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
-            );
-          }
-          else {
-            return <></>
-          }
+            </div>
+          );
         })}
       </div>
 

@@ -1,6 +1,6 @@
 .CardImageDisplay {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill,minmax(180px, 1fr));
 }
 
 .CardImageDisplayCardDiv {
@@ -12,18 +12,18 @@
 
 @media screen and (max-width: 1000px) {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
   }
 }
 
 @media screen and (max-width: 800px) {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
   }
 }
 
 @media screen and (max-width: 600px) {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(120px, 1fr));
   }
 }

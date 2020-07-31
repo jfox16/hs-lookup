@@ -31,7 +31,7 @@ function CardImageDisplay(props) {
       {sortCards(props.cards).map(card => (
         <div className='CardImageDisplayCardDiv' key={'card-image-' + card.id}>
           <LazyLoad height={200} placeholder={<img className='CardImageDisplayCard' src={placeholder} alt='placeholder' />}>
-            <img className='CardImageDisplayCard' src={card.image} alt={card.name} />
+            <img className='CardImageDisplayCard' src={card.image} alt={card.name}  onClick={(e) => console.log(card)} />
           </LazyLoad>
         </div>
       ))}

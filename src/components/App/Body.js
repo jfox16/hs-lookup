@@ -5,6 +5,7 @@ import StatDisplay from '../Body/StatDisplay';
 import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
 
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
+import { generateMarkupTable } from '../../modules/dataGenerator';
 
 import './Body.css';
 
@@ -26,8 +27,18 @@ function Body(props) {
   }, []);
 
   useEffect(() => {
+    console.log('filteredCards', filteredCards);
+  }, [filteredCards]);
+
+  useEffect(() => {
     setFilteredCards(filterCards(metadata, cardData, filters));
     setFilterDescription(generateFilterDescription(filters));
+
+    // if (cardData && typeof cardData !== 'string' && metadata && typeof metadata !== 'string') {
+    //   console.log('GENERATING TABLES');
+    //   console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', isStandard: true}));
+    //   console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
+    // }
   }, [metadata, cardData, filters]);
 
   async function fetchData() {
@@ -37,7 +48,7 @@ function Body(props) {
     fetch(`${SERVER_URL}${region}/metadata?locale=${locale}`)
     .then((response) => response.json())
     .then((metadataJson) => {
-      console.log(metadataJson);
+      console.log('metadata:', metadataJson);
       setMetadata(metadataJson);
     })
     .catch((err) => {
@@ -48,7 +59,7 @@ function Body(props) {
     fetch(`${SERVER_URL}${region}/allcards?locale=${locale}`)
     .then((response) => response.json())
     .then((cardDataJson) => {
-      console.log(cardDataJson);
+      console.log('cardData:', cardDataJson);
       setCardData(cardDataJson);
     })
     .catch((err) => {
