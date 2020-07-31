@@ -15,3 +15,12 @@
 .StatSummaryValue {
   font-size: 22px;
 }
+
+@media screen and (max-width: 700px) {
+  .StatSummaryLabel {
+    font-size: 10px,
+  }
+  .StatSummaryValue {
+    font-size: 16px;
+  }
+}

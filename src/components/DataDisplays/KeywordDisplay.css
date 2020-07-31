@@ -18,3 +18,13 @@
 .KeywordPercentage {
   font-size: 22px;
 }
+
+@media screen and (max-width: 700px) {
+  .KeywordDisplayDiv {
+    font-size: 10px,
+  }
+  .KeywordPercentage {
+    font-size: 16px;
+  }
+}
+
