@@ -237,6 +237,8 @@ export const keywordMinionExclusions = {
     54148: true,
     // 8-cost
     52902: true,
+    // spells
+    51: true,
   },
   deathrattle: {
     // 1-cost
@@ -276,6 +278,15 @@ export const keywordMinionExclusions = {
     47131: true,
     50443: true,
     38496: true,
+    // spells
+    58782: true,
+    56555: true,
+    404: true,
+    52468: true,
+    52082: true,
+    381: true,
+    54873: true,
+    56412: true,
   },
   combo: {
     // 2-cost
