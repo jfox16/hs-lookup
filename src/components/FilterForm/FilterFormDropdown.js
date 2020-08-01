@@ -28,7 +28,7 @@ function FilterFormDropdown(props) {
         ))}
       </select>
       <div className='FilterFormDropdownChevronPositioner'>
-        <GoChevronDown className='FilterFormDropdownChevron' />
+        <GoChevronDown />
       </div>
     </div>
   );
