@@ -224,6 +224,9 @@ export const keywordMinionExclusions = {
     40294: true,
     // 4-cost
     2888: true,
+    2518: true,
+    // spells
+    56094: true,
   },
   windfury: {
     // 3-cost

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 
 import placeholder from '../../img/card-placeholder.png';
@@ -8,6 +8,7 @@ import './CardImageDisplay.css';
 
 
 function CardImageDisplay(props) {
+  const [cardViewerOpen, setCardViewerOpen] = useState(false);
 
   useEffect(() => {
     setInterval(function(){ forceCheck() }, 1000);
@@ -26,12 +27,14 @@ function CardImageDisplay(props) {
     return <div style={{textAlign: 'center'}}>No cards found, try changing the filter query.</div>
   }
 
+  const cardPlaceholder = <img className='CardImageDisplayCard' src={placeholder} alt='placeholder' />;
+
   return (
     <div className='CardImageDisplay'>
       {sortCards(props.cards).map(card => (
         <div className='CardImageDisplayCardDiv' key={'card-image-' + card.id}>
-          <LazyLoad height={200} placeholder={<img className='CardImageDisplayCard' src={placeholder} alt='placeholder' />}>
-            <img className='CardImageDisplayCard' src={card.image} alt={card.name}  onClick={(e) => console.log(card)} />
+          <LazyLoad height={200} placeholder={cardPlaceholder}>
+            <img className='CardImageDisplayCard' src={card.image} alt={card.name} onClick={() => props.handleCardClick(card)} />
           </LazyLoad>
         </div>
       ))}

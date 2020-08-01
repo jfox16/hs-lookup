@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FilterForm from '../Body/FilterForm';
 import CardImageDisplay from '../Body/CardImageDisplay';
+import CardViewer from '../Body/CardViewer';
 import StatDisplay from '../Body/StatDisplay';
 import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
 
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
-import { generateMarkupTable } from '../../modules/dataGenerator';
+// import { generateMarkupTable } from '../../modules/dataGenerator';
 
 import './Body.css';
 
@@ -20,6 +21,8 @@ function Body(props) {
   const [filteredCards, setFilteredCards] = useState(null);
   // const [sortValue, setSortValue] = useState('manaCost');
   const [filterDescription, setFilterDescription] = useState('');
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cardViewerOpen, setCardViewerOpen] = useState(false);
 
   // On component load
   useEffect(() => {
@@ -67,15 +70,21 @@ function Body(props) {
       setCardData('error');
     });
   }
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+    setCardViewerOpen(true);
+  }
   
   return (
     <div className='Body'>
-      <SlidingDrawerLeft width='350px'>
+      <SlidingDrawerLeft className='BodyLeft' width='350px'>
         <FilterForm metadata={metadata} setFilters={setFilters} />
       </SlidingDrawerLeft>
       <div className='BodyRight'>
+        <CardViewer card={selectedCard} open={cardViewerOpen} setOpen={setCardViewerOpen} />
         <StatDisplay cards={filteredCards} metadata={metadata} filterDescription={filterDescription} />
-        <CardImageDisplay cards={filteredCards} />
+        <CardImageDisplay cards={filteredCards} handleCardClick={handleCardClick} />
       </div>
     </div>
   );

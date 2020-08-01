@@ -1,13 +1,15 @@
 .CardImageDisplay {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(180px, 1fr));
-}
-
-.CardImageDisplayCardDiv {
+  width: 100%;
 }
 
 .CardImageDisplayCard {
   width: 100%;
+}
+
+.CardImageDisplayCard:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {

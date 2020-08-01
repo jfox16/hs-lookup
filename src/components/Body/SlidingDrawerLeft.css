@@ -14,12 +14,13 @@
   border-right: 1px solid hsl(0, 0%, 28%);
   box-shadow: 1px 0 2px 0 hsla(0, 0%, 0%, 70%);
   transition: left 0.5s;
+  z-index: 10;
 }
 
 .SlidingDrawerLeftButton {
   position: absolute;
   float: right;
-  z-index: 50;
+  z-index: 1000;
   height: 1em;
   width: 1em;
   font-size: 32px;

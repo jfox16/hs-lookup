@@ -1,8 +1,5 @@
 .StatDisplay {
-  padding: 2px;
-}
-
-.StatDisplayHeader {
+  width: calc(100% - 8px);
 }
 
 .StatDisplay .card-count {
