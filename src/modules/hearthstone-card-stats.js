@@ -38,9 +38,7 @@ function generateStatTotals(cards) {
   });
 
   statsToTrack.forEach(stat => {
-    if (Object.values(totals[stat].frequencies).length > 1) {
-      totals[stat].shouldBeDisplayed = true;
-
+    if (Object.values(totals[stat].frequencies).length > 0) {
       totals[stat].mean = totals[stat].sum / totals[stat].array.length;
   
       // Find Median
@@ -87,7 +85,7 @@ function generateKeywordTotals(cards, metadata) {
 
   // Count keywords
   cards.forEach(card => {
-    if (card.cardTypeId === 4 && card.keywordIds) {
+    if (card.keywordIds) {
       card.keywordIds.forEach(keywordId => {
         let slug = keywordSlugs[keywordId];
         if (keywordStats[slug] && !(keywordMinionExclusions[slug] && keywordMinionExclusions[slug][card.id])) {

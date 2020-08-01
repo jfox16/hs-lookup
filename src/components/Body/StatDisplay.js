@@ -26,9 +26,11 @@ function StatDisplay(props) {
   const keywordTotals = generateKeywordTotals(props.cards, props.metadata);
 
   const statsToDisplay = [];
-  statsToTrack.forEach((statToTrack) => {
-    const totals = statTotals[statToTrack.accessor];
-    if (totals.shouldBeDisplayed) statsToDisplay.push(statToTrack);
+  statsToTrack.forEach((stat) => {
+    const totals = statTotals[stat.accessor];
+    if (Object.keys(totals.frequencies).length > 0) {
+      statsToDisplay.push(stat);
+    }
   });
 
   return (

@@ -6,11 +6,13 @@ import StatDisplay from '../Body/StatDisplay';
 import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
 
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
-// import { generateMarkupTable } from '../../modules/dataGenerator';
+import { generateMarkupTable } from '../../modules/dataGenerator';
 
 import './Body.css';
 
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
+
+const generateTables = false;
 
 function Body(props) {
   const [region] = useState('us');
@@ -37,11 +39,11 @@ function Body(props) {
     setFilteredCards(filterCards(metadata, cardData, filters));
     setFilterDescription(generateFilterDescription(filters));
 
-    // if (cardData && typeof cardData !== 'string' && metadata && typeof metadata !== 'string') {
-    //   console.log('GENERATING TABLES');
-    //   console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', isStandard: true}));
-    //   console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
-    // }
+    if (generateTables && cardData && typeof cardData !== 'string' && metadata && typeof metadata !== 'string') {
+      console.log('GENERATING TABLES');
+      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', isStandard: true}));
+      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
+    }
   }, [metadata, cardData, filters]);
 
   async function fetchData() {
@@ -72,6 +74,7 @@ function Body(props) {
   }
 
   const handleCardClick = (card) => {
+    console.log(card);
     setSelectedCard(card);
     setCardViewerOpen(true);
   }

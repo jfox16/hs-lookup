@@ -1,4 +1,7 @@
 .FilterFormDropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 100%;
   padding: 5px;
   border-radius: 4px;

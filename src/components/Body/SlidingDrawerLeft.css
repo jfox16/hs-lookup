@@ -7,7 +7,7 @@
 .SlidingDrawerLeft {
   position: fixed;
   width: 380px;
-  top: 60px;
+  top: 55px;
   bottom: 0;
   left: -380px;
   background-color: hsl(0, 0%, 14%);
