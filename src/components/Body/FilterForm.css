@@ -51,7 +51,7 @@
   }
 
   
-@media (max-width: 800px) {
+@media (max-width: 700px), screen and (max-height: 500px) {
   .input-field p {
     font-size: 12px;
   }

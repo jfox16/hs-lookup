@@ -60,7 +60,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 700px), screen and (max-height: 500px) {
   .SlidingDrawerLeft {
     width: 100vw;
     left: -100vw;
@@ -69,5 +69,9 @@
 
   .SlidingDrawerLeftSpacer {
     width: 100vw;
+  }
+
+  SlidingDrawerLeftContents {
+    padding-right: 8px;
   }
 }

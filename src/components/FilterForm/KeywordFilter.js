@@ -19,7 +19,9 @@ function KeywordFilter(props) {
   }
 
   const options = [{label: 'Any', value: ''}];
-  props.keywords.forEach(keyword => {
+  const filteredKeywords = props.keywords.filter((keyword) => descriptionTokens.keyword[keyword.slug]);
+  const sortedKeywords = filteredKeywords.sort((a, b) => a.name > b.name);
+  sortedKeywords.forEach(keyword => {
     if (descriptionTokens.keyword[keyword.slug]) {
       options.push({label: keyword.name, value: keyword.slug});
     }

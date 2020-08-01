@@ -10,12 +10,7 @@
 }
 
 .CardViewerCard {
-  height: 70%;
+  max-width: 80%;
+  max-height: 70%;
   transform: translate(0, -10%);
-}
-
-@media screen and (max-width: 700px) {
-  .CardViewerCard {
-    height: 70%;
-  }
 }

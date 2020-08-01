@@ -1,9 +1,4 @@
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
   background-color: #212121;
   color: snow;
 }
@@ -20,7 +15,7 @@ p {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   box-sizing: border-box;
   scrollbar-color: hsl(0, 0%, 30%) hsl(0, 0%, 10%);
 }
