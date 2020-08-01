@@ -13,3 +13,14 @@
 .FilterFormDropdown:hover {
   cursor: pointer;
 }
+
+.FilterFormDropdownChevronPositioner {
+  position: relative;
+  float: right;
+  height: 0;
+  top: -22px;
+  left: -5px;
+}
+
+.FilterFormDropdownChevron {
+}

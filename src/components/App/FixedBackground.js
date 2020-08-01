@@ -7,7 +7,7 @@ function FixedBackground(props) {
       left: 0,
       right: 0,
       zIndex: -1000,
-      height: '100vh',
+      height: '100%',
       width: '100vw',
       backgroundImage: `url(${props.bgImage})`,
       backgroundPosition: 'center',
