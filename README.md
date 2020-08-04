@@ -1,5 +1,5 @@
 # HSLookup.net
-## [👉Try it here!💻](http://hslookup.net)
+## [👉Try it here!💻](https://hslookup.net)
 
 HSLookup is a ReactJS webapp to look up Hearthstone cards and generate useful statistics.
 
