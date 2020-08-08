@@ -4,6 +4,7 @@ import CardImageDisplay from '../Body/CardImageDisplay';
 import CardViewer from '../Body/CardViewer';
 import StatDisplay from '../Body/StatDisplay';
 import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
+import GoogleAd from '../ads/GoogleAd';
 
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
 import { generateMarkupTable } from '../../modules/dataGenerator';
@@ -86,6 +87,7 @@ function Body(props) {
       </SlidingDrawerLeft>
       <div className='BodyRight'>
         <CardViewer card={selectedCard} open={cardViewerOpen} setOpen={setCardViewerOpen} />
+        <GoogleAd />
         <StatDisplay cards={filteredCards} metadata={metadata} filterDescription={filterDescription} />
         <CardImageDisplay cards={filteredCards} handleCardClick={handleCardClick} />
       </div>
