@@ -28,7 +28,7 @@ function Body(props) {
             metadata={props.metadata}
             filterDescription={props.filterDescription}
           />
-          <GoogleAd />
+          {/* <GoogleAd /> */}
           <CardImageDisplay
             cards={props.filteredCards}
             handleCardClick={props.handleCardClick}
