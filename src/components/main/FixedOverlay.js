@@ -9,11 +9,17 @@ import CardViewer from '../fixedOverlay/CardViewer';
 const FixedOverlay = (props) => {
   return (
     <div className='FixedOverlay'>
-      <Header style={{height: props.headerHeight}} />
+      <Header
+        style={{
+          height: props.headerHeight,
+          top: (props.showHeader) ? 0 : -props.headerHeight
+        }}
+      />
       <SlidingDrawerLeft
         open={props.showSidebar}
         setOpen={props.setShowSidebar}
         width={props.sidebarWidth}
+        style={{paddingTop: props.headerHeight}}
       >
         <FilterForm
           metadata={props.metadata}

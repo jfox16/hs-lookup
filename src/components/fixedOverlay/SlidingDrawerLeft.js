@@ -15,8 +15,6 @@ function SlidingDrawerLeft(props) {
     props.setOpen(false);
   }
 
-  const spacerTransitionStyle = {};
-  if (!props.open) spacerTransitionStyle.width = 0;
   const drawerTransitionStyle = {};
   if (props.open) drawerTransitionStyle.left = 0;
 
@@ -24,13 +22,14 @@ function SlidingDrawerLeft(props) {
   <>
     <div
       className='SlidingDrawerLeft'
-      style={drawerTransitionStyle}
+      style={{...drawerTransitionStyle, ...props.style}}
     >
       <div>
         <div
           className='SlidingDrawerLeftButton' 
           onClick={handleButtonClick}
           style={{
+            top: props.style.paddingTop + 12,
             right: (props.open) ? '24px' : '-48px'
           }}
         >

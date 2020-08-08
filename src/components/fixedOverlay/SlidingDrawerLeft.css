@@ -1,7 +1,7 @@
 .SlidingDrawerLeft {
   position: fixed;
   width: 380px;
-  top: 55px;
+  top: 0;
   bottom: 0;
   left: -380px;
   background-color: hsl(0, 0%, 14%);
@@ -18,7 +18,6 @@
   height: 1em;
   width: 1em;
   font-size: 32px;
-  top: 12px;
   background-color: snow;
   border: 2px solid snow;
   border-radius: 5px;
@@ -58,7 +57,6 @@
   .SlidingDrawerLeft {
     width: 100vw;
     left: -100vw;
-    top: 30px;
   }
 
   .SlidingDrawerLeftSpacer {

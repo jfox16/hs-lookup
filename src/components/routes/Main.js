@@ -33,22 +33,30 @@ const Main = (props) => {
   const [showHeader, setShowHeader] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
-  const headerHeight = (!isMobile) ? 55 : 30;
+  const headerHeight = (!isMobile) ? 50 : 30;
   const sidebarWidth = (!isMobile) ? 380 : '100%';
-  const topOffset = (showHeader) ? headerHeight : 0;
+  const topOffset = headerHeight;
   const leftOffset = (isMobile || !showSidebar) ? 0 : sidebarWidth;
   const [showCardViewer, setShowCardViewer] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
+  let lastY = window.scrollY;
 
-
-  useEffect(() => {
-    console.log(showSidebar);
-  }, [showSidebar]);
 
   useEffect(() => {
     fetchData();
+    // window.addEventListener('scroll', () => handleScroll());
   }, []);
+
+  useEffect(() => {
+    if (showSidebar && isMobile) {
+      setShowCardViewer(false);
+    }
+  }, [showSidebar]);
+
+  useEffect(() => {
+    console.log('showHeader', showHeader);
+  }, [showHeader]);
 
   useEffect(() => {
     console.log('filteredCards', filteredCards);
@@ -64,6 +72,12 @@ const Main = (props) => {
       console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
     }
   }, [metadata, cardData, filters]);
+
+  // const handleScroll = () => {
+  //   const deltaY = window.scrollY - lastY;
+  //   lastY = window.scrollY;
+  //   setShowHeader(deltaY < 0);
+  // };
 
   const fetchData = () => {
     setMetadata(null);
@@ -104,7 +118,6 @@ const Main = (props) => {
       <FixedBackground bgImage={bgImage} />
       <FixedOverlay
         showHeader={showHeader}
-        setShowHeader={setShowHeader}
         headerHeight={headerHeight}
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
