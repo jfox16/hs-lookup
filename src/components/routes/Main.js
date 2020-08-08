@@ -1,33 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import FilterForm from '../Body/FilterForm';
-import CardImageDisplay from '../Body/CardImageDisplay';
-import CardViewer from '../Body/CardViewer';
-import StatDisplay from '../Body/StatDisplay';
-import SlidingDrawerLeft from '../Body/SlidingDrawerLeft';
-import GoogleAd from '../ads/GoogleAd';
+import { withResizeDetector } from 'react-resize-detector';
 
+//IMPORT FUNCTIONS
 import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
 import { generateMarkupTable } from '../../modules/dataGenerator';
 
-import './Body.css';
+//IMPORT COMPONENTS
+import FixedBackground from '../main/FixedBackground';
+import FixedOverlay from '../main/FixedOverlay';
+import Body from '../main/Body';
 
+//IMPORT ASSETS
+import bgImage from '../../img/bg/scholomance-academy-bg.png';
+
+//DEFINE CONSTANTS
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
-
 const generateTables = false;
 
-function Body(props) {
+
+
+const Main = (props) => {
+  // data
   const [region] = useState('us');
   const [locale] = useState('en_US');
   const [metadata, setMetadata] = useState(null);
   const [cardData, setCardData] = useState(null);
   const [filters, setFilters] = useState({});
   const [filteredCards, setFilteredCards] = useState(null);
-  // const [sortValue, setSortValue] = useState('manaCost');
   const [filterDescription, setFilterDescription] = useState('');
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [cardViewerOpen, setCardViewerOpen] = useState(false);
 
-  // On component load
+  // layout
+  const [showHeader, setShowHeader] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(true);
+  const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
+  const headerHeight = (!isMobile) ? 55 : 30;
+  const sidebarWidth = (!isMobile) ? 380 : '100%';
+  const topOffset = (showHeader) ? headerHeight : 0;
+  const leftOffset = (isMobile || !showSidebar) ? 0 : sidebarWidth;
+  const [showCardViewer, setShowCardViewer] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+
+
+  useEffect(() => {
+    console.log(showSidebar);
+  }, [showSidebar]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -47,7 +65,7 @@ function Body(props) {
     }
   }, [metadata, cardData, filters]);
 
-  async function fetchData() {
+  const fetchData = () => {
     setMetadata(null);
     setCardData(null);
 
@@ -71,28 +89,42 @@ function Body(props) {
     .catch((err) => {
       console.error('Error fetching card data:', err);
       setCardData('error');
-    });
-  }
+    });}
 
   const handleCardClick = (card) => {
     console.log(card);
+    setShowCardViewer(true);
     setSelectedCard(card);
-    setCardViewerOpen(true);
   }
-  
+
+
+
   return (
-    <div className='Body'>
-      <SlidingDrawerLeft className='BodyLeft' width='350px'>
-        <FilterForm metadata={metadata} setFilters={setFilters} />
-      </SlidingDrawerLeft>
-      <div className='BodyRight'>
-        <CardViewer card={selectedCard} open={cardViewerOpen} setOpen={setCardViewerOpen} />
-        <GoogleAd />
-        <StatDisplay cards={filteredCards} metadata={metadata} filterDescription={filterDescription} />
-        <CardImageDisplay cards={filteredCards} handleCardClick={handleCardClick} />
-      </div>
+    <div style={{height: window.innerHeight, width: '100%'}}>
+      <FixedBackground bgImage={bgImage} />
+      <FixedOverlay
+        showHeader={showHeader}
+        setShowHeader={setShowHeader}
+        headerHeight={headerHeight}
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        sidebarWidth={sidebarWidth}
+        showCardViewer={showCardViewer}
+        setShowCardViewer={setShowCardViewer}
+        selectedCard={selectedCard}
+        setFilters={setFilters}
+        metadata={metadata}
+      />
+      <Body
+        filteredCards={filteredCards}
+        metadata={metadata}
+        filterDescription={filterDescription}
+        topOffset={topOffset}
+        leftOffset={leftOffset}
+        handleCardClick={handleCardClick}
+      />
     </div>
   );
 }
 
-export default Body;
+export default withResizeDetector(Main);

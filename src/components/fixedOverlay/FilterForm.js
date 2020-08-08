@@ -30,7 +30,7 @@ function FilterForm(props) {
   }
 
   return (
-    <div className="FilterForm">
+    <div className="FilterForm" style={props.style}>
       <h2 style={{margin: '10px'}}>Filters</h2>
 
       <div><SetFilter setFilterValue={setFilterValue} /></div>

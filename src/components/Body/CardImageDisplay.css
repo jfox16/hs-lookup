@@ -21,12 +21,12 @@
 
 @media screen and (max-width: 800px), screen and (max-height: 550px)  {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(130px, 1fr));
   }
 }
 
 @media screen and (max-width: 600px), screen and (max-height: 400px)  {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(110px, 1fr));
   }
 }

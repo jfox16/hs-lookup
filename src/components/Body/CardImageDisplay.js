@@ -7,7 +7,7 @@ import Loader from '../Loaders/Loader';
 import './CardImageDisplay.css';
 
 
-function CardImageDisplay(props) {
+const CardImageDisplay = (props) => {
 
   useEffect(() => {
     setInterval(function(){ forceCheck() }, 1000);

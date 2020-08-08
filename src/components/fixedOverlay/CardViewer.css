@@ -1,5 +1,5 @@
 .CardViewer {
-  position: fixed;
+  position: relative;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -12,5 +12,5 @@
 .CardViewerCard {
   max-width: 80%;
   max-height: 70%;
-  transform: translate(0, -10%);
+  transform: translate(0, 0%);
 }

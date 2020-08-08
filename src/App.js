@@ -1,20 +1,16 @@
 import React from 'react';
 import './App.css';
-
 import Normalize from 'react-normalize';
+import 'react-vis/dist/style.css'; // import react-vis css for charts
 
-import FixedBackground from './components/App/FixedBackground';
-import Header from './components/App/Header';
-import Body from './components/App/Body';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-// import react-vis css for charts
-import 'react-vis/dist/style.css';
-
-import { withResizeDetector } from 'react-resize-detector';
-
-import bgImage from './img/bg/scholomance-academy-bg.png';
-
-
+import Main from './components/routes/Main';
+import Ads from './components/routes/Ads';
 
 
 function App(props) {
@@ -22,15 +18,16 @@ function App(props) {
   return (
     <>
     <Normalize/>
-      <div className="App" style={{height: window.innerHeight}} >
-        <FixedBackground bgImage={bgImage} />
-        <Header />
-        <Body />
-      </div>
+    <Router>
+      <Switch>
+        <Route path='ads.txt' component={Ads} />
+        <Route exact path='/' component={Main} />
+      </Switch>
+    </Router>
     </>
   );
 }
 
 
 
-export default withResizeDetector(App);
+export default App;

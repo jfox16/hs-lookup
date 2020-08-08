@@ -1,46 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdFilterList } from 'react-icons/md'
 import { GrFormClose } from 'react-icons/gr';
-import Footer from '../App/Footer';
+import Footer from '../main/Footer';
 
 import './SlidingDrawerLeft.css';
 
 function SlidingDrawerLeft(props) {
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleButtonClick = (event) => {
-    setIsOpen(!isOpen);
+    props.setOpen(!props.open);
+  }
+
+  const close = () => {
+    props.setOpen(false);
   }
 
   const spacerTransitionStyle = {};
-  if (!isOpen) spacerTransitionStyle.width = 0;
+  if (!props.open) spacerTransitionStyle.width = 0;
   const drawerTransitionStyle = {};
-  if (isOpen) drawerTransitionStyle.left = 0;
+  if (props.open) drawerTransitionStyle.left = 0;
 
   return (
   <>
     <div
-      className='SlidingDrawerLeftSpacer'
-      style={spacerTransitionStyle}
-    />
-    <div
       className='SlidingDrawerLeft'
       style={drawerTransitionStyle}
     >
-      <div style={{height: 0}}>
+      <div>
         <div
           className='SlidingDrawerLeftButton' 
           onClick={handleButtonClick}
           style={{
-            right: (isOpen) ? '24px' : '-48px'
+            right: (props.open) ? '24px' : '-48px'
           }}
         >
-          {(isOpen) ? <GrFormClose /> : <MdFilterList />}
+          {(props.open) ? <GrFormClose /> : <MdFilterList />}
         </div>
       </div>
       <div className='SlidingDrawerLeftContents'>
         {props.children}
-        <div className='SlidingDrawerCloseButton' onClick={e => setIsOpen(false)} >BACK TO CARDS</div>
+        <div className='SlidingDrawerCloseButton' onClick={e => close()} >BACK TO CARDS</div>
         <Footer />
       </div>
     </div>

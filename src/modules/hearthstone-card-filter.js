@@ -105,6 +105,7 @@ function filterCards(metadata, cardData, filters) {
 }
 
 function generateFilterDescription(filters) {
+
   let filterDescription = 'Showing all';
 
   // Classes
@@ -164,7 +165,12 @@ function generateFilterDescription(filters) {
   }
 
   // Format
-  filterDescription += descriptionTokens.isStandard[filters.isStandard];
+  if (filters.isStandard) {
+    filterDescription += descriptionTokens.isStandard[true];
+  }
+  else {
+    filterDescription += descriptionTokens.isStandard[false];
+  }
 
   return filterDescription;
 }
