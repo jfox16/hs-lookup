@@ -1,3 +1,4 @@
+
 export const descriptionTokens = {
   classes: {
     demonhunter: ' Demon Hunter',
@@ -30,6 +31,7 @@ export const descriptionTokens = {
     taunt: ' Taunt',
     spellpower: ' Spell Damage',
     'divine-shield': ' Divine Shield',
+    dormant: ' Dormant',
     charge: ' Charge',
     stealth: ' Stealth',
     battlecry: ' Battlecry',
@@ -49,6 +51,7 @@ export const descriptionTokens = {
     reborn: ' Reborn',
     outcast: ' Outcast',
     spellburst: ' Spellburst',
+    corrupt: ' Corrupt',
   },
   minionType: {
     murloc: ' Murlocs',
@@ -59,124 +62,44 @@ export const descriptionTokens = {
     totem: ' Totems',
     pirate: ' Pirates',
     dragon: ' Dragons',
-    all: "'All'-type minions",
+    all: " 'All'-type minions",
   },
-  isStandard: {
-    false: ' in Wild',
-    true: ' in Standard'
+  format: {
+    wild: ' in Wild',
+    standard: ' in Standard',
+    duels: ' in Duels'
   }
 };
 
+
+
+export const duelsCardSets = [
+  'basic',
+  'classic',
+  'naxxramas',
+  'whispers-of-the-old-gods',
+  'one-night-in-karazhan',
+  'scholomance-academy',
+  'demonhunter-initiate',
+  'madness-at-the-darkmoon-faire'
+];
+
+
+
 export const keywordMinionExclusions = {
-  taunt: {
-    // 1-cost
-    50796: true,
+  battlecry: {
     // 2-cost
-    42651: true,
-    47416: true,
-    2596: true,
-    891: true,
-    38538: true,
-    50410: true,
+    1800: true,
     // 3-cost
-    46859: true,
-    47614: true,
-    50315: true,
-    43473: true,
+    2949: true,
+    40294: true,
     // 4-cost
-    58202: true,
-    40973: true,
-    43022: true,
-    1003: true,
-    50514: true,
-    43133: true,
-    763: true,
-    2075: true,
-    2569: true,
-    39491: true,
-    41241: true,
-    46102: true,
-    45342: true,
-    58973: true,
-    // 5-cost
-    692: true,
-    39489: true,
-    40700: true,
-    41305: true,
-    43485: true,
-    54153: true,
-    59918: true,
-    // 6-cost
-    54894: true,
-    48100: true,
-    640: true,
-    1656: true,
-    2507: true,
-    48226: true,
-    // 7-cost
-    1035: true,
-    40422: true,
-    41116: true,
-    2881: true,
-    38944: true,
-    46988: true,
-    54148: true,
-    53489: true,
-    // 8-cost
-    60280: true,
-    2945: true,
-    42790: true,
-    // 9-cost
-    36: true,
-    43439: true,
-  },
-  spellpower: {
-    // 1-cost
-    57184: true,
-    // 2-cost
-    49263: true,
-    42775: true,
-    50083: true,
-    52289: true,
-    56391: true,
-    // 3-cost
-    52654: true,
-    // 4-cost
-    2549: true,
-    915: true,
-    // 5-cost
-    58770: true,
-    52415: true,
-    59216: true,
-    // 6-cost
-    59576: true,
-  },
-  'divine-shield': {
-    // 1-cost
-    38740: true,
-    57182: true,
-    // 2-cost
-    1022: true,
-    47416: true,
-    // 3-cost
-    38911: true,
-    42948: true,
-    755: true,
-    2748: true,
-    43473: true,
-    // 4-cost
-    2075: true,
-    41241: true,
-    46102: true,
-    // 5-cost
-    2030: true,
-    56438: true,
-    // 6-cost
-    2507: true,
-    48226: true,
-    // 7-cost
-    40295: true,
-    54148: true,
+    2888: true,
+    2518: true,
+    // spells
+    48393: true,
+    54369: true,
+    56094: true,
   },
   charge: {
     // 1-cost
@@ -195,53 +118,23 @@ export const keywordMinionExclusions = {
     40700: true,
     // 6-cost
     40613: true,
+    // spells
+    344: true,
+    1243: true,
   },
-  stealth: {
+  combo: {
     // 2-cost
-    2783: true,
-    1990: true,
-    56378: true,
-    // 3-cost
-    56527: true,
+    53627: true,
     // 4-cost
-    40973: true,
-    887: true,
-    40695: true,
-    49233: true,
-    57177: true,
-    // 5-cost
-    40928: true,
+    58975: true,
     // 6-cost
-    55424: true,
-    // 7-cost
-    56379: true,
+    47071: true,
   },
-  battlecry: {
-    // 2-cost
-    1800: true,
-    // 3-cost
-    2949: true,
-    40294: true,
-    // 4-cost
-    2888: true,
-    2518: true,
-    // spells
-    56094: true,
+  corrupt: {
+
   },
-  windfury: {
-    // 3-cost
-    1155: true,
-    2533: true,
-    // 4-cost
-    178: true,
-    2075: true,
-    46102: true,
-    // 7-cost
-    54148: true,
-    // 8-cost
-    52902: true,
-    // spells
-    51: true,
+  dormant: {
+
   },
   deathrattle: {
     // 1-cost
@@ -282,6 +175,8 @@ export const keywordMinionExclusions = {
     50443: true,
     38496: true,
     // spells
+    38393: true,
+    38329: true,
     58782: true,
     56555: true,
     404: true,
@@ -290,14 +185,99 @@ export const keywordMinionExclusions = {
     381: true,
     54873: true,
     56412: true,
+    61690: true,
   },
-  combo: {
+  'divine-shield': {
+    // 1-cost
+    38740: true,
+    57182: true,
     // 2-cost
-    53627: true,
+    1022: true,
+    47416: true,
+    // 3-cost
+    38911: true,
+    42948: true,
+    755: true,
+    2748: true,
+    43473: true,
     // 4-cost
-    58975: true,
+    2075: true,
+    41241: true,
+    46102: true,
+    61186: true,
+    // 5-cost
+    2030: true,
+    56438: true,
+    61191: true,
     // 6-cost
-    47071: true,
+    2507: true,
+    48226: true,
+    // 7-cost
+    40295: true,
+    54148: true,
+    // 8-cost
+    61192: true,
+    // spells
+    727: true,
+    2717: true,
+    48984: true,
+    55069: true,
+    43373: true,
+    53827: true,
+    56554: true,
+    59409: true,
+    54834: true,
+    // weapons
+    2027: true,
+    38745: true,
+    58791: true,
+    59602: true,
+  },
+  echo: {
+    // 4-cost
+    46908: true,
+    // 6-cost
+    47295: true,
+  },
+  lifesteal: {
+    // 2-cost
+    56632: true,
+    49175: true,
+    // 3-cost
+    47614: true,
+    61203: true,
+    // 4-cost
+    46102: true,
+    43029: true,
+    45342: true,
+    // 5-cost
+    47085: true,
+    // 7-cost
+    47131: true,
+    // 8-cost
+    56516: true,
+    61192: true,
+    // spells
+    42665: true,
+    52810: true,
+    52490: true,
+    54892: true,
+    56623: true,
+    // heroes
+    43419: true,
+    43406: true,
+  },
+  modular: {
+    // spells
+    49009: true,
+  },
+  outcast: {
+    // 2-cost
+    61128: true,
+    // 3-cost
+    61123: true,
+    // spells
+    59606: true,
   },
   overload: {
     // 1-cost
@@ -321,18 +301,12 @@ export const keywordMinionExclusions = {
     // 11-cost lul
     42765: true,
   },
-  quest: {
-    // 2-cost
-    53947: true,
-    56120: true,
-    // 4-cost
-    56307: true,
-  },
   poisonous: {
     // 1-cost
     52277: true,
     // 2-cost
     42651: true,
+    61679: true,
     // 3-cost
     60004: true,
     43028: true,
@@ -353,37 +327,23 @@ export const keywordMinionExclusions = {
     // heroes
     43417: true,
   },
-  lifesteal: {
+  quest: {
     // 2-cost
-    56632: true,
-    49175: true,
-    // 3-cost
-    47614: true,
+    53947: true,
+    56120: true,
     // 4-cost
-    46102: true,
-    43029: true,
-    45342: true,
-    // 5-cost
-    47085: true,
-    // 7-cost
-    47131: true,
-    // 8-cost
-    56516: true,
-    // spells
-    42665: true,
-    52810: true,
-    52490: true,
-    54892: true,
-    56623: true,
-    // heroes
-    43419: true,
-    43406: true,
+    56307: true,
   },
-  echo: {
+  reborn: {
+    // 1-cost
+    54261: true,
     // 4-cost
-    46908: true,
-    // 6-cost
-    47295: true,
+    53935: true,
+    // 5-cost
+    54284: true,
+    // spells
+    53907: true,
+    53932: true,
   },
   rush: {
     // 1-cost
@@ -395,12 +355,16 @@ export const keywordMinionExclusions = {
     52603: true,
     49170: true,
     54411: true,
+    61262: true,
+    61235: true,
+
     // 3-cost
     46859: true,
     56734: true,
     59101: true,
     53173: true,
     55404: true,
+    61639: true,
     // 4-cost
     47488: true,
     49361: true,
@@ -411,6 +375,7 @@ export const keywordMinionExclusions = {
     56307: true,
     // 5-cost
     50659: true,
+    60892: true,
     // 6-cost
     55024: true,
     52486: true,
@@ -420,6 +385,7 @@ export const keywordMinionExclusions = {
     54148: true,
     // 8-cost
     52873: true,
+    61192: true,
     // 10-cost
     52086: true,
     // spells
@@ -435,31 +401,198 @@ export const keywordMinionExclusions = {
     54424: true,
     59539: true,
     47928: true,
+    61249: true,
+    61130: true,
     // weapons
     47511: true,
     52860: true,
+    53860: true,
     // heroes
     57427: true,
     48146: true,
   },
-  modular: {
-    // spells
-    49009: true,
-  },
-  reborn: {
+  spellpower: {
     // 1-cost
-    54261: true,
+    57184: true,
+    // 2-cost
+    49263: true,
+    42775: true,
+    50083: true,
+    52289: true,
+    56391: true,
+    // 3-cost
+    52654: true,
     // 4-cost
-    53935: true,
+    2549: true,
+    915: true,
     // 5-cost
-    54284: true,
+    58770: true,
+    52415: true,
+    59216: true,
+    // 6-cost
+    59576: true,
     // spells
-    53907: true,
-    53932: true,
+    2572: true,
+    59213: true,
+    59639: true,
+    39694: true,
+    58790: true,
+    48803: true,
   },
-  outcast: {
+  taunt: {
+    // 1-cost
+    50796: true,
+    // 2-cost
+    42651: true,
+    47416: true,
+    2596: true,
+    891: true,
+    38538: true,
+    50410: true,
+    // 3-cost
+    46859: true,
+    47614: true,
+    50315: true,
+    43473: true,
+    // 4-cost
+    58202: true,
+    40973: true,
+    43022: true,
+    1003: true,
+    50514: true,
+    43133: true,
+    763: true,
+    2075: true,
+    2569: true,
+    39491: true,
+    41241: true,
+    46102: true,
+    45342: true,
+    58973: true,
+    61129: true,
+    // 5-cost
+    692: true,
+    39489: true,
+    40700: true,
+    41305: true,
+    43485: true,
+    54153: true,
+    59918: true,
+    61581: true,
+    // 6-cost
+    54894: true,
+    48100: true,
+    640: true,
+    1656: true,
+    2507: true,
+    48226: true,
+    // 7-cost
+    1035: true,
+    40422: true,
+    41116: true,
+    2881: true,
+    38944: true,
+    46988: true,
+    54148: true,
+    53439: true,
+    // 8-cost
+    60280: true,
+    2945: true,
+    42790: true,
+    61192: true,
+    // 9-cost
+    36: true,
+    43439: true,
     // spells
-    59606: true,
+    149: true,
+    55039: true,
+    1084: true,
+    40839: true,
+    41427: true,
+    53796: true,
+    213: true,
+    56684: true,
+    2641: true,
+    43382: true,
+    55342: true,
+    56086: true,
+    2754: true,
+    40566: true,
+    59410: true,
+    151: true,
+    238: true,
+    39495: true,
+    61263: true,
+    56678: true,
+    766: true,
+    54967: true,
+    2009: true,
+    42656: true,
+    53576: true,
+    41864: true,
+    45877: true,
+    53827: true,
+    50547: true,
+    60164: true,
+    50019: true,
+    59602: true,
+    54833: true,
+    56554: true,
+    56292: true,
+    // weapons
+    2027: true,
+    59408: true,
+    2756: true,
+    61189: true,
+    // heroes
+    43417: true,
+  },
+  stealth: {
+    // 2-cost
+    2783: true,
+    1990: true,
+    56378: true,
+    61168: true,
+    
+    // 3-cost
+    56527: true,
+    // 4-cost
+    40973: true,
+    887: true,
+    40695: true,
+    49233: true,
+    57177: true,
+    // 5-cost
+    40928: true,
+    // 6-cost
+    55424: true,
+    // 7-cost
+    56379: true,
+    // spells
+    990: true,
+    896: true,
+    39160: true,
+    61156: true,
+    61154: true,
+    // heroes
+    43392: true,
+  },
+  windfury: {
+    // 3-cost
+    1155: true,
+    2533: true,
+    // 4-cost
+    178: true,
+    2075: true,
+    46102: true,
+    // 5-cost
+    61230: true,
+    // 7-cost
+    54148: true,
+    // 8-cost
+    52902: true,
+    // spells
+    51: true,
   },
 
 }

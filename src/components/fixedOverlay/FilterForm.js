@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SetFilter from '../FilterForm/SetFilter';
+import FormatFilter from '../FilterForm/FormatFilter';
 import ClassFilter from '../FilterForm/ClassFilter';
 import CardTypeFilter from '../FilterForm/CardTypeFilter';
 import KeywordFilter from '../FilterForm/KeywordFilter';
@@ -11,7 +11,7 @@ import './FilterForm.css';
 import Loader from '../Loaders/Loader';
 
 function FilterForm(props) {
-  const [filters, setFilters] = useState({ isStandard: true, cardType: 'minion' });
+  const [filters, setFilters] = useState({ format: 'standard', cardType: 'minion' });
 
   const setFilterValue = (key, value) => {
     let newFilters = {};
@@ -33,7 +33,7 @@ function FilterForm(props) {
     <div className="FilterForm" style={props.style}>
       <h2 style={{margin: '10px'}}>Filters</h2>
 
-      <div><SetFilter setFilterValue={setFilterValue} /></div>
+      <div><FormatFilter setFilterValue={setFilterValue} /></div>
       <div><NumericFilters setFilterValue={setFilterValue} /></div>
       <div><ClassFilter classes={props.metadata.classes} setFilterValue={setFilterValue} /></div>
       <div><CardTypeFilter cardTypes={props.metadata.types} setFilterValue={setFilterValue} value={'minion'} /></div>

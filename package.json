@@ -2,11 +2,13 @@
   "name": "hslookup",
   "version": "2.1.0",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "@babel/helper-call-delegate": "^7.10.3",
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "harmony-reflect": "^1.6.1",
     "lodash": "^4.17.15",
     "mobx": "^5.14.2",
     "mobx-react": "^6.1.4",

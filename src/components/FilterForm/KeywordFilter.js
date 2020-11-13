@@ -3,7 +3,10 @@ import FilterFormLabel from './FilterFormLabel';
 import FilterFormDropdown from './FilterFormDropdown';
 import { descriptionTokens } from '../../modules/filterConstants';
 
+
+
 function KeywordFilter(props) {
+
   const [selectedKeyword, setSelectedKeyword] = useState(props.value ? props.value : '');
 
   useEffect(() => {

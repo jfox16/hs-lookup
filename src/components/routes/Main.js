@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { withResizeDetector } from 'react-resize-detector';
 
 //IMPORT FUNCTIONS
-import { filterCards, generateFilterDescription } from '../../modules/hearthstone-card-filter';
-import { generateMarkupTable } from '../../modules/dataGenerator';
+import { filterCards, generateFilterDescription } from 'modules/hearthstone-card-filter';
+import { generateMarkupTable } from 'modules/dataGenerator';
 
 //IMPORT COMPONENTS
-import FixedBackground from '../main/FixedBackground';
-import FixedOverlay from '../main/FixedOverlay';
-import Body from '../main/Body';
+import FixedBackground from 'components/main/FixedBackground';
+import FixedOverlay from 'components/main/FixedOverlay';
+import Body from 'components/main/Body';
 
 //IMPORT ASSETS
-import bgImage from '../../img/bg/scholomance-academy-bg.png';
+import bgImage from 'img/bg/darkmoon-fair-bg.png';
+import { ListItemAvatar } from '@material-ui/core';
 
 //DEFINE CONSTANTS
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
@@ -20,6 +21,7 @@ const generateTables = false;
 
 
 const Main = (props) => {
+
   // data
   const [region] = useState('us');
   const [locale] = useState('en_US');
@@ -27,7 +29,7 @@ const Main = (props) => {
   const [cardData, setCardData] = useState(null);
   const [filters, setFilters] = useState({});
   const [filteredCards, setFilteredCards] = useState(null);
-  const [filterDescription, setFilterDescription] = useState('');
+  const [filterDescription, setFilterDescription] = useState(null);
 
   // layout
   const [showHeader, setShowHeader] = useState(true);
@@ -40,12 +42,9 @@ const Main = (props) => {
   const [showCardViewer, setShowCardViewer] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  let lastY = window.scrollY;
-
 
   useEffect(() => {
     fetchData();
-    // window.addEventListener('scroll', () => handleScroll());
   }, []);
 
   useEffect(() => {
@@ -68,8 +67,9 @@ const Main = (props) => {
 
     if (generateTables && cardData && typeof cardData !== 'string' && metadata && typeof metadata !== 'string') {
       console.log('GENERATING TABLES');
-      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', isStandard: true}));
       console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
+      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', format: 'standard'}));
+      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', format: 'duels'}));
     }
   }, [metadata, cardData, filters]);
 
@@ -87,6 +87,7 @@ const Main = (props) => {
     .then((response) => response.json())
     .then((metadataJson) => {
       console.log('metadata:', metadataJson);
+      initializeMetadata(metadataJson);
       setMetadata(metadataJson);
     })
     .catch((err) => {
@@ -106,9 +107,18 @@ const Main = (props) => {
     });}
 
   const handleCardClick = (card) => {
+    console.log(card.id);
     console.log(card);
     setShowCardViewer(true);
     setSelectedCard(card);
+  }
+
+  const initializeMetadata = (metadata) => {
+
+    const minionTypes = metadata.minionTypes;
+
+    // arrange minionTypes in alphabetical order
+    minionTypes.sort((a, b) => a.name > b.name);
   }
 
 

@@ -18,7 +18,7 @@ const statsToTrack = [
 ]
 
 function StatDisplay(props) {
-  if (!props.cards || props.cards.length === 0 || !props.metadata) {
+  if (!props.cards || !props.metadata) {
     return <></>
   }
 

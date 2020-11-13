@@ -1,6 +1,14 @@
-const { descriptionTokens, keywordMinionExclusions } = require('./filterConstants');
+
+const {
+  descriptionTokens,
+  duelsCardSets,
+  keywordMinionExclusions
+} = require('./filterConstants');
+
+
 
 function filterCards(metadata, cardData, filters) {
+
   if (!metadata || typeof metadata === 'string' 
     || !cardData || typeof cardData === 'string' 
     || !filters) 
@@ -8,25 +16,32 @@ function filterCards(metadata, cardData, filters) {
     return null;
   }
 
-  // console.log('filtering with: ', filters);
+  console.log('filtering with: ', filters);
 
   let cards = cardData.cards;
 
-  // Filter by Standard
-  if (filters.isStandard && metadata.setGroups && metadata.sets) {
-    const standardSetGroup = metadata.setGroups.find(setGroup => setGroup.slug === 'standard');
+  // Filter by Format
+  if (filters.format) {
 
-    if (standardSetGroup) {
-      // put standard set ids in an array by index for quick lookup
-      const standardSetIds = [];
-      metadata.sets.forEach((set) => {
-        if (standardSetGroup.cardSets.includes(set.slug)) {
-          standardSetIds[set.id] = true;
-        }
-      });
-  
-      cards = cards.filter(card => standardSetIds[card.cardSetId] === true);
-    } 
+    let includedSets;
+
+    if (filters.format === 'standard') {
+      const setGroup = metadata.setGroups.find(setGroup => setGroup.slug === 'standard');
+      includedSets = setGroup.cardSets;
+    }
+    else if (filters.format === 'duels') {
+      includedSets = duelsCardSets;
+    }
+
+    // put standard set ids in an array by index for quick lookup
+    const includedSetIds = {};
+    metadata.sets.forEach((set) => {
+      if (includedSets.includes(set.slug)) {
+        includedSetIds[set.id] = true;
+      }
+    });
+
+    cards = cards.filter(card => includedSetIds[card.cardSetId] === true);
   }
 
   // Filter by Card Type
@@ -104,6 +119,8 @@ function filterCards(metadata, cardData, filters) {
   return cards;
 }
 
+
+
 function generateFilterDescription(filters) {
 
   let filterDescription = 'Showing all';
@@ -165,14 +182,16 @@ function generateFilterDescription(filters) {
   }
 
   // Format
-  if (filters.isStandard) {
-    filterDescription += descriptionTokens.isStandard[true];
+  if (!filters.format) {
+    filterDescription += descriptionTokens.format.wild;
   }
   else {
-    filterDescription += descriptionTokens.isStandard[false];
+    filterDescription += descriptionTokens.format[filters.format];
   }
 
   return filterDescription;
 }
+
+
 
 export { filterCards, generateFilterDescription };

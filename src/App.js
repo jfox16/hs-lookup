@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 
 import Main from './components/routes/Main';
-import Ads from './components/routes/Ads';
+
 
 
 function App(props) {
@@ -20,7 +20,6 @@ function App(props) {
     <Normalize/>
     <Router>
       <Switch>
-        <Route path='ads.txt' component={Ads} />
         <Route exact path='/' component={Main} />
       </Switch>
     </Router>
