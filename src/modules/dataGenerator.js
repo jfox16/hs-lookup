@@ -24,7 +24,7 @@ export const generateMarkupTable = (metadata, cardData, filters) => {
     const cards = filterCards(metadata, cardData, {...filters, manaCost});
     if (cards.length > 0) {
       const totals = generateStatTotals(cards);
-      markupTable += `${manaCost}|${totals.attack.mean.toFixed(2)}|${totals.health.mean.toFixed(2)}|${cards.length}\n`;
+      markupTable += `${manaCost}|${totals.attack.mean.toFixed(1)}|${totals.health.mean.toFixed(1)}|${cards.length}\n`;
     }
   }
 

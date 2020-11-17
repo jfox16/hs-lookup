@@ -25,6 +25,7 @@ function generateStatTotals(cards) {
       if (stat === 'manaCost' || card.cardTypeId === 4) { // only count health and attack for minions
         let value = card[stat];
         if (value < totals[stat].min) totals[stat].min = card[stat];
+        if (value > totals[stat].max) totals[stat].max = card[stat];
         totals[stat].sum += card[stat];
         totals[stat].array.push(card[stat]);
 

@@ -16,7 +16,7 @@ function filterCards(metadata, cardData, filters) {
     return null;
   }
 
-  console.log('filtering with: ', filters);
+  // console.log('filtering with: ', filters);
 
   let cards = cardData.cards;
 

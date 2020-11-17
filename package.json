@@ -24,6 +24,7 @@
     "react-spinners": "^0.6.1",
     "react-table": "^6.10.3",
     "react-vis": "^1.11.7",
+    "recharts": "^1.8.5",
     "v8": "^0.1.0"
   },
   "scripts": {

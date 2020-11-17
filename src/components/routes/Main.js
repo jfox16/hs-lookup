@@ -12,11 +12,10 @@ import Body from 'components/main/Body';
 
 //IMPORT ASSETS
 import bgImage from 'img/bg/darkmoon-fair-bg.png';
-import { ListItemAvatar } from '@material-ui/core';
 
 //DEFINE CONSTANTS
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
-const generateTables = false;
+const generateTables = true;
 
 
 

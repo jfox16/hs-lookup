@@ -11,13 +11,18 @@ import attackImg from '../../img/stats/attack.png';
 import healthImg from '../../img/stats/health.png';
 import manaCostImg from '../../img/stats/mana.png';
 
+
+
 const statsToTrack = [
   { name: 'Attack', accessor: 'attack', color: '#FEDC42', image: attackImg },
   { name: 'Health', accessor: 'health', color: '#FE4756', image: healthImg },
   { name: 'Mana Cost', accessor: 'manaCost', color: '#4080ff', image: manaCostImg },
-]
+];
 
-function StatDisplay(props) {
+
+
+const StatDisplay = (props) => {
+  
   if (!props.cards || !props.metadata) {
     return <></>
   }
