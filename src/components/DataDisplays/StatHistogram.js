@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import './StatHistogram.css';
 
 import {
   Bar,

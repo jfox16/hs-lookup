@@ -10,11 +10,14 @@ import './FilterForm.css';
 
 import Loader from '../Loaders/Loader';
 
-function FilterForm(props) {
-  const [filters, setFilters] = useState({ format: 'standard', cardType: 'minion' });
+
+
+const FilterForm = (props) => {
+
+  const [filters, setFilters] = useState(props.defaultFilters ? props.defaultFilters : {});
 
   const setFilterValue = (key, value) => {
-    let newFilters = {};
+    const newFilters = {};
     Object.assign(newFilters, filters);
     newFilters[key] = value;
     setFilters(newFilters);

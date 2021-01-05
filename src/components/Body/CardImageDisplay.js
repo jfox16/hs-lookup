@@ -23,7 +23,7 @@ const CardImageDisplay = (props) => {
   }
 
   if (props.cards.length === 0) {
-    return <div style={{textAlign: 'center', marginTop: 48}}>(No cards found. try changing the filter query.)</div>
+    return <div style={{textAlign: 'center', marginTop: 48}}>(No cards found. Try changing the filters.)</div>
   }
 
   const cardPlaceholder = <img className='CardImageDisplayCard' src={placeholder} alt='placeholder' />;

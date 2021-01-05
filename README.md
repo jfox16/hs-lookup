@@ -5,71 +5,19 @@ HSLookup is a ReactJS webapp to look up Hearthstone cards and generate useful st
 
 ![](hslookup-demo.gif)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is this?
 
-## Available Scripts
+If you play Hearthstone, you've probably encountered an effect that randomly generates a minion, like [Boggspine Knuckles](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/42fc482dcb41ed6d04cebe1f0608f1e247b0c1f321b6e59d9d7ca3c4c4ab724a.png), [First Day of School](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d6f40a13714f5404a88bbaf83c34dc356f028631e8b034d97f7f7b85dbd87801.png), or [Dragonqueen Alexstraza](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9bdf51419bedabfda3247adc02e306b20ad641603e19ff9e68cda9d79ca72fb9.png). You've probably also wondered what the average stats/cost of those minions would be, and how likely they are to have effects like Taunt or Rush. I built HSLookup to generate those stats with whatever filter you want.
 
-In the project directory, you can run:
+## How do I use it?
 
-### `npm start`
+1. Go to [HSLookup.net](https://hslookup.net).
+2. Input the kind of cards you're looking for in the filter form. You can specify between Wild, Standard, and Duels formats at the top. For numeric values (Mana, Attack, Health), you can use a comma-separated list of numbers. (e.g. "3,4,5"). You can select more than one class.
+3. The graphs will show frequencies of mana/attack/health values, and the statistics for each value. Below that, it shows the probability that a card would have each specified keyword. And below that you can see the full list of cards that fit your criteria.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## How does it work?
 
-### `npm test`
+I pull the list of cards from the Blizzard Hearthstone API every time there's an expansion or other change to update my card values. When you input a filter, it looks for any matching cards and uses their data to generate statistics and keyword percentages. The stats do not incorporate any card effects.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Special note about keywords: Cards only count as having a keyword if it inherently has that keyword without other effects. For example, if you search for minions with Lifesteal, [Judicious Junior](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3233e0228d62c15562eaf726ecf1ecda1fda4b60d4793dc279c3b04774d3e834.png) would be counted, while [High Exarch Yrel](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b77dc45899fdc7d2f18ce02b1dc3a9d191354f3b7eea825b63b2487f3811e386.png) would not. 

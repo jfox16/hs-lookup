@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withResizeDetector } from 'react-resize-detector';
+import queryString from 'query-string';
 
 //IMPORT FUNCTIONS
 import { filterCards, generateFilterDescription } from 'modules/hearthstone-card-filter';
-import { generateMarkupTable } from 'modules/dataGenerator';
 
 //IMPORT COMPONENTS
 import FixedBackground from 'components/main/FixedBackground';
@@ -13,9 +13,11 @@ import Body from 'components/main/Body';
 //IMPORT ASSETS
 import bgImage from 'img/bg/darkmoon-fair-bg.png';
 
+//IMPORT FUNCTIONS
+import { generateTables } from 'functions/dataGeneration';
+
 //DEFINE CONSTANTS
 const SERVER_URL = 'https://hslookup.herokuapp.com/';
-const generateTables = true;
 
 
 
@@ -31,7 +33,6 @@ const Main = (props) => {
   const [filterDescription, setFilterDescription] = useState(null);
 
   // layout
-  const [showHeader, setShowHeader] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
   const headerHeight = (!isMobile) ? 50 : 30;
@@ -41,6 +42,20 @@ const Main = (props) => {
   const [showCardViewer, setShowCardViewer] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
+  let defaultFilters = {
+    format: 'standard',
+    cardType: 'minion'
+  };
+
+  // const filtersFromQueryString = queryString.parseUrl(
+  //   props.location.search,
+  //   { arrayFormat: 'index' }
+  // ).query;
+
+  // if (Object.keys(filtersFromQueryString).length > 0) {
+  //   console.log(filtersFromQueryString);
+  //   defaultFilters = filtersFromQueryString;
+  // }
 
   useEffect(() => {
     fetchData();
@@ -53,30 +68,22 @@ const Main = (props) => {
   }, [showSidebar]);
 
   useEffect(() => {
-    console.log('showHeader', showHeader);
-  }, [showHeader]);
+    // const newQueryString = queryString.stringify(
+    //   filters,
+    //   { arrayFormat: 'index' }
+    // );
+    // window.history.replaceState(null, filterDescription, '?' + newQueryString);
+  }, [filters]);
 
   useEffect(() => {
-    console.log('filteredCards', filteredCards);
+    // console.log('filteredCards', filteredCards);
   }, [filteredCards]);
 
   useEffect(() => {
     setFilteredCards(filterCards(metadata, cardData, filters));
     setFilterDescription(generateFilterDescription(filters));
-
-    if (generateTables && cardData && typeof cardData !== 'string' && metadata && typeof metadata !== 'string') {
-      console.log('GENERATING TABLES');
-      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion'}));
-      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', format: 'standard'}));
-      console.log(generateMarkupTable(metadata, cardData, {cardType: 'minion', format: 'duels'}));
-    }
+    generateTables(metadata, cardData);
   }, [metadata, cardData, filters]);
-
-  // const handleScroll = () => {
-  //   const deltaY = window.scrollY - lastY;
-  //   lastY = window.scrollY;
-  //   setShowHeader(deltaY < 0);
-  // };
 
   const fetchData = () => {
     setMetadata(null);
@@ -126,7 +133,6 @@ const Main = (props) => {
     <div style={{height: window.innerHeight, width: '100%'}}>
       <FixedBackground bgImage={bgImage} />
       <FixedOverlay
-        showHeader={showHeader}
         headerHeight={headerHeight}
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
@@ -134,6 +140,7 @@ const Main = (props) => {
         showCardViewer={showCardViewer}
         setShowCardViewer={setShowCardViewer}
         selectedCard={selectedCard}
+        defaultFilters={defaultFilters}
         setFilters={setFilters}
         metadata={metadata}
       />

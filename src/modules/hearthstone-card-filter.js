@@ -1,3 +1,4 @@
+import NumberRange from 'functions/NumberRange';
 
 const {
   descriptionTokens,
@@ -102,18 +103,21 @@ function filterCards(metadata, cardData, filters) {
   }
 
   // Filter by Mana
-  if (filters.manaCost !== '' && !isNaN(filters.manaCost)) {
-    cards = cards.filter(card => card.manaCost === Number(filters.manaCost));
+  if (filters.manaCost) {
+    const manaCostRange = new NumberRange(filters.manaCost);
+    cards = cards.filter(card => manaCostRange.includes(card.manaCost));
   }
 
   // Filter by Attack
-  if (filters.attack !== '' && !isNaN(filters.attack)) {
-    cards = cards.filter(card => card.attack === Number(filters.attack));
+  if (filters.attack) {
+    const attackRange = new NumberRange(filters.attack);
+    cards = cards.filter(card => attackRange.includes(card.attack));
   }
 
   // Filter by Health
-  if (filters.health !== '' && !isNaN(filters.health)) {
-    cards = cards.filter(card => card.health === Number(filters.health));
+  if (filters.health) {
+    const healthRange = new NumberRange(filters.health);
+    cards = cards.filter(card => healthRange.includes(card.health));
   }
 
   return cards;
@@ -124,6 +128,8 @@ function filterCards(metadata, cardData, filters) {
 function generateFilterDescription(filters) {
 
   let filterDescription = 'Showing all';
+
+  const errorDescription = 'Error in URL. Reset page or try another URL.';
 
   // Classes
   if (filters.classes) {
@@ -137,28 +143,34 @@ function generateFilterDescription(filters) {
           filterDescription += ',';
         }
       }
-      filterDescription += descriptionTokens.classes[filters.classes[i]];
+      const classToken = descriptionTokens.classes[filters.classes[i]];
+      if (classToken) {
+        filterDescription += classToken;
+      }
+      else {
+        return errorDescription;
+      }
     }
   }
 
   let isFirstNumeric = true;
 
   // Mana Cost
-  if (filters.manaCost && !isNaN(filters.manaCost)) {
+  if (filters.manaCost) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
     filterDescription += ' ' + filters.manaCost + '-Cost';
   }
   
   // Health
-  if (filters.health && !isNaN(filters.health)) {
+  if (filters.health) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
     filterDescription += ' ' + filters.health + '-Health';
   }
 
   // Attack
-  if (filters.attack && !isNaN(filters.attack)) {
+  if (filters.attack) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
     filterDescription += ' ' + filters.attack + '-Attack'

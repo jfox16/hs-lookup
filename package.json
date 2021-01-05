@@ -12,6 +12,7 @@
     "lodash": "^4.17.15",
     "mobx": "^5.14.2",
     "mobx-react": "^6.1.4",
+    "query-string": "^6.13.8",
     "react": "^16.13.1",
     "react-adsense": "^0.1.0",
     "react-dom": "^16.7.0",

@@ -62,7 +62,6 @@ function ClassFilter(props) {
   }, [])
 
   useEffect(() => {
-    console.log(classSelections);
     const classSlugs = [];
     Object.keys(classSelections).forEach(key => {
       if (classSelections[key]) classSlugs.push(key);
