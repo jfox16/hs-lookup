@@ -1,7 +1,7 @@
 # HSLookup.net
 ## [👉Try it here!💻](https://hslookup.net)
 
-HSLookup is a ReactJS webapp to look up Hearthstone cards and generate useful statistics.
+HSLookup is a website made in React to look up Hearthstone cards and generate useful statistics.
 
 ![](hslookup-demo.gif)
 
@@ -21,3 +21,7 @@ If you play Hearthstone, you've probably encountered an effect that randomly gen
 I pull the list of cards from the Blizzard Hearthstone API every time there's an expansion or other change to update my card values. When you input a filter, it looks for any matching cards and uses their data to generate statistics and keyword percentages. The stats do not incorporate any card effects.
 
 Special note about keywords: Cards only count as having a keyword if it inherently has that keyword without other effects. For example, if you search for minions with Lifesteal, [Judicious Junior](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3233e0228d62c15562eaf726ecf1ecda1fda4b60d4793dc279c3b04774d3e834.png) would be counted, while [High Exarch Yrel](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b77dc45899fdc7d2f18ce02b1dc3a9d191354f3b7eea825b63b2487f3811e386.png) would not. 
+
+## Technology Used
+- Frontend: React, JavaScript, CSS
+- Backend: Node, Express
