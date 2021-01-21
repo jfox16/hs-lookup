@@ -1,13 +1,13 @@
 # HSLookup.net
 ## [👉Try it here!💻](https://hslookup.net)
 
-HSLookup is a ReactJS webapp to look up Hearthstone cards and generate useful statistics.
+HSLookup is a website made in React to look up Hearthstone cards and generate useful statistics.
 
 ![](hslookup-demo.gif)
 
 ## What is this?
 
-If you play Hearthstone, you've probably encountered an effect that randomly generates a minion, like [Boggspine Knuckles](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/42fc482dcb41ed6d04cebe1f0608f1e247b0c1f321b6e59d9d7ca3c4c4ab724a.png), [First Day of School](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d6f40a13714f5404a88bbaf83c34dc356f028631e8b034d97f7f7b85dbd87801.png), or [Dragonqueen Alexstraza](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9bdf51419bedabfda3247adc02e306b20ad641603e19ff9e68cda9d79ca72fb9.png). You've probably also wondered what the average stats/cost of those minions would be, and how likely they are to have effects like Taunt or Rush. I built HSLookup to generate those stats with whatever filter you want and find that information.
+If you play Hearthstone, you've probably seen an effect that randomly generates minions like [Boggspine Knuckles](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/42fc482dcb41ed6d04cebe1f0608f1e247b0c1f321b6e59d9d7ca3c4c4ab724a.png), [First Day of School](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d6f40a13714f5404a88bbaf83c34dc356f028631e8b034d97f7f7b85dbd87801.png), or [Dragonqueen Alexstraza](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9bdf51419bedabfda3247adc02e306b20ad641603e19ff9e68cda9d79ca72fb9.png). You've probably also wondered what the average stats/cost of those minions would be, and how likely they are to have effects like Taunt or Rush. I built HSLookup to generate those stats with whatever filter you want and find that information.
 
 ## How do I use it?
 
@@ -21,3 +21,7 @@ If you play Hearthstone, you've probably encountered an effect that randomly gen
 I pull the list of cards from the Blizzard Hearthstone API every time there's an expansion or other change to update my card values. When you input a filter, it looks for any matching cards and uses their data to generate statistics and keyword percentages. The stats do not incorporate any card effects.
 
 Special note about keywords: Cards only count as having a keyword if it inherently has that keyword without other effects. For example, if you search for minions with Lifesteal, [Judicious Junior](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3233e0228d62c15562eaf726ecf1ecda1fda4b60d4793dc279c3b04774d3e834.png) would be counted, while [High Exarch Yrel](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b77dc45899fdc7d2f18ce02b1dc3a9d191354f3b7eea825b63b2487f3811e386.png) would not. 
+
+## Technology Used
+- **Front End**: React, JavaScript, CSS
+- **Back End**: Heroku, Node, Express
