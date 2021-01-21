@@ -11,7 +11,7 @@ import FixedOverlay from 'components/main/FixedOverlay';
 import Body from 'components/main/Body';
 
 //IMPORT ASSETS
-import bgImage from 'img/bg/darkmoon-fair-bg.png';
+import bgImage from 'img/bg/darkmoon-races-bg.png';
 
 //IMPORT FUNCTIONS
 import { generateTables } from 'functions/dataGeneration';
