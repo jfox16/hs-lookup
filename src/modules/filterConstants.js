@@ -131,7 +131,7 @@ export const keywordMinionExclusions = {
     47071: true,
   },
   corrupt: {
-
+    61945: true,
   },
   dormant: {
 
@@ -200,6 +200,7 @@ export const keywordMinionExclusions = {
     755: true,
     2748: true,
     43473: true,
+    61948: true,
     // 4-cost
     2075: true,
     41241: true,
@@ -272,6 +273,8 @@ export const keywordMinionExclusions = {
     49009: true,
   },
   outcast: {
+    // 1-cost
+    61939: true,
     // 2-cost
     61128: true,
     // 3-cost
@@ -283,10 +286,12 @@ export const keywordMinionExclusions = {
     // 1-cost
     2890: true,
     54966: true,
+    61962: true,
     // 2-cost
     2289: true,
     38265: true,
     50550: true,
+    61961: true,
     // 3-cost
     774: true,
     // 4-cost
@@ -470,6 +475,7 @@ export const keywordMinionExclusions = {
     45342: true,
     58973: true,
     61129: true,
+    61943: true,
     // 5-cost
     692: true,
     39489: true,
