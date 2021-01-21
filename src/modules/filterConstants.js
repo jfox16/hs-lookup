@@ -148,6 +148,7 @@ export const keywordMinionExclusions = {
     2069: true,
     2891: true,
     2065: true,
+    61950: true,
     // 4-cost
     47856: true,
     1915: true,
