@@ -25,3 +25,4 @@ Special note about keywords: Cards only count as having a keyword if it inherent
 ## Technology Used
 - **Front End**: React, JavaScript, CSS
 - **Back End**: Heroku, Node, Express
+- **Database**: Postgres
