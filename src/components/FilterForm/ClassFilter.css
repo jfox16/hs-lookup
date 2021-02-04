@@ -8,9 +8,7 @@
 
 .ClassFilterButton {
   margin: 2px 2px;
-}
-
-.ClassFilterButton:hover {
+  text-align: center;
   cursor: pointer;
 }
 

@@ -1,30 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import FilterFormLabel from './FilterFormLabel';
 import FilterFormNumeric from './FilterFormNumeric';
 import './NumericFilters.css';
 
-function NumericFilters(props) {
+import { setFilterValue } from 'store/actions';
 
-  const handleChange = (event, stat) => {
-    props.setFilterValue(stat, event.target.value);
-  }
+
+
+function NumericFilters({ filter, setFilterValue }) {
 
   return (
     <div className='NumericFilters'>
       <div>
         <FilterFormLabel label='Mana' />
-        <FilterFormNumeric onChange={e => handleChange(e, 'manaCost')} />
+        <FilterFormNumeric value={filter.manaCost} setValue={value => setFilterValue('manaCost', value)} />
       </div>
       <div>
         <FilterFormLabel label='Attack' />
-        <FilterFormNumeric onChange={e => handleChange(e, 'attack')} />
+        <FilterFormNumeric value={filter.attack} setValue={value => setFilterValue('attack', value)} />
       </div>
       <div>
         <FilterFormLabel label='Health' />
-        <FilterFormNumeric onChange={e => handleChange(e, 'health')} />
+        <FilterFormNumeric value={filter.health} setValue={value => setFilterValue('health', value)} />
       </div>
     </div>
   );
 }
 
-export default NumericFilters;
+const mapStateToProps = state => {
+  return {
+    filter: state.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilterValue }
+)(NumericFilters);

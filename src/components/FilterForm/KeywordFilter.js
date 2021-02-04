@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import FilterFormLabel from './FilterFormLabel';
 import FilterFormDropdown from './FilterFormDropdown';
-import { descriptionTokens } from '../../modules/filterConstants';
+
+import { descriptionTokens } from 'modules/filterConstants';
+import { setFilterValue } from 'store/actions';
 
 
 
-function KeywordFilter(props) {
+function KeywordFilter({ metadata, filter, setFilterValue }) {
 
-  const [selectedKeyword, setSelectedKeyword] = useState(props.value ? props.value : '');
-
-  useEffect(() => {
-    props.setFilterValue('keyword', selectedKeyword);
-  }, [selectedKeyword]);
-
-  const handleChange = (event) => {
-    setSelectedKeyword(event.target.value);
-  }
-
-  if (!Array.isArray(props.keywords)) {
+  if (!Array.isArray(metadata.keywords)) {
     return <></>
   }
 
   const options = [{label: 'Any', value: ''}];
-  const filteredKeywords = props.keywords.filter((keyword) => descriptionTokens.keyword[keyword.slug]);
+  const filteredKeywords = metadata.keywords.filter((keyword) => descriptionTokens.keyword[keyword.slug]);
   const sortedKeywords = filteredKeywords.sort((a, b) => a.name > b.name);
   sortedKeywords.forEach(keyword => {
     if (descriptionTokens.keyword[keyword.slug]) {
@@ -31,11 +25,27 @@ function KeywordFilter(props) {
   });
 
   return (
-    <>
-    <FilterFormLabel label='KEYWORD' />
-    <FilterFormDropdown options={options} onChange={handleChange} value={selectedKeyword}/>
-    </>
+    <div>
+      <FilterFormLabel label='KEYWORD' />
+      <FilterFormDropdown
+        options={options}
+        onChange={(e) => setFilterValue('keyword', e.target.value)}
+        value={filter.keyword || ''}
+      />
+    </div>
   );
 }
 
-export default KeywordFilter;
+
+
+const mapStateToProps = state => {
+  return {
+    metadata: state.data.metadata,
+    filter: state.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilterValue }
+)(KeywordFilter);

@@ -1,33 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import FilterFormDropdown from './FilterFormDropdown';
 import FilterFormLabel from './FilterFormLabel';
 
-function MinionTypeFilter(props) {
-  const [selectedMinionType, setSelectedMinionType] = useState(props.value ? props.value : '');
+import { setFilterValue } from 'store/actions';
 
-  useEffect(() => {
-    props.setFilterValue('minionType', selectedMinionType);
-  }, [selectedMinionType]);
 
-  const handleChange = (event) => {
-    setSelectedMinionType(event.target.value);
-  }
 
-  if (!Array.isArray(props.minionTypes)) {
-    return <></>
-  }
+function MinionTypeFilter({ metadata, filter, setFilterValue }) {
 
   const options = [{label: 'Any', value: ''}];
-  props.minionTypes.forEach(minionType => {
+  metadata.minionTypes && metadata.minionTypes.forEach(minionType => {
     options.push({label: minionType.name, value: minionType.slug})
   });
 
   return (
-    <>
-    <FilterFormLabel label='MINION TYPE' />
-    <FilterFormDropdown options={options} onChange={handleChange} value={selectedMinionType} />
-    </>
+    <div>
+      <FilterFormLabel label='MINION TYPE' />
+      <FilterFormDropdown
+        options={options}
+        onChange={(e) => setFilterValue('minionType', e.target.value)}
+        value={filter.minionType || ''}
+      />
+    </div>
   );
 }
 
-export default MinionTypeFilter;
+const mapStateToProps = state => {
+  return {
+    metadata: state.data.metadata,
+    filter: state.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilterValue }
+)(MinionTypeFilter);

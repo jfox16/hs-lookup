@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import ClassFilterButton from './ClassFilterButton';
 import FilterFormLabel from './FilterFormLabel';
 import './ClassFilter.css';
 
+import { setFilterValue } from 'store/actions';
+
 const classIcons = {
-  demonhunter: require('../../img/class-icons/demonhunter.png'),
-  druid: require('../../img/class-icons/druid.png'),
-  hunter: require('../../img/class-icons/hunter.png'),
-  mage: require('../../img/class-icons/mage.png'),
-  paladin: require('../../img/class-icons/paladin.png'),
-  priest: require('../../img/class-icons/priest.png'),
-  rogue: require('../../img/class-icons/rogue.png'),
-  shaman: require('../../img/class-icons/shaman.png'),
-  warlock: require('../../img/class-icons/warlock.png'),
-  warrior: require('../../img/class-icons/warrior.png'),
-  neutral: require('../../img/class-icons/neutral.png')
+  demonhunter: require('img/class-icons/demonhunter.png'),
+  druid: require('img/class-icons/druid.png'),
+  hunter: require('img/class-icons/hunter.png'),
+  mage: require('img/class-icons/mage.png'),
+  paladin: require('img/class-icons/paladin.png'),
+  priest: require('img/class-icons/priest.png'),
+  rogue: require('img/class-icons/rogue.png'),
+  shaman: require('img/class-icons/shaman.png'),
+  warlock: require('img/class-icons/warlock.png'),
+  warrior: require('img/class-icons/warrior.png'),
+  neutral: require('img/class-icons/neutral.png')
 }
 
-const darkClassIcons = {
-  demonhunter: require('../../img/class-icons/demonhunter-dark.png'),
-  druid: require('../../img/class-icons/druid-dark.png'),
-  hunter: require('../../img/class-icons/hunter-dark.png'),
-  mage: require('../../img/class-icons/mage-dark.png'),
-  paladin: require('../../img/class-icons/paladin-dark.png'),
-  priest: require('../../img/class-icons/priest-dark.png'),
-  rogue: require('../../img/class-icons/rogue-dark.png'),
-  shaman: require('../../img/class-icons/shaman-dark.png'),
-  warlock: require('../../img/class-icons/warlock-dark.png'),
-  warrior: require('../../img/class-icons/warrior-dark.png'),
-  neutral: require('../../img/class-icons/neutral-dark.png')
-}
+// const darkClassIcons = {
+//   demonhunter: require('../../img/class-icons/demonhunter-dark.png'),
+//   druid: require('../../img/class-icons/druid-dark.png'),
+//   hunter: require('../../img/class-icons/hunter-dark.png'),
+//   mage: require('../../img/class-icons/mage-dark.png'),
+//   paladin: require('../../img/class-icons/paladin-dark.png'),
+//   priest: require('../../img/class-icons/priest-dark.png'),
+//   rogue: require('../../img/class-icons/rogue-dark.png'),
+//   shaman: require('../../img/class-icons/shaman-dark.png'),
+//   warlock: require('../../img/class-icons/warlock-dark.png'),
+//   warrior: require('../../img/class-icons/warrior-dark.png'),
+//   neutral: require('../../img/class-icons/neutral-dark.png')
+// }
 
 const classColors = {
   demonhunter: 'hsl(135, 63%, 35%)',
@@ -45,60 +49,56 @@ const classColors = {
   neutral: '#75665d'
 }
 
-function ClassFilter(props) {
-  const [classSelections, setClassSelections] = useState({});
-  const [noneSelected, setNoneSelected] = useState(true);
+function ClassFilter({ metadata, filter, setFilterValue }) {
 
-  useEffect(() => {
-    // preload all images
-    Object.values(classIcons).forEach(image => {
-      const img = new Image();
-      img.src = image;
-    });
-    Object.values(darkClassIcons).forEach(image => {
-      const img = new Image();
-      img.src = image;
-    });
-  }, [])
-
-  useEffect(() => {
-    const classSlugs = [];
-    Object.keys(classSelections).forEach(key => {
-      if (classSelections[key]) classSlugs.push(key);
-    });
-    setNoneSelected(classSlugs.length === 0);
-    props.setFilterValue('classes', classSlugs);
-  }, [classSelections]);
-
-  const toggleClassSelection = (classSlug) => {
-    let newClassSelections = {};
-    Object.assign(newClassSelections, classSelections);
-    if (newClassSelections[classSlug] !== undefined) {
-      newClassSelections[classSlug] = !newClassSelections[classSlug];
+  const toggleClass = (classSlug) => {
+    if (filter.classes) {
+      // if it's in the list of classes, remove it
+      if (filter.classes.includes(classSlug)) {
+        setFilterValue('classes', filter.classes.filter(item => item !== classSlug));
+      }
+      // if not, add it
+      else {
+        setFilterValue('classes', [ ...filter.classes, classSlug ]);
+      }
     }
+    // if classes filter doesn't exist, create it
     else {
-      newClassSelections[classSlug] = true;
+      setFilterValue('classes', [classSlug]);
     }
-    setClassSelections(newClassSelections);
   }
 
   return (
-    <>
-    <FilterFormLabel label='CLASS' />
-    <div className='ClassFilter'>
-      {props.classes.map(_class => (
-        <ClassFilterButton 
-          key={'ClassFilterButton-' + _class.slug}
-          class={_class}
-          image={(classSelections[_class.slug] || noneSelected) ? classIcons[_class.slug] : darkClassIcons[_class.slug]}
-          color={classColors[_class.slug]}
-          selected={classSelections[_class.slug] === true}
-          handleClick={() => toggleClassSelection(_class.slug)}
-        />
-      ))}
+    <div>
+      <FilterFormLabel label='CLASS' />
+      <div className='ClassFilter'>
+        {metadata.classes.map(hsClass => (
+          <ClassFilterButton
+            key={'ClassFilterButton-' + hsClass.slug}
+            hsClass={hsClass}
+            image={classIcons[hsClass.slug]}
+            borderColor={classColors[hsClass.slug]}
+            selected={filter.classes && filter.classes.includes(hsClass.slug)}
+            darkened={filter.classes && filter.classes.length > 0 && !filter.classes.includes(hsClass.slug)}
+            onClick={() => toggleClass(hsClass.slug)}
+          />
+        ))}
+      </div>
     </div>
-    </>
   );
 }
 
-export default ClassFilter;
+
+
+
+const mapStateToProps = state => {
+  return {
+    metadata: state.data.metadata,
+    filter: state.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilterValue }
+)(ClassFilter);

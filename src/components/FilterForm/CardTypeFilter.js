@@ -1,33 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import FilterFormLabel from './FilterFormLabel';
-import FilterFormDropdown from './FilterFormDropdown';
+import FilterFormDropdown from './FilterFormDropdown'
 
-function CardTypeFilter(props) {
-  const [selectedCardType, setSelectedCardType] = useState(props.value ? props.value : '');
+import { setFilterValue } from 'store/actions';
 
-  useEffect(() => {
-    props.setFilterValue('cardType', selectedCardType);
-  }, [selectedCardType]);
 
-  const handleChange = (event) => {
-    setSelectedCardType(event.target.value);
-  }
 
-  if (!Array.isArray(props.cardTypes)) {
-    return <></>
-  }
+function CardTypeFilter({ metadata, filter, setFilterValue }) {
 
   const options = [{label: 'Any', value: ''}];
-  props.cardTypes.forEach(cardType => {
+  metadata.types && metadata.types.forEach(cardType => {
     options.push({label: cardType.name, value: cardType.slug})
   });
 
   return (
-    <>
-    <FilterFormLabel label='CARD TYPE' />
-    <FilterFormDropdown options={options} onChange={handleChange} value={selectedCardType}/>
-    </>
+    <div>
+      <FilterFormLabel label='CARD TYPE' />
+      <FilterFormDropdown
+        options={options}
+        onChange={(e) => setFilterValue('cardType', e.target.value)}
+        value={filter.cardType || ''}
+      />
+    </div>
   );
 }
 
-export default CardTypeFilter;
+const mapStateToProps = state => {
+  return {
+    metadata: state.data.metadata,
+    filter: state.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFilterValue }
+)(CardTypeFilter);

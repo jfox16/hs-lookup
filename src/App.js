@@ -17,7 +17,7 @@ function App(props) {
 
   return (
     <>
-    <Normalize/>
+    <Normalize />
     <Router>
       <Switch>
         <Route exact path='/' component={Main} />

@@ -8,29 +8,29 @@ const {
 
 
 
-function filterCards(metadata, cardData, filters) {
+async function filterCardData(metadata, cardData, filter) {
 
   if (!metadata || typeof metadata === 'string' 
     || !cardData || typeof cardData === 'string' 
-    || !filters) 
+    || !filter) 
   {
-    return null;
+    return [];
   }
 
   // console.log('filtering with: ', filters);
 
   let cards = cardData.cards;
 
-  // Filter by Format
-  if (filters.format) {
+  // Filter by Format, but no need if the format is wild.
+  if (filter.format && filter.format !== 'wild') {
 
     let includedSets;
 
-    if (filters.format === 'standard') {
+    if (filter.format === 'standard') {
       const setGroup = metadata.setGroups.find(setGroup => setGroup.slug === 'standard');
       includedSets = setGroup.cardSets;
     }
-    else if (filters.format === 'duels') {
+    else if (filter.format === 'duels') {
       includedSets = duelsCardSets;
     }
 
@@ -46,19 +46,19 @@ function filterCards(metadata, cardData, filters) {
   }
 
   // Filter by Card Type
-  if (filters.cardType && metadata.types) {
-    const selectedCardType = metadata.types.find(cardType => cardType.slug === filters.cardType);
+  if (filter.cardType && metadata.types) {
+    const selectedCardType = metadata.types.find(cardType => cardType.slug === filter.cardType);
     if (selectedCardType) {
       cards = cards.filter(card => card.cardTypeId === selectedCardType.id);
     }
   }
 
   // Filter by Classes
-  if (filters.classes && filters.classes.length > 0 && metadata.classes) {
+  if (filter.classes && filter.classes.length > 0 && metadata.classes) {
     // put class ids in an array by index for quick lookup
     const selectedClassIds = [];
     metadata.classes.forEach(_class => {
-      if (filters.classes.includes(_class.slug)) {
+      if (filter.classes.includes(_class.slug)) {
         selectedClassIds[_class.id] = true;
       }
     });
@@ -75,24 +75,24 @@ function filterCards(metadata, cardData, filters) {
   }
 
   // Filter by Rarity
-  if (filters.rarity && metadata.rarities) {
-    const selectedRarity = metadata.rarities.find(rarity => rarity.slug === filters.rarity);
+  if (filter.rarity && metadata.rarities) {
+    const selectedRarity = metadata.rarities.find(rarity => rarity.slug === filter.rarity);
     if (selectedRarity) {
       cards = cards.filter(card => card.rarityId === selectedRarity.id);
     }
   }
 
   // Filter by Minion Type
-  if (filters.minionType && metadata.minionTypes && (!filters.cardType || filters.cardType === 'minion')) {
-    const selectedMinionType = metadata.minionTypes.find(minionType => minionType.slug === filters.minionType);
+  if (filter.minionType && metadata.minionTypes && (!filter.cardType || filter.cardType === 'minion')) {
+    const selectedMinionType = metadata.minionTypes.find(minionType => minionType.slug === filter.minionType);
     if (selectedMinionType) {
       cards = cards.filter(card => card.minionTypeId === selectedMinionType.id);
     }
   }
 
   // Filter by Keyword
-  if (filters.keyword && metadata.keywords) {
-    const selectedKeyword = metadata.keywords.find(keyword => keyword.slug === filters.keyword);
+  if (filter.keyword && metadata.keywords) {
+    const selectedKeyword = metadata.keywords.find(keyword => keyword.slug === filter.keyword);
     if (selectedKeyword) {
       cards = cards.filter(card => (
         card.keywordIds
@@ -103,20 +103,20 @@ function filterCards(metadata, cardData, filters) {
   }
 
   // Filter by Mana
-  if (filters.manaCost) {
-    const manaCostRange = new NumberRange(filters.manaCost);
+  if (filter.manaCost) {
+    const manaCostRange = new NumberRange(filter.manaCost);
     cards = cards.filter(card => manaCostRange.includes(card.manaCost));
   }
 
   // Filter by Attack
-  if (filters.attack) {
-    const attackRange = new NumberRange(filters.attack);
+  if (filter.attack) {
+    const attackRange = new NumberRange(filter.attack);
     cards = cards.filter(card => attackRange.includes(card.attack));
   }
 
   // Filter by Health
-  if (filters.health) {
-    const healthRange = new NumberRange(filters.health);
+  if (filter.health) {
+    const healthRange = new NumberRange(filter.health);
     cards = cards.filter(card => healthRange.includes(card.health));
   }
 
@@ -125,15 +125,15 @@ function filterCards(metadata, cardData, filters) {
 
 
 
-function generateFilterDescription(filters) {
+function generateFilterDescription(filter) {
 
   let filterDescription = 'Showing all';
 
   const errorDescription = 'Error in URL. Reset page or try another URL.';
 
   // Classes
-  if (filters.classes) {
-    for (let i = 0, length = filters.classes.length; i < length; i++) {
+  if (filter.classes) {
+    for (let i = 0, length = filter.classes.length; i < length; i++) {
       if (i > 0) {
         if (i === length-1) {
           if (i === 1) filterDescription += ' and';
@@ -143,7 +143,7 @@ function generateFilterDescription(filters) {
           filterDescription += ',';
         }
       }
-      const classToken = descriptionTokens.classes[filters.classes[i]];
+      const classToken = descriptionTokens.classes[filter.classes[i]];
       if (classToken) {
         filterDescription += classToken;
       }
@@ -156,49 +156,49 @@ function generateFilterDescription(filters) {
   let isFirstNumeric = true;
 
   // Mana Cost
-  if (filters.manaCost) {
+  if (filter.manaCost) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
-    filterDescription += ' ' + filters.manaCost + '-Cost';
+    filterDescription += ' ' + filter.manaCost + '-Cost';
   }
   
   // Health
-  if (filters.health) {
+  if (filter.health) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
-    filterDescription += ' ' + filters.health + '-Health';
+    filterDescription += ' ' + filter.health + '-Health';
   }
 
   // Attack
-  if (filters.attack) {
+  if (filter.attack) {
     if (isFirstNumeric) isFirstNumeric = false;
     else filterDescription += ',';
-    filterDescription += ' ' + filters.attack + '-Attack'
+    filterDescription += ' ' + filter.attack + '-Attack'
   }
 
   // Rarity
-  if (filters.rarity) filterDescription += descriptionTokens.rarity[filters.rarity];
+  if (filter.rarity) filterDescription += descriptionTokens.rarity[filter.rarity];
 
   // Keyword
-  if (filters.keyword) filterDescription += descriptionTokens.keyword[filters.keyword];
+  if (filter.keyword) filterDescription += descriptionTokens.keyword[filter.keyword];
 
   // minion type / card type
-  if (filters.minionType) {
-    filterDescription += descriptionTokens.minionType[filters.minionType];
+  if (filter.minionType) {
+    filterDescription += descriptionTokens.minionType[filter.minionType];
   }
-  else if (filters.cardType) {
-    filterDescription += descriptionTokens.cardType[filters.cardType];
+  else if (filter.cardType) {
+    filterDescription += descriptionTokens.cardType[filter.cardType];
   }
   else {
     filterDescription += descriptionTokens.cardType.default;
   }
 
   // Format
-  if (!filters.format) {
+  if (!filter.format) {
     filterDescription += descriptionTokens.format.wild;
   }
   else {
-    filterDescription += descriptionTokens.format[filters.format];
+    filterDescription += descriptionTokens.format[filter.format];
   }
 
   return filterDescription;
@@ -206,4 +206,4 @@ function generateFilterDescription(filters) {
 
 
 
-export { filterCards, generateFilterDescription };
+export { filterCardData, generateFilterDescription };

@@ -1,18 +1,19 @@
 import React from 'react';
 
-function ClassFilterButton(props) {
+function ClassFilterButton({ hsClass, image, borderColor, selected, darkened, onClick }) {
   return (
-    <div className='ClassFilterButton' onClick={props.handleClick}>
-      <div 
-        className='ClassFilterButtonIcon' 
+    <div className='ClassFilterButton' onClick={onClick} style={{opacity: (darkened) ? 0.4 : 1}}>
+      <img
+        className='ClassFilterButtonIcon'
+        alt={hsClass.name}
+        src={image}
         style={{
-          backgroundImage: `url('${props.image}'`, 
-          border: `3px solid ${props.color}`,
-          boxShadow: (props.selected) ? '0 0 3px 2px white' : 'none'
-        }} 
+          border: `3px solid ${borderColor}`,
+          boxShadow: (selected) ? '0 0 3px 2px white' : 'none',
+        }}
       />
-      <div className='ClassFilterButtonLabel' style={{color: (props.selected) ? 'snow' : 'hsl(0, 0%, 56%)'}}>
-        {props.class.name}
+      <div className='ClassFilterButtonLabel'>
+        {hsClass.name}
       </div>
     </div>
   );

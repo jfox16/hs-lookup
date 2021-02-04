@@ -3,7 +3,7 @@
   width: 100%;
   padding: 5px;
   border-radius: 4px;
-  background-color: hsl(0, 0%, 21%);
-  color: hsl(0, 0%, 56%);
-  border: 1px solid hsl(0, 0%, 28%);
+  color: snow;
+  border: 1px solid hsl(0, 0%, 42%);
+  background-color: hsl(0, 0%, 28%);
 }

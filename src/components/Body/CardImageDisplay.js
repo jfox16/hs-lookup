@@ -10,6 +10,7 @@ import './CardImageDisplay.css';
 const CardImageDisplay = (props) => {
 
   useEffect(() => {
+    // Check every second for LazyLoad
     setInterval(function(){ forceCheck() }, 1000);
   });
 

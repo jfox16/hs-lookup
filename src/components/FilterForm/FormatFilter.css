@@ -9,6 +9,7 @@
   border: 1px solid hsl(0, 0%, 35%);
   color: hsl(0, 0%, 56%);
   cursor: pointer;
+  transition: background-color 0.1s;
 }
 
 .FormatFilterButton:first-child {

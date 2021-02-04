@@ -1,27 +1,24 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { setFilterValue } from 'store/actions';
+
 import FilterFormLabel from './FilterFormLabel';
 import './FormatFilter.css';
 
 
 
-function FormatFilter(props) {
-
-  const [format, setFormat] = useState('standard');
-
-  useEffect(() => {
-    props.setFilterValue('format', format);
-  }, [format]);
+function FormatFilter({ format, setFormat }) {
 
   return (
     <>
     <FilterFormLabel label='Format' />
     <div className='FormatFilter'>
-      <div 
+      <div
         className='FormatFilterButton'
-        onClick={() => setFormat('')} 
+        onClick={() => setFormat('wild')} 
         style={
-          (!format)
+          (!format || format === 'wild')
           ?
           {backgroundColor: 'hsl(0, 0%, 28%)', color: 'snow'}
           :
@@ -30,9 +27,9 @@ function FormatFilter(props) {
       >
         Wild
       </div>
-      <div 
+      <div
         className='FormatFilterButton'
-        onClick={() => setFormat('standard')} 
+        onClick={() => setFormat('standard')}
         style={
           (format === 'standard')
           ?
@@ -61,4 +58,13 @@ function FormatFilter(props) {
   );
 }
 
-export default FormatFilter;
+const mapStateToProps = state => {
+  return {
+    format: state.filter.format
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setFormat: (format) => setFilterValue('format', format) }
+)(FormatFilter);
