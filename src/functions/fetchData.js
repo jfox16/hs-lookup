@@ -5,7 +5,6 @@ const fetchData = async (serverUrl, region, locale) => {
   .then((response) => response.json())
   .then((metadataJson) => {
     if (metadataJson.minionTypes) metadataJson.minionTypes.sort((a, b) => a.name > b.name); // sort minionTypes in alphabetical order
-    console.log('fetched metadata:', metadataJson);
     return metadataJson;
   })
   .catch((err) => {
@@ -15,7 +14,6 @@ const fetchData = async (serverUrl, region, locale) => {
   const cardData = fetch(`${serverUrl}${region}/allcards?locale=${locale}`)
   .then(response => response.json())
   .then(cardDataJson => {
-    console.log('fetched cardData:', cardDataJson);
     return cardDataJson;
   })
   .catch((err) => {

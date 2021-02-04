@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  console.log('action comin thru', action);
   switch(action.type) {
 
     case filterTypes.SET_FILTER_VALUE: {

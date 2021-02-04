@@ -17,8 +17,6 @@ async function filterCardData(metadata, cardData, filter) {
     return [];
   }
 
-  // console.log('filtering with: ', filters);
-
   let cards = cardData.cards;
 
   // Filter by Format, but no need if the format is wild.

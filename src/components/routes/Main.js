@@ -17,14 +17,14 @@ import fetchData from 'functions/fetchData';
 import bgImage from 'img/bg/darkmoon-races-bg.png';
 
 // IMPORT CONSTANTS
-import { SERVER_URL } from 'globalConstants';
+import { SERVER_URL, DEBOUNCE_DELAY } from 'globalConstants';
 import { useAsyncMemo } from 'use-async-memo';
 
 
 
 // Main ================================================================================================================
 
-const Main = ({ data, setData, filter, setFilter, filteredCards, setFilteredCards }) => {
+const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
 
   // data
   const [region] = useState('us');
@@ -57,12 +57,19 @@ const Main = ({ data, setData, filter, setFilter, filteredCards, setFilteredCard
   }, [ region, locale ]);
 
   // When data or filters change, filter card data
-  useAsyncMemo(async () => {
+  const newFilteredCards = useAsyncMemo(async () => {
     if (data && filter) {
-      const filteredCards = await filterCardData(data.metadata, data.cardData, filter);
-      setFilteredCards(filteredCards);
+      await new Promise(resolve => setTimeout(resolve, DEBOUNCE_DELAY));
+      return await filterCardData(data.metadata, data.cardData, filter);
     }
   }, [ data, filter ]);
+
+  // Put newfilteredCards in the redux store
+  useEffect(() => {
+    if (Array.isArray(newFilteredCards)) {
+      setFilteredCards(newFilteredCards);
+    }
+  }, [newFilteredCards]);
 
   // When data changes, generate markdown tables
   useEffect(() => {
@@ -70,14 +77,6 @@ const Main = ({ data, setData, filter, setFilter, filteredCards, setFilteredCard
       generateTables(data.metadata, data.cardData);
     }
   }, [ data ]);
-
-  useEffect(() => {
-    console.log('filter changed', filter)
-  }, [ filter ]);
-
-  useEffect(() => {
-    console.log('filteredCards:', filteredCards);
-  }, [ filteredCards ]);
 
 
 

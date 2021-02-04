@@ -59,7 +59,6 @@ function generateStatTotals(cards) {
     }
   });
 
-  // console.log('statTotals', totals);
   return totals;
 }
 
