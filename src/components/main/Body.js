@@ -4,7 +4,7 @@ import StatDisplay from '../Body/StatDisplay';
 
 import './Body.css';
 
-function Body(props) {
+const Body = (props) => {
   
   return (
     <div className='Body'>

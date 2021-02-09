@@ -41,7 +41,7 @@ const CardImageDisplay = ({ filteredCards, selectCard }) => {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import {
   Bar,
@@ -13,6 +13,7 @@ import { withResizeDetector } from 'react-resize-detector';
 
 const StatHistogram = ({ width, data, color, minX, maxX }) => {
 
+  // If there are less than 5 values, pad some values to the beginning and end to make it look better.
   if (maxX - minX < 5) {
     minX--;
     maxX++;

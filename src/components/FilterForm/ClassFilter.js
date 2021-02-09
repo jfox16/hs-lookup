@@ -21,20 +21,6 @@ const classIcons = {
   neutral: require('img/class-icons/neutral.png')
 }
 
-// const darkClassIcons = {
-//   demonhunter: require('../../img/class-icons/demonhunter-dark.png'),
-//   druid: require('../../img/class-icons/druid-dark.png'),
-//   hunter: require('../../img/class-icons/hunter-dark.png'),
-//   mage: require('../../img/class-icons/mage-dark.png'),
-//   paladin: require('../../img/class-icons/paladin-dark.png'),
-//   priest: require('../../img/class-icons/priest-dark.png'),
-//   rogue: require('../../img/class-icons/rogue-dark.png'),
-//   shaman: require('../../img/class-icons/shaman-dark.png'),
-//   warlock: require('../../img/class-icons/warlock-dark.png'),
-//   warrior: require('../../img/class-icons/warrior-dark.png'),
-//   neutral: require('../../img/class-icons/neutral-dark.png')
-// }
-
 const classColors = {
   demonhunter: 'hsl(135, 63%, 35%)',
   druid: 'hsl(30, 55%, 50%)',

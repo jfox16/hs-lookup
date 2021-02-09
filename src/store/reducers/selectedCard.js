@@ -5,7 +5,7 @@ const initialState = null;
 
 const selectedCardReducer = (state = initialState, action) => {
   switch(action.type) {
-
+    
     case selectedCardTypes.SELECT_CARD:
       return action.payload;
 

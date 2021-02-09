@@ -1,10 +1,12 @@
 import React from 'react';
-import './FixedOverlay.css';
+import { connect } from 'react-redux';
 
 import Header from 'components/fixedOverlay/Header';
 import SlidingDrawerLeft from 'components/fixedOverlay/SlidingDrawerLeft';
 import FilterForm from 'components/fixedOverlay/FilterForm';
 import CardViewer from 'components/fixedOverlay/CardViewer';
+
+import './FixedOverlay.css';
 
 
 
@@ -12,7 +14,8 @@ const FixedOverlay = ({
   headerHeight,
   showSidebar,
   setShowSidebar,
-  sidebarWidth
+  sidebarWidth,
+  selectedCard
 }) => {
   return (
     <div className='FixedOverlay'>
@@ -27,11 +30,23 @@ const FixedOverlay = ({
       >
         <FilterForm />
       </SlidingDrawerLeft>
-      <div className='CardViewerPositioner' style={{left: (showSidebar) ? sidebarWidth : 0}}>
-        <CardViewer />
-      </div>
+      {selectedCard && 
+        <div className='CardViewerPositioner' style={{left: (showSidebar) ? sidebarWidth : 0}}>
+          <CardViewer />
+        </div>
+      }
     </div>
   );
 }
 
-export default FixedOverlay;
+
+
+const mapStateToProps = state => {
+  return {
+    selectedCard: state.selectedCard,
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(FixedOverlay);

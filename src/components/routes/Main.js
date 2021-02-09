@@ -59,7 +59,7 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
   // When data or filters change, filter card data
   const newFilteredCards = useAsyncMemo(async () => {
     if (data && filter) {
-      await new Promise(resolve => setTimeout(resolve, DEBOUNCE_DELAY));
+      await new Promise(resolve => setTimeout(resolve, DEBOUNCE_DELAY)); // await this amount of seconds
       return await filterCardData(data.metadata, data.cardData, filter);
     }
   }, [ data, filter ]);
@@ -69,7 +69,7 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
     if (Array.isArray(newFilteredCards)) {
       setFilteredCards(newFilteredCards);
     }
-  }, [newFilteredCards]);
+  }, [ newFilteredCards ]);
 
   // When data changes, generate markdown tables
   useEffect(() => {
@@ -77,8 +77,6 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
       generateTables(data.metadata, data.cardData);
     }
   }, [ data ]);
-
-
 
   return (
     <div style={{ height: window.innerHeight, width: '100%' }}>

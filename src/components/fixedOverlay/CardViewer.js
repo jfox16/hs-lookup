@@ -1,19 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { deselectCard } from 'store/actions';
+
 import './CardViewer.css';
 
-const CardViewer = (props) => {
-
-  const handleClick = () => {
-    props.setOpen(false);
-  }
-
-  if (!props.open || !props.card) return <></>;
+const CardViewer = ({ selectedCard, deselectCard }) => {
 
   return (
-    <div className='CardViewer' onClick={handleClick}>
-      <img className='CardViewerCard' src={props.card.image} alt={props.card.name} />
+    <div className='CardViewer' onClick={deselectCard}>
+      <img className='CardViewerCard' src={selectedCard.image} alt={selectedCard.name} />
     </div>
   );
 }
 
-export default CardViewer;
+
+
+const mapStateToProps = (state) => {
+  return {
+    selectedCard: state.selectedCard
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  { deselectCard }
+)(CardViewer);

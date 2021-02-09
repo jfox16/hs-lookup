@@ -1,15 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import "./StatDisplay.css";
 
-import { generateStatTotals, generateKeywordTotals } from '../../modules/hearthstone-card-stats';
+import { generateStatTotals, generateKeywordTotals } from 'modules/hearthstone-card-stats';
+import { generateFilterDescription } from 'modules/hearthstone-card-filter';
 
-import StatSummary from '../DataDisplays/StatSummary';
-import StatHistogram from '../DataDisplays/StatHistogram';
-import KeywordDisplay from '../DataDisplays/KeywordDisplay';
+import StatSummary from 'components/DataDisplays/StatSummary';
+import StatHistogram from 'components/DataDisplays/StatHistogram';
+import KeywordDisplay from 'components/DataDisplays/KeywordDisplay';
 
-import attackImg from '../../img/stats/attack.png';
-import healthImg from '../../img/stats/health.png';
-import manaCostImg from '../../img/stats/mana.png';
+import attackImg from 'img/stats/attack.png';
+import healthImg from 'img/stats/health.png';
+import manaCostImg from 'img/stats/mana.png';
 
 
 
@@ -21,14 +23,13 @@ const statsToTrack = [
 
 
 
-const StatDisplay = (props) => {
-  
-  if (!props.cards || !props.metadata) {
-    return <></>
-  }
+const StatDisplay = ({ filter, filteredCards, metadata }) => {
 
-  const statTotals = generateStatTotals(props.cards);
-  const keywordTotals = generateKeywordTotals(props.cards, props.metadata);
+  if (!filteredCards || !metadata) return <></>;
+
+  const statTotals = generateStatTotals(filteredCards);
+  const keywordTotals = generateKeywordTotals(filteredCards, metadata);
+  const filterDescription = generateFilterDescription(filter);
 
   const statsToDisplay = [];
   statsToTrack.forEach((stat) => {
@@ -41,8 +42,8 @@ const StatDisplay = (props) => {
   return (
     <div className="StatDisplay">
       <div className='StatDisplayHeader'>
-        <p className="card-count">{props.cards.length} cards</p>
-        <p className="filter-description">{props.filterDescription}</p>
+        <p className="card-count">{filteredCards.length} cards found</p>
+        <p className="filter-description">{filterDescription}</p>
       </div>
 
       <div className="StatDisplayData">
@@ -78,9 +79,22 @@ const StatDisplay = (props) => {
         })}
       </div>
 
-      <KeywordDisplay keywordTotals={keywordTotals} cards={props.cards} />
+      <KeywordDisplay keywordTotals={keywordTotals} cards={filteredCards} />
     </div>
   );
 }
 
-export default StatDisplay;
+
+
+const mapStateToProps = state => {
+  return {
+    filter: state.filter,
+    filteredCards: state.filteredCards,
+    metadata: state.data.metadata
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(StatDisplay);
+

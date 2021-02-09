@@ -62,8 +62,8 @@ export const setFilteredCards = ( filteredCards ) => ({
 export const selectCard = ( card ) => ({
   type: selectedCardTypes.SELECT_CARD,
   payload: card
-})
+});
 
-export const deselectCard = ( ) => ({
+export const deselectCard = () => ({
   type: selectedCardTypes.DESELECT_CARD,
-})
+});
