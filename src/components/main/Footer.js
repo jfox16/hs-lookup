@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 
+import { VERSION_NUMBER } from 'globalConstants';
 import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 
 export default function Footer() {
@@ -23,6 +24,10 @@ export default function Footer() {
 
       <p>Copyright © {new Date().getFullYear()} Jonathan Fox </p>
       <p>Hearthstone is a trademark or registered trademark of Blizzard Entertainment, Inc., in the U.S. and/or other countries.</p>
+
+      <div style={{height: '8px'}}/>
+
+      <p>{'HSLookup v.' + VERSION_NUMBER}</p>
 
       <div style={{height: '8px'}}/>
     </div>
