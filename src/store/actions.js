@@ -3,6 +3,7 @@ import {
   filterTypes,
   dataTypes,
   filteredCardsTypes,
+  filterFormOpenTypes,
   selectedCardTypes,
 } from './actionTypes';
 
@@ -53,6 +54,15 @@ export const setCardData = ( cardData ) => ({
 export const setFilteredCards = ( filteredCards ) => ({
   type: filteredCardsTypes.SET_FILTERED_CARDS,
   payload: filteredCards
+});
+
+
+
+// FILTER FORM OPEN ACTIONS
+
+export const setFilterFormOpen = ( open ) => ({
+  type: filterFormOpenTypes.SET_FILTER_FORM_OPEN,
+  payload: open
 });
 
 

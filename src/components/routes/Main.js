@@ -10,7 +10,7 @@ import Body from 'components/main/Body';
 //IMPORT FUNCTIONS
 import { filterCardData } from 'modules/hearthstone-card-filter';
 import { generateTables } from 'functions/dataGeneration';
-import { setData, setFilter, setFilteredCards } from 'store/actions';
+import { setData, setFilter, setFilteredCards, setFilterFormOpen } from 'store/actions';
 import fetchData from 'functions/fetchData';
 
 //IMPORT ASSETS
@@ -24,19 +24,18 @@ import { useAsyncMemo } from 'use-async-memo';
 
 // Main ================================================================================================================
 
-const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
+const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOpen, setFilterFormOpen }) => {
 
   // data
   const [region] = useState('us');
   const [locale] = useState('en_US');
 
   // layout
-  const [showSidebar, setShowSidebar] = useState(true);
   const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
   const headerHeight = (!isMobile) ? 50 : 30;
   const sidebarWidth = (!isMobile) ? 380 : '100%';
   const topOffset = headerHeight;
-  const leftOffset = (isMobile || !showSidebar) ? 0 : sidebarWidth;
+  const leftOffset = (isMobile || !filterFormOpen) ? 0 : sidebarWidth;
 
   let defaultFilter = {
     format: 'standard',
@@ -83,8 +82,8 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards }) => {
       <FixedBackground bgImage={bgImage} />
       <FixedOverlay
         headerHeight={headerHeight}
-        showSidebar={showSidebar}
-        setShowSidebar={setShowSidebar}
+        showSidebar={filterFormOpen}
+        setShowSidebar={setFilterFormOpen}
         sidebarWidth={sidebarWidth}
       />
       <Body
@@ -101,11 +100,12 @@ const mapStateToProps = state => {
   return {
     data: state.data,
     filter: state.filter,
+    filterFormOpen: state.filterFormOpen,
     filteredCards: state.filteredCards
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setData, setFilter, setFilteredCards }
+  { setData, setFilter, setFilteredCards, setFilterFormOpen }
 )(withResizeDetector(Main));

@@ -23,7 +23,7 @@ const statsToTrack = [
 
 
 
-const StatDisplay = ({ filter, filteredCards, metadata }) => {
+const StatDisplay = ({ filter, filteredCards, filterFormOpen, metadata }) => {
 
   if (!filteredCards || !metadata) return <></>;
 
@@ -51,7 +51,7 @@ const StatDisplay = ({ filter, filteredCards, metadata }) => {
           let totals = statTotals[stat.accessor];
           return (
             <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
-              <div className="StatDisplayDataGroup">
+              <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : 0}}>
                 <div className='StatDisplayDataGroupHeader'>
                   <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
                   <p className='StatDisplayDataGroupTitle'>{stat.name}</p>
@@ -90,6 +90,7 @@ const mapStateToProps = state => {
   return {
     filter: state.filter,
     filteredCards: state.filteredCards,
+    filterFormOpen: state.filterFormOpen,
     metadata: state.data.metadata
   };
 };

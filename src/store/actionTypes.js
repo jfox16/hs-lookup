@@ -14,6 +14,10 @@ export const filteredCardsTypes = {
   SET_FILTERED_CARDS: 'SET_FILTERED_CARDS',
 }
 
+export const filterFormOpenTypes = {
+  SET_FILTER_FORM_OPEN: 'SET_FILTER_FORM_OPEN',
+}
+
 export const selectedCardTypes = {
   SELECT_CARD: 'SELECT_CARD',
   DESELECT_CARD: 'DESELECT_CARD'
