@@ -27,7 +27,7 @@ export default function Footer() {
 
       <div style={{height: '8px'}}/>
 
-      <p>{'HSLookup v.' + VERSION_NUMBER}</p>
+      <p>{'HSLookup v' + VERSION_NUMBER}</p>
 
       <div style={{height: '8px'}}/>
     </div>
