@@ -4,13 +4,18 @@
 
 .StatDisplay .card-count {
   margin-top: 4px;
-  margin-left: 56px;
+  margin-left: 4px;
   font-size: 40px;
 }
 
 .StatDisplay .filter-description {
   margin-left: 4px;
   font-size: 28px;
+}
+
+.StatDisplayHeader {
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .StatDisplayData {
@@ -29,7 +34,6 @@
   background-color: hsla(0, 0%, 14%, 80%);
   padding: 5px;
   margin: 3px auto;
-  z-index: -10;
   max-width: 500px;
 }
 

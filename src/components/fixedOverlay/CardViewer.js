@@ -18,7 +18,7 @@ const CardViewer = ({ selectedCard, deselectCard }) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedCard: state.selectedCard
+    selectedCard: state.renderData.selectedCard
   }
 };
 

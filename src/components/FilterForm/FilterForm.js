@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import FormatFilter from 'components/FilterForm/FormatFilter';
@@ -10,21 +10,19 @@ import MinionTypeFilter from 'components/FilterForm/MinionTypeFilter';
 import NumericFilters from 'components/FilterForm/NumericFilters';
 import Loader from 'components/Loaders/Loader';
 
-import { setFilterValue } from 'store/actions';
-
 import './FilterForm.css';
 
 
 
-const FilterForm = ({ metadata, filter, setFilterValue, style }) => {
+const FilterForm = ({ metadata }) => {
 
   if (!metadata) {
     return <Loader text='Fetching metadata...'/>
   }
 
   return (
-    <div className="FilterForm" style={style}>
-      <h2 style={{margin: '10px'}}>Filters</h2>
+    <div className="FilterForm">
+      {/* <h2 style={{margin: '4px'}}>Filters</h2> */}
       <FormatFilter />
       <NumericFilters />
       <ClassFilter />
@@ -39,11 +37,9 @@ const FilterForm = ({ metadata, filter, setFilterValue, style }) => {
 const mapStateToProps = state => {
   return {
     metadata: state.data.metadata,
-    filter: state.filter
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setFilterValue }
 )(FilterForm);

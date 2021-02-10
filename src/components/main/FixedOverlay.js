@@ -2,36 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Header from 'components/fixedOverlay/Header';
-import SlidingDrawerLeft from 'components/fixedOverlay/SlidingDrawerLeft';
-import FilterForm from 'components/fixedOverlay/FilterForm';
+import FilterForm from 'components/FilterForm';
 import CardViewer from 'components/fixedOverlay/CardViewer';
 
 import './FixedOverlay.css';
 
+import { DESKTOP_HEADER_HEIGHT, SIDEBAR_WIDTH } from 'globalConstants';
+
 
 
 const FixedOverlay = ({
-  headerHeight,
   showSidebar,
   setShowSidebar,
-  sidebarWidth,
   selectedCard
 }) => {
   return (
     <div className='FixedOverlay'>
       <Header
-        style={{ height: headerHeight, top: 0 }}
+        style={{ height: DESKTOP_HEADER_HEIGHT, top: 0 }}
       />
-      <SlidingDrawerLeft
-        open={showSidebar}
-        setOpen={setShowSidebar}
-        width={sidebarWidth}
-        style={{paddingTop: headerHeight}}
-      >
+      <div style={{width: SIDEBAR_WIDTH, paddingTop: DESKTOP_HEADER_HEIGHT}}>
         <FilterForm />
-      </SlidingDrawerLeft>
+      </div>
       {selectedCard && 
-        <div className='CardViewerPositioner' style={{left: (showSidebar) ? sidebarWidth : 0}}>
+        <div className='CardViewerPositioner' style={{left: (showSidebar) ? SIDEBAR_WIDTH : 0}}>
           <CardViewer />
         </div>
       }
@@ -43,7 +37,7 @@ const FixedOverlay = ({
 
 const mapStateToProps = state => {
   return {
-    selectedCard: state.selectedCard,
+    selectedCard: state.renderData.selectedCard,
   };
 };
 

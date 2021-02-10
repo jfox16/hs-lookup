@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FilterFormLabel from './FilterFormLabel';
-import FilterFormDropdown from './FilterFormDropdown';
+import Dropdown from 'components/filterFormComponents/Dropdown';
 
 import { descriptionTokens } from 'modules/filterConstants';
 import { setFilterValue } from 'store/actions';
@@ -27,7 +27,7 @@ function KeywordFilter({ metadata, filter, setFilterValue }) {
   return (
     <div>
       <FilterFormLabel label='KEYWORD' />
-      <FilterFormDropdown
+      <Dropdown
         options={options}
         onChange={(e) => setFilterValue('keyword', e.target.value)}
         value={filter.keyword || ''}

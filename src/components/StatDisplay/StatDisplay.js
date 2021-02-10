@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import "./StatDisplay.css";
 
 import { generateStatTotals, generateKeywordTotals } from 'modules/hearthstone-card-stats';
-import { generateFilterDescription } from 'modules/hearthstone-card-filter';
 
 import StatSummary from 'components/DataDisplays/StatSummary';
 import StatHistogram from 'components/DataDisplays/StatHistogram';
@@ -23,13 +22,12 @@ const statsToTrack = [
 
 
 
-const StatDisplay = ({ filter, filteredCards, filterFormOpen, metadata }) => {
+const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, metadata }) => {
 
   if (!filteredCards || !metadata) return <></>;
 
   const statTotals = generateStatTotals(filteredCards);
   const keywordTotals = generateKeywordTotals(filteredCards, metadata);
-  const filterDescription = generateFilterDescription(filter);
 
   const statsToDisplay = [];
   statsToTrack.forEach((stat) => {
@@ -42,8 +40,8 @@ const StatDisplay = ({ filter, filteredCards, filterFormOpen, metadata }) => {
   return (
     <div className="StatDisplay">
       <div className='StatDisplayHeader'>
-        <p className="card-count">{filteredCards.length} cards found</p>
         <p className="filter-description">{filterDescription}</p>
+        <p className="card-count">{filteredCards.length} cards found</p>
       </div>
 
       <div className="StatDisplayData">
@@ -51,7 +49,7 @@ const StatDisplay = ({ filter, filteredCards, filterFormOpen, metadata }) => {
           let totals = statTotals[stat.accessor];
           return (
             <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
-              <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : 0}}>
+              <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : -1}}>
                 <div className='StatDisplayDataGroupHeader'>
                   <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
                   <p className='StatDisplayDataGroupTitle'>{stat.name}</p>
@@ -88,9 +86,9 @@ const StatDisplay = ({ filter, filteredCards, filterFormOpen, metadata }) => {
 
 const mapStateToProps = state => {
   return {
-    filter: state.filter,
-    filteredCards: state.filteredCards,
-    filterFormOpen: state.filterFormOpen,
+    filterDescription: state.renderData.filterDescription,
+    filteredCards: state.renderData.filteredCards,
+    filterFormOpen: state.renderData.filterFormOpen,
     metadata: state.data.metadata
   };
 };

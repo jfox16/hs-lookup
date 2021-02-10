@@ -125,7 +125,7 @@ async function filterCardData(metadata, cardData, filter) {
 
 function generateFilterDescription(filter) {
 
-  let filterDescription = 'Showing all';
+  let filterDescription = 'All';
 
   const errorDescription = 'Error in URL. Reset page or try another URL.';
 

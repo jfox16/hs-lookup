@@ -1,41 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withResizeDetector } from 'react-resize-detector';
+import Helmet from 'react-helmet';
 
 //IMPORT COMPONENTS
 import FixedBackground from 'components/main/FixedBackground';
-import FixedOverlay from 'components/main/FixedOverlay';
-import Body from 'components/main/Body';
+import Header from 'components/Header';
+import Sidebar from 'components/Sidebar';
+import FilterForm from 'components/FilterForm';
+import Footer from 'components/Footer';
+import StatDisplay from 'components/StatDisplay';
+import CardImageDisplay from 'components/CardImageDisplay';
 
 //IMPORT FUNCTIONS
-import { filterCardData } from 'modules/hearthstone-card-filter';
+import { filterCardData, generateFilterDescription } from 'modules/hearthstone-card-filter';
 import { generateTables } from 'functions/dataGeneration';
-import { setData, setFilter, setFilteredCards, setFilterFormOpen } from 'store/actions';
+import { setData, setFilter, setFilteredCards, setFilterFormOpen, setFilterDescription } from 'store/actions';
 import fetchData from 'functions/fetchData';
 
 //IMPORT ASSETS
 import bgImage from 'img/bg/darkmoon-races-bg.png';
 
 // IMPORT CONSTANTS
-import { SERVER_URL, DEBOUNCE_DELAY } from 'globalConstants';
+import { SERVER_URL, DEBOUNCE_DELAY, DESKTOP_HEADER_HEIGHT, SIDEBAR_WIDTH } from 'globalConstants';
 import { useAsyncMemo } from 'use-async-memo';
+
+import './Main.css';
 
 
 
 // Main ================================================================================================================
 
-const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOpen, setFilterFormOpen }) => {
+const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterDescription, setFilterDescription }) => {
 
   // data
   const [region] = useState('us');
   const [locale] = useState('en_US');
-
-  // layout
-  const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
-  const headerHeight = (!isMobile) ? 50 : 30;
-  const sidebarWidth = (!isMobile) ? 380 : '100%';
-  const topOffset = headerHeight;
-  const leftOffset = (isMobile || !filterFormOpen) ? 0 : sidebarWidth;
 
   let defaultFilter = {
     format: 'standard',
@@ -67,6 +67,7 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOp
   useEffect(() => {
     if (Array.isArray(newFilteredCards)) {
       setFilteredCards(newFilteredCards);
+      setFilterDescription(generateFilterDescription(filter));
     }
   }, [ newFilteredCards ]);
 
@@ -78,18 +79,24 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOp
   }, [ data ]);
 
   return (
-    <div style={{ height: window.innerHeight, width: '100%' }}>
+    <div className='Main'>
+      <Helmet>
+        <title>{ `${filterDescription} | HS Lookup` }</title>
+      </Helmet>
       <FixedBackground bgImage={bgImage} />
-      <FixedOverlay
-        headerHeight={headerHeight}
-        showSidebar={filterFormOpen}
-        setShowSidebar={setFilterFormOpen}
-        sidebarWidth={sidebarWidth}
-      />
-      <Body
-        topOffset={topOffset}
-        leftOffset={leftOffset}
-      />
+      <Header />
+      <div className='CenteredContent' style={{ height: window.innerHeight }}>
+        <Sidebar>
+          <FilterForm />
+          <Footer />
+        </Sidebar>
+        <div style={{paddingLeft: SIDEBAR_WIDTH, paddingTop: DESKTOP_HEADER_HEIGHT }}>
+          <div className='Body'>
+            <StatDisplay />
+            <CardImageDisplay />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -100,12 +107,13 @@ const mapStateToProps = state => {
   return {
     data: state.data,
     filter: state.filter,
-    filterFormOpen: state.filterFormOpen,
-    filteredCards: state.filteredCards
+    filterDescription: state.renderData.filterDescription,
+    filterFormOpen: state.renderData.filterFormOpen,
+    filteredCards: state.renderData.filteredCards
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setData, setFilter, setFilteredCards, setFilterFormOpen }
+  { setData, setFilter, setFilteredCards, setFilterFormOpen, setFilterDescription }
 )(withResizeDetector(Main));

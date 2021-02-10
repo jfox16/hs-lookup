@@ -1,0 +1,5 @@
+.Sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  padding: 8px;
+}

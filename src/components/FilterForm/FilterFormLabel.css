@@ -16,5 +16,5 @@
   margin: 0;
   flex: 1 0 0;
   height: 1px;
-  background-color: hsl(0, 0%, 28%);
+  background-color: hsla(0, 0%, 100%, 0.15);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import FilterFormDropdown from './FilterFormDropdown';
+import Dropdown from 'components/filterFormComponents/Dropdown';
 import FilterFormLabel from './FilterFormLabel';
 
 import { setFilterValue } from 'store/actions';
@@ -18,7 +18,7 @@ function MinionTypeFilter({ metadata, filter, setFilterValue }) {
   return (
     <div>
       <FilterFormLabel label='MINION TYPE' />
-      <FilterFormDropdown
+      <Dropdown
         options={options}
         onChange={(e) => setFilterValue('minionType', e.target.value)}
         value={filter.minionType || ''}

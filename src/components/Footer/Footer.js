@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 
 import { VERSION_NUMBER } from 'globalConstants';
-import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
+import { FaGithubSquare } from 'react-icons/fa';
 
 export default function Footer() {
   
@@ -15,8 +15,6 @@ export default function Footer() {
       <div className="icons">
         <p>
           <a href="https://github.com/jfox16/hs-lookup"><FaGithubSquare /></a>
-          {/* <a href="https://www.linkedin.com/in/jonathan-fox-cs/"><FaLinkedin /></a>
-          <a href="https://twitter.com/jfox6cs"><FaTwitterSquare /></a> */}
         </p>
       </div>
 

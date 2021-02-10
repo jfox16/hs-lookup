@@ -1,15 +1,20 @@
 .FormatFilter {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  padding-right: 8px;
 }
 
 .FormatFilterButton {
   padding: 8px;
+  flex: 1 0;
   background-color: hsl(0, 0%, 21%);
   border: 1px solid hsl(0, 0%, 35%);
   color: hsl(0, 0%, 56%);
   cursor: pointer;
   transition: background-color 0.1s;
+  text-align: center;
 }
 
 .FormatFilterButton:first-child {
@@ -18,5 +23,6 @@
 }
 
 .FormatFilterButton:last-child {
+  border-left: none;
   border-radius: 0 4px 4px 0;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FilterFormLabel from './FilterFormLabel';
-import FilterFormDropdown from './FilterFormDropdown'
+import Dropdown from 'components/filterFormComponents/Dropdown'
 
 import { setFilterValue } from 'store/actions';
 
@@ -18,7 +18,7 @@ function CardTypeFilter({ metadata, filter, setFilterValue }) {
   return (
     <div>
       <FilterFormLabel label='CARD TYPE' />
-      <FilterFormDropdown
+      <Dropdown
         options={options}
         onChange={(e) => setFilterValue('cardType', e.target.value)}
         value={filter.cardType || ''}

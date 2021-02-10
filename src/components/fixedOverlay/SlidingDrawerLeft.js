@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdFilterList } from 'react-icons/md'
 import { GrFormClose } from 'react-icons/gr';
-import Footer from '../main/Footer';
+import Footer from 'components/Footer';
 
 import './SlidingDrawerLeft.css';
 

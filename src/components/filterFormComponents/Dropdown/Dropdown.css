@@ -1,4 +1,4 @@
-.FilterFormDropdown {
+.Dropdown {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -11,11 +11,11 @@
   background-color: hsl(0, 0%, 28%);
 }
 
-.FilterFormDropdown:hover {
+.Dropdown:hover {
   cursor: pointer;
 }
 
-.FilterFormDropdownChevronPositioner {
+.DropdownChevronPositioner {
   position: relative;
   float: right;
   height: 0;

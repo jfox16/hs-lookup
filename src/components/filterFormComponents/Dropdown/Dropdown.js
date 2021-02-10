@@ -1,8 +1,8 @@
 import React from 'react';
-import './FilterFormDropdown.css';
+import './Dropdown.css';
 import { GoChevronDown } from 'react-icons/go';
 
-function FilterFormDropdown({ value, onChange, options }) {
+function Dropdown({ value, onChange, options }) {
 
   if (!Array.isArray(options)) {
     return <></>;
@@ -10,7 +10,7 @@ function FilterFormDropdown({ value, onChange, options }) {
   return (
     <div>
       <select 
-        className='FilterFormDropdown' 
+        className='Dropdown' 
         onChange={onChange}
         value={value}
         style={{opacity: (!value || value === '') ? 0.5 : 1}}
@@ -21,11 +21,11 @@ function FilterFormDropdown({ value, onChange, options }) {
           </option>
         ))}
       </select>
-      <div className='FilterFormDropdownChevronPositioner'>
+      <div className='DropdownChevronPositioner'>
         <GoChevronDown />
       </div>
     </div>
   );
 }
 
-export default FilterFormDropdown;
+export default Dropdown;
