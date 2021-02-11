@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: 12px;
-  padding-top: 18px;
+  padding-top: 8px;
 }
 
 .lookup-button {
@@ -52,7 +52,7 @@
   }
 
   
-@media (max-width: 700px), screen and (max-height: 500px) {
+@media (max-width: 1200px), screen and (max-height: 500px) {
   .input-field p {
     font-size: 12px;
   }

@@ -6,13 +6,13 @@
   max-height: 500px;
   text-align: center;
   animation-name: moveUp;
-  animation-duration: 1s;
-  animation-timing-function: cubic-bezier(0, 0, 0.1, 1);
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 .SelectedCardDisplay > img {
   position: relative;
-  top: -4%;
+  top: -2%;
   left: 1%;
   height: 100%;
   width: 100%;
@@ -20,6 +20,6 @@
 }
 
 @keyframes moveUp {
-  0% {transform: translateY(8%)}
+  0% {transform: translateY(6%)}
   100% {transform: translateY(0%)}
 }

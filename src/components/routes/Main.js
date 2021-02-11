@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withResizeDetector } from 'react-resize-detector';
 import { useAsyncMemo } from 'use-async-memo';
+import { withResizeDetector } from 'react-resize-detector';
 import Helmet from 'react-helmet';
 
 //IMPORT COMPONENTS
 import FixedBackground from 'components/main/FixedBackground';
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
-import FilterForm from 'components/FilterForm';
-import Footer from 'components/Footer';
 import StatDisplay from 'components/StatDisplay';
 import CardImageDisplay from 'components/CardImageDisplay';
 import Modal from 'components/Modal';
 import SelectedCardDisplay from 'components/SelectedCardDisplay';
+import MobileFilterForm from 'components/MobileFilterForm';
 
 //IMPORT FUNCTIONS
 import { filterCardData, generateFilterDescription } from 'modules/hearthstone-card-filter';
@@ -25,6 +24,7 @@ import {
   setFilteredCards,
   setFilterFormOpen,
   setFilterDescription,
+  setIsMobile,
   deselectCard
 } from 'store/actions';
 
@@ -32,7 +32,13 @@ import {
 import bgImage from 'img/bg/darkmoon-races-bg.png';
 
 // IMPORT CONSTANTS
-import { SERVER_URL, DEBOUNCE_DELAY, DESKTOP_HEADER_HEIGHT, SIDEBAR_WIDTH } from 'globalConstants';
+import {
+  SERVER_URL,
+  DEBOUNCE_DELAY,
+  DESKTOP_HEADER_HEIGHT,
+  SIDEBAR_WIDTH,
+  MOBILE_BREAKPOINT_WIDTH
+} from 'globalConstants';
 
 import './Main.css';
 
@@ -48,8 +54,12 @@ const Main = ({
   setFilteredCards,
   filterDescription,
   setFilterDescription,
+  filterFormOpen,
+  setFilterFormOpen,
+  isMobile,
+  setIsMobile,
   selectedCard,
-  deselectCard
+  deselectCard,
 }) => {
 
   const [region] = useState('us');
@@ -64,6 +74,12 @@ const Main = ({
   useEffect(() => {
     setFilter(defaultFilter);
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth) {
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT_WIDTH);
+    }
+  }, [ window.innerWidth ]);
 
   // When region or locale changes, fetch new metadata and card data
   useEffect(() => {
@@ -100,7 +116,12 @@ const Main = ({
     <div className='Main'>
 
       <Helmet>
-        {filterDescription && <title>{ `${filterDescription} | HS Lookup` }</title>}
+        {filterDescription
+          ?
+          <title>{ `${filterDescription} | HS Lookup` }</title>
+          :
+          <title>HS Lookup</title>
+        }
       </Helmet>
 
       <FixedBackground bgImage={bgImage} />
@@ -108,11 +129,13 @@ const Main = ({
       <Header />
 
       <div className='CenteredContent' style={{ height: window.innerHeight }}>
-        <Sidebar>
-          <FilterForm />
-          <Footer />
-        </Sidebar>
-        <div style={{paddingLeft: SIDEBAR_WIDTH, paddingTop: DESKTOP_HEADER_HEIGHT }}>
+        {!isMobile && <Sidebar />}
+        <div 
+          style={{
+            paddingLeft: (isMobile) ? 0 : SIDEBAR_WIDTH,
+            paddingTop: DESKTOP_HEADER_HEIGHT
+          }}
+        >
           <div className='Body'>
             <StatDisplay />
             <CardImageDisplay />
@@ -120,9 +143,17 @@ const Main = ({
         </div>
       </div>
 
-      <Modal isOpen={selectedCard} closeModal={deselectCard}>
-        <SelectedCardDisplay selectedCard={selectedCard} />
-      </Modal>
+      {filterFormOpen
+        ? 
+        <Modal isOpen={filterFormOpen} closeModal={() => setFilterFormOpen(false)}>
+          <MobileFilterForm />
+        </Modal>
+        :
+        selectedCard &&
+        <Modal isOpen={selectedCard} closeModal={deselectCard}>
+          <SelectedCardDisplay selectedCard={selectedCard} />
+        </Modal>
+      }
     </div>
   );
 }
@@ -138,6 +169,7 @@ const mapStateToProps = state => {
     filterDescription: state.renderData.filterDescription,
     filterFormOpen: state.renderData.filterFormOpen,
     filteredCards: state.renderData.filteredCards,
+    isMobile: state.renderData.isMobile,
     selectedCard: state.renderData.selectedCard,
   };
 };
@@ -150,6 +182,7 @@ export default connect(
     setFilteredCards,
     setFilterFormOpen,
     setFilterDescription,
+    setIsMobile,
     deselectCard
   }
 )(withResizeDetector(Main));

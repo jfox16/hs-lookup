@@ -18,7 +18,7 @@ function KeywordDisplay(props) {
 
     const percent = decimalValue * 100;
 
-    if (percent < 0.1) {
+    if (percent < 0.2) {
       return percent.toFixed(2) + '%';
     }
     else {

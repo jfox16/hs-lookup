@@ -1,0 +1,12 @@
+.FilterFormToggleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: snow;
+  color: hsl(0, 0%, 20%);
+  height: 27px;
+  width: 27px;
+  border-radius: 3px;
+  font-size: 21px;
+  cursor: pointer;
+}
