@@ -64,6 +64,11 @@ export const setFilterFormOpen = ( open ) => ({
   payload: open
 });
 
+export const setIsMobile = ( isMobile ) => ({
+  type: renderDataTypes.SET_IS_MOBILE,
+  payload: isMobile
+});
+
 export const selectCard = ( card ) => ({
   type: renderDataTypes.SELECT_CARD,
   payload: card

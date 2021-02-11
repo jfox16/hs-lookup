@@ -31,6 +31,7 @@
     "react-vis": "^1.11.7",
     "recharts": "^1.8.5",
     "redux": "^4.0.5",
+    "simplebar-react": "^2.3.0",
     "use-async-memo": "^1.2.2",
     "v8": "^0.1.0",
     "yargs-parser": "13.1.2"

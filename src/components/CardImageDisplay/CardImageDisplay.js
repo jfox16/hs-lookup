@@ -49,7 +49,7 @@ const CardImageDisplay = ({ filteredCards, selectCard }) => {
         pageStart={0}
         loadMore={loadMore}
         hasMore={currentIndex <= sortedCards.length-1}
-        threshold={250}
+        threshold={16}
       >
         <div className='CardImageDisplay'>
           {displayedCards.map(card => (

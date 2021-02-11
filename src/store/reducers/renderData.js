@@ -26,6 +26,13 @@ const selectedCardReducer = (state = initialState, action) => {
         ...state,
         filterFormOpen: filterFormOpen
       };
+
+    case renderDataTypes.SET_IS_MOBILE:
+      const isMobile = action.payload;
+      return {
+        ...state,
+        isMobile: isMobile
+      }
     
     case renderDataTypes.SELECT_CARD:
       const selectedCard = action.payload;

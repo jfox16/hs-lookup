@@ -1,5 +1,15 @@
 .Sidebar {
   box-sizing: border-box;
   position: fixed;
+  height: 100%;
+}
+
+.SimpleBar {
+  height: 100%;
+  overflow: auto;
   padding: 8px;
+}
+
+.simplebar-track .simplebar-scrollbar::before {
+  background: hsl(0, 0%, 50%);
 }
