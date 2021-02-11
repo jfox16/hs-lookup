@@ -36,6 +36,7 @@ const CardImageDisplay = ({ filteredCards, selectCard }) => {
   // sort cards by manaCost
   const sortedCards = filteredCards.sort((a,b) => a.manaCost - b.manaCost);
 
+  // loadMore() is called by InfiniteScroll to load more cards when the bottom of the page is reached.
   const loadMore = () => {
     const newIndex = currentIndex + ITEMS_PER_PAGE;
     setDisplayedCards(sortedCards.slice(0, newIndex));
