@@ -1,21 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { GoSettings } from 'react-icons/go';
 
-import FilterFormToggleButton from 'components/FilterFormToggleButton';
+import IconButton from 'components/IconButton';
 
-import headerLogo from 'img/logos/header-logo.svg';
+import { setFilterFormOpen } from 'store/actions';
 
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from 'globalConstants';
+
+import headerLogo from 'img/logos/header-logo.svg';
 
 import './Header.css';
 
 
 
-const Header = ({ isMobile }) => {
+const Header = ({ isMobile, setFilterFormOpen }) => {
   return (
     <div className="Header" style={{ height: (isMobile) ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT }}>
-      <img src={headerLogo} alt='HS Lookup' className='HeaderLogo' style={{height: '100%'}} />
-      {isMobile && <FilterFormToggleButton />}
+      <img src={headerLogo} alt='HS Lookup' className='HeaderLogo' />
+      {isMobile &&
+        <IconButton onClick={() => setFilterFormOpen(true)}>
+          <GoSettings />
+        </IconButton>
+      }
     </div>
   );
 }
@@ -29,5 +36,6 @@ const mapStateToProps = (state => {
 })
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {setFilterFormOpen}
 )(Header);

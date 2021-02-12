@@ -143,11 +143,9 @@ const Main = ({
         </div>
       </div>
 
-      {filterFormOpen
+      {isMobile && filterFormOpen
         ? 
-        <Modal isOpen={filterFormOpen} closeModal={() => setFilterFormOpen(false)}>
-          <MobileFilterForm />
-        </Modal>
+        <MobileFilterForm />
         :
         selectedCard &&
         <Modal isOpen={selectedCard} closeModal={deselectCard}>

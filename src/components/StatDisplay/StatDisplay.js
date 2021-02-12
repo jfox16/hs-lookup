@@ -49,7 +49,7 @@ const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, metadat
           let totals = statTotals[stat.accessor];
           return (
             <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
-              <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : -1}}>
+              <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : 0}}>
                 <div className='StatDisplayDataGroupHeader'>
                   <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
                   <p className='StatDisplayDataGroupTitle'>{stat.name}</p>

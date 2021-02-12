@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SimpleBar from 'simplebar-react';
 
 import FormatFilter from 'components/FilterForm/FormatFilter';
 import ClassFilter from 'components/FilterForm/ClassFilter';
@@ -23,18 +22,16 @@ const FilterForm = ({ metadata }) => {
   }
 
   return (
-    <SimpleBar className='SimpleBar' autoHide={true}>
-      <div className="FilterForm">
-        <FormatFilter />
-        <NumericFilters />
-        <ClassFilter />
-        <CardTypeFilter />
-        <RarityFilter />
-        <MinionTypeFilter />
-        <KeywordFilter />
-        <Footer />
-      </div>
-    </SimpleBar>
+    <div className="FilterForm">
+      <FormatFilter />
+      <NumericFilters />
+      <ClassFilter />
+      <CardTypeFilter />
+      <RarityFilter />
+      <MinionTypeFilter />
+      <KeywordFilter />
+      <Footer />
+    </div>
   );
 }
 

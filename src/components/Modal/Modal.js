@@ -6,7 +6,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
   return (
     <>
     {isOpen && 
-      <div className="Modal" onClick={closeModal}>
+      <div className="Modal fullscreen" onClick={closeModal}>
         {children}
       </div>
     }
