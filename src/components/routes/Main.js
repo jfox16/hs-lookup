@@ -1,41 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useAsyncMemo } from 'use-async-memo';
 import { withResizeDetector } from 'react-resize-detector';
+import Helmet from 'react-helmet';
 
 //IMPORT COMPONENTS
 import FixedBackground from 'components/main/FixedBackground';
-import FixedOverlay from 'components/main/FixedOverlay';
-import Body from 'components/main/Body';
+import Header from 'components/Header';
+import Sidebar from 'components/Sidebar';
+import StatDisplay from 'components/StatDisplay';
+import CardImageDisplay from 'components/CardImageDisplay';
+import Modal from 'components/Modal';
+import SelectedCardDisplay from 'components/SelectedCardDisplay';
+import MobileFilterForm from 'components/MobileFilterForm';
 
 //IMPORT FUNCTIONS
-import { filterCardData } from 'modules/hearthstone-card-filter';
+import { filterCardData, generateFilterDescription } from 'modules/hearthstone-card-filter';
 import { generateTables } from 'functions/dataGeneration';
-import { setData, setFilter, setFilteredCards, setFilterFormOpen } from 'store/actions';
 import fetchData from 'functions/fetchData';
+import {
+  setData,
+  setFilter,
+  setFilteredCards,
+  setFilterFormOpen,
+  setFilterDescription,
+  setIsMobile,
+  deselectCard
+} from 'store/actions';
 
 //IMPORT ASSETS
 import bgImage from 'img/bg/darkmoon-races-bg.png';
 
 // IMPORT CONSTANTS
-import { SERVER_URL, DEBOUNCE_DELAY } from 'globalConstants';
-import { useAsyncMemo } from 'use-async-memo';
+import {
+  SERVER_URL,
+  DEBOUNCE_DELAY,
+  DESKTOP_HEADER_HEIGHT,
+  SIDEBAR_WIDTH,
+  MOBILE_BREAKPOINT_WIDTH
+} from 'globalConstants';
+
+import './Main.css';
 
 
 
 // Main ================================================================================================================
 
-const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOpen, setFilterFormOpen }) => {
+const Main = ({
+  data,
+  setData,
+  filter,
+  setFilter,
+  setFilteredCards,
+  filterDescription,
+  setFilterDescription,
+  filterFormOpen,
+  setFilterFormOpen,
+  isMobile,
+  setIsMobile,
+  selectedCard,
+  deselectCard,
+}) => {
 
-  // data
   const [region] = useState('us');
   const [locale] = useState('en_US');
-
-  // layout
-  const isMobile = window.innerWidth <= 700 || window.innerHeight <= 500;
-  const headerHeight = (!isMobile) ? 50 : 30;
-  const sidebarWidth = (!isMobile) ? 380 : '100%';
-  const topOffset = headerHeight;
-  const leftOffset = (isMobile || !filterFormOpen) ? 0 : sidebarWidth;
 
   let defaultFilter = {
     format: 'standard',
@@ -46,6 +74,12 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOp
   useEffect(() => {
     setFilter(defaultFilter);
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth) {
+      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT_WIDTH);
+    }
+  }, [ window.innerWidth ]);
 
   // When region or locale changes, fetch new metadata and card data
   useEffect(() => {
@@ -67,6 +101,7 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOp
   useEffect(() => {
     if (Array.isArray(newFilteredCards)) {
       setFilteredCards(newFilteredCards);
+      setFilterDescription(generateFilterDescription(filter));
     }
   }, [ newFilteredCards ]);
 
@@ -78,34 +113,74 @@ const Main = ({ data, setData, filter, setFilter, setFilteredCards, filterFormOp
   }, [ data ]);
 
   return (
-    <div style={{ height: window.innerHeight, width: '100%' }}>
+    <div className='Main'>
+
+      <Helmet>
+        {filterDescription
+          ?
+          <title>{ `${filterDescription} | HS Lookup` }</title>
+          :
+          <title>HS Lookup</title>
+        }
+      </Helmet>
+
       <FixedBackground bgImage={bgImage} />
-      <FixedOverlay
-        headerHeight={headerHeight}
-        showSidebar={filterFormOpen}
-        setShowSidebar={setFilterFormOpen}
-        sidebarWidth={sidebarWidth}
-      />
-      <Body
-        topOffset={topOffset}
-        leftOffset={leftOffset}
-      />
+
+      <Header />
+
+      <div className='CenteredContent' style={{ height: window.innerHeight }}>
+        {!isMobile && <Sidebar />}
+        <div 
+          style={{
+            paddingLeft: (isMobile) ? 0 : SIDEBAR_WIDTH,
+            paddingTop: DESKTOP_HEADER_HEIGHT
+          }}
+        >
+          <div className='Body'>
+            <StatDisplay />
+            <CardImageDisplay />
+          </div>
+        </div>
+      </div>
+
+      {isMobile && filterFormOpen
+        ? 
+        <MobileFilterForm />
+        :
+        selectedCard &&
+        <Modal isOpen={selectedCard} closeModal={deselectCard}>
+          <SelectedCardDisplay selectedCard={selectedCard} />
+        </Modal>
+      }
     </div>
   );
 }
 
 
 
+// EXPORT ==============================================================================================================
+
 const mapStateToProps = state => {
   return {
     data: state.data,
     filter: state.filter,
-    filterFormOpen: state.filterFormOpen,
-    filteredCards: state.filteredCards
+    filterDescription: state.renderData.filterDescription,
+    filterFormOpen: state.renderData.filterFormOpen,
+    filteredCards: state.renderData.filteredCards,
+    isMobile: state.renderData.isMobile,
+    selectedCard: state.renderData.selectedCard,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setData, setFilter, setFilteredCards, setFilterFormOpen }
+  {
+    setData,
+    setFilter,
+    setFilteredCards,
+    setFilterFormOpen,
+    setFilterDescription,
+    setIsMobile,
+    deselectCard
+  }
 )(withResizeDetector(Main));

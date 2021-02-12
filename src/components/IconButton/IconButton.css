@@ -1,0 +1,9 @@
+.IconButton {
+  background: none;
+  border: none;
+  color: snow;
+  font-size: 32px;
+  line-height: 0.8;
+  padding: 4px;
+  cursor: pointer;
+}

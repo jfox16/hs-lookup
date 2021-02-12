@@ -10,15 +10,11 @@ export const dataTypes = {
   SET_CARD_DATA: 'SET_CARD_DATA',
 }
 
-export const filteredCardsTypes = {
+export const renderDataTypes = {
   SET_FILTERED_CARDS: 'SET_FILTERED_CARDS',
-}
-
-export const filterFormOpenTypes = {
+  SET_FILTER_DESCRIPTION: 'SET_FILTER_DESCRIPTION',
   SET_FILTER_FORM_OPEN: 'SET_FILTER_FORM_OPEN',
-}
-
-export const selectedCardTypes = {
+  SET_IS_MOBILE: 'SET_IS_MOBILE',
   SELECT_CARD: 'SELECT_CARD',
   DESELECT_CARD: 'DESELECT_CARD'
 }

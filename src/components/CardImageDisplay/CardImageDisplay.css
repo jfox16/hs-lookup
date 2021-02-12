@@ -1,0 +1,33 @@
+.CardImageDisplay {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(180px, 1fr));
+  padding-bottom: 16px;
+  padding-left: 8px;
+}
+
+.CardImageDisplayCard {
+  width: 100%;
+}
+
+.CardImageDisplayCard:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px), screen and (max-height: 700px)  {
+  .CardImageDisplay {
+    grid-template-columns: repeat(auto-fill,minmax(180px, 1fr));
+  }
+}
+
+@media screen and (max-width: 800px), screen and (max-height: 550px)  {
+  .CardImageDisplay {
+    grid-template-columns: repeat(auto-fill,minmax(140px, 1fr));
+  }
+}
+
+@media screen and (max-width: 600px), screen and (max-height: 400px)  {
+  .CardImageDisplay {
+    grid-template-columns: repeat(auto-fill,minmax(120px, 1fr));
+  }
+}

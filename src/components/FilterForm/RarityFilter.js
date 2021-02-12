@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FilterFormLabel from './FilterFormLabel';
-import FilterFormDropdown from './FilterFormDropdown';
+import Dropdown from 'components/filterFormComponents/Dropdown';
 
 import { setFilterValue } from 'store/actions';
 
@@ -18,7 +18,7 @@ function RarityFilter({ metadata, filter, setFilterValue }) {
   return (
     <div>
       <FilterFormLabel label='RARITY' />
-      <FilterFormDropdown
+      <Dropdown
         options={options}
         onChange={(e) => setFilterValue('rarity', e.target.value)}
         value={filter.rarity || ''}

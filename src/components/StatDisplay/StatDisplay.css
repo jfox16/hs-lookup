@@ -1,0 +1,76 @@
+.StatDisplay {
+  width: 100%;
+}
+
+.StatDisplay .card-count {
+  margin-top: 4px;
+  margin-left: 4px;
+  font-size: 40px;
+}
+
+.StatDisplay .filter-description {
+  margin-left: 4px;
+  font-size: 28px;
+}
+
+.StatDisplayHeader {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.StatDisplayData {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.StatDisplayDataGridDiv {
+  padding: 2px;
+}
+
+.StatDisplayDataGroup {
+  position: relative;
+  border: solid 1px hsl(0, 0%, 28%);
+  border-radius: 6px;
+  background-color: hsla(0, 0%, 14%, 80%);
+  padding: 5px;
+  margin: 3px auto;
+  max-width: 500px;
+}
+
+.StatDisplayDataGroupHeader {
+  display: flex;
+  align-items: center;
+}
+
+.StatDisplayDataGroupIcon {
+  height: 40px;
+}
+
+.StatDisplayDataGroupTitle {
+  display: inline;
+  font-size: 24px;
+  line-height: 1;
+  margin: 0;
+}
+
+.StatDisplayDataGroupData {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.StatSummaryDiv {
+  flex: 1 0 0;
+}
+
+@media screen and (max-width: 1200px), screen and (max-height: 500px) {
+  .StatDisplay .card-count {
+    margin-top: 4px;
+    font-size: 40px;
+  }
+  
+  .StatDisplay .filter-description {
+    margin-left: 4px;
+    font-size: 18px;
+  }
+}

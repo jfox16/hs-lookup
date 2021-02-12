@@ -1,0 +1,24 @@
+.Dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  border-radius: 4px;
+  color: snow;
+  border: 1px solid hsl(0, 0%, 42%);
+  background-color: hsl(0, 0%, 28%);
+}
+
+.Dropdown:hover {
+  cursor: pointer;
+}
+
+.DropdownChevronPositioner {
+  position: relative;
+  float: right;
+  height: 0;
+  top: -26px;
+  left: -5px;
+}

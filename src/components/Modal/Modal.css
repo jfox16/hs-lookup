@@ -1,0 +1,9 @@
+.Modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background: hsla(0, 0%, 0%, 0.5);
+  cursor: pointer;
+}
+

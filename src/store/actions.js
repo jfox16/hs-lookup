@@ -2,10 +2,27 @@
 import {
   filterTypes,
   dataTypes,
-  filteredCardsTypes,
-  filterFormOpenTypes,
-  selectedCardTypes,
+  renderDataTypes,
 } from './actionTypes';
+
+
+
+// DATA ACTIONS
+
+export const setData = ( data ) => ({
+  type: dataTypes.SET_DATA,
+  payload: data
+});
+
+export const setMetadata = ( metadata ) => ({
+  type: dataTypes.SET_METADATA,
+  payload: metadata
+});
+
+export const setCardData = ( cardData ) => ({
+  type: dataTypes.SET_CARD_DATA,
+  payload: cardData
+});
 
 
 
@@ -30,50 +47,33 @@ export const resetFilter = () => ({
 
 
 
-// METADATA ACTIONS
-
-export const setData = ( data ) => ({
-  type: dataTypes.SET_DATA,
-  payload: data
-});
-
-export const setMetadata = ( metadata ) => ({
-  type: dataTypes.SET_METADATA,
-  payload: metadata
-});
-
-export const setCardData = ( cardData ) => ({
-  type: dataTypes.SET_CARD_DATA,
-  payload: cardData
-});
-
-
-
-// FILTERED CARDS ACTIONS
+// RENDER DATA ACTIONS
 
 export const setFilteredCards = ( filteredCards ) => ({
-  type: filteredCardsTypes.SET_FILTERED_CARDS,
+  type: renderDataTypes.SET_FILTERED_CARDS,
   payload: filteredCards
 });
 
-
-
-// FILTER FORM OPEN ACTIONS
+export const setFilterDescription = ( filterDescription ) => ({
+  type: renderDataTypes.SET_FILTER_DESCRIPTION,
+  payload: filterDescription
+})
 
 export const setFilterFormOpen = ( open ) => ({
-  type: filterFormOpenTypes.SET_FILTER_FORM_OPEN,
+  type: renderDataTypes.SET_FILTER_FORM_OPEN,
   payload: open
 });
 
-
-
-// SELECTED CARD ACTIONS
+export const setIsMobile = ( isMobile ) => ({
+  type: renderDataTypes.SET_IS_MOBILE,
+  payload: isMobile
+});
 
 export const selectCard = ( card ) => ({
-  type: selectedCardTypes.SELECT_CARD,
+  type: renderDataTypes.SELECT_CARD,
   payload: card
 });
 
 export const deselectCard = () => ({
-  type: selectedCardTypes.DESELECT_CARD,
+  type: renderDataTypes.DESELECT_CARD,
 });
