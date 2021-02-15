@@ -9,5 +9,5 @@
 
 span > .react-loading-skeleton {
   background-color: hsla(0, 0%, 40%, 0.5);
-  background-image: linear-gradient( 45deg,hsla(0, 0%, 40%, 0.5),hsla(0, 0%, 50%, 0.5),hsla(0, 0%, 40%, 0.5) );
+  background-image: none;
 }

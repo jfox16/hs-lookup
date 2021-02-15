@@ -10,7 +10,6 @@ import RarityFilter from 'components/FilterForm/RarityFilter';
 import MinionTypeFilter from 'components/FilterForm/MinionTypeFilter';
 import NumericFilters from 'components/FilterForm/NumericFilters';
 import Footer from 'components/Footer';
-import Loader from 'components/Loaders/Loader';
 
 import './FilterForm.css';
 
