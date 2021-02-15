@@ -1,4 +1,5 @@
 import React from 'react';
+import Skeleton from 'react-loading-skeleton'
 
 import {
   Bar,
@@ -11,7 +12,11 @@ import {
 import { withResizeDetector } from 'react-resize-detector';
 
 
-const StatHistogram = ({ width, data, color, minX, maxX }) => {
+const StatHistogram = ({ width, data, color, minX, maxX, isLoading }) => {
+
+  if (isLoading) {
+    return <Skeleton height={160} width={width} />
+  }
 
   // If there are less than 5 values, pad some values to the beginning and end to make it look better.
   if (maxX - minX < 5) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Dropdown from 'components/filterFormComponents/Dropdown';
+import Dropdown from 'components/formComponents/Dropdown';
 import FilterFormLabel from './FilterFormLabel';
 
 import { setFilterValue } from 'store/actions';

@@ -1,15 +1,34 @@
 
 import React from 'react';
+import Skeleton from 'react-loading-skeleton';
 import './KeywordDisplay.css';
 
-function KeywordDisplay(props) {
+function KeywordDisplay({ cards, keywordTotals}) {
 
-  if (!props.keywordTotals || !props.keywordTotals.shouldBeDisplayed || !props.cards ) return <></>
 
+  if (!cards || !keywordTotals ) {
+    return (
+      <div style={{textAlign: 'center'}}>
+        <div className="KeywordDisplay">
+          {(new Array(10)).map((_, i) => {
+            return (
+              <div className='KeywordDisplayDiv' key={i}>
+                <p><Skeleton /></p>
+                <p className='KeywordPercentage'><Skeleton /></p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  if (!keywordTotals.shouldBeDisplayed) return <></>
+  
   const keywordsToShow = [];
 
-  Object.keys(props.keywordTotals.keywordStats).forEach((key) => {
-    if (props.keywordTotals.keywordStats[key].count !== 0) {
+  Object.keys(keywordTotals.keywordStats).forEach((key) => {
+    if (keywordTotals.keywordStats[key].count !== 0) {
       keywordsToShow.push(key);
     }
   });
@@ -31,8 +50,8 @@ function KeywordDisplay(props) {
       <div className="KeywordDisplay">
 
         {keywordsToShow.map(key => {
-          const total = props.keywordTotals.keywordStats[key];
-          const percentage = makePercentage(total.count / props.cards.length);
+          const total = keywordTotals.keywordStats[key];
+          const percentage = makePercentage(total.count / cards.length);
           return (
             <div className='KeywordDisplayDiv' key={'' + total.name + percentage}>
               <p>{total.name}</p>
@@ -43,7 +62,7 @@ function KeywordDisplay(props) {
 
         <div className='KeywordDisplayDiv'>
           <p>Any Specific Card</p>
-          <p className='KeywordPercentage'>{makePercentage(1 / props.cards.length)}</p>
+          <p className='KeywordPercentage'>{makePercentage(1 / cards.length)}</p>
         </div>
         
       </div>
