@@ -6,3 +6,12 @@
 .Body {
   margin: 8px;
 }
+
+body {
+  overflow-y: scroll;
+}
+
+span > .react-loading-skeleton {
+  background-color: hsla(0, 0%, 40%, 0.5);
+  background-image: none;
+}

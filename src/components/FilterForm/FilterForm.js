@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
 
 import FormatFilter from 'components/FilterForm/FormatFilter';
 import ClassFilter from 'components/FilterForm/ClassFilter';
@@ -9,7 +10,6 @@ import RarityFilter from 'components/FilterForm/RarityFilter';
 import MinionTypeFilter from 'components/FilterForm/MinionTypeFilter';
 import NumericFilters from 'components/FilterForm/NumericFilters';
 import Footer from 'components/Footer';
-import Loader from 'components/Loaders/Loader';
 
 import './FilterForm.css';
 
@@ -17,10 +17,19 @@ import './FilterForm.css';
 
 const FilterForm = ({ metadata }) => {
 
-  if (!metadata) {
-    return <Loader text='Fetching metadata...'/>
-  }
+  const isLoading = !metadata;
 
+  if (isLoading) {
+    return (
+      <div className="FilterForm">
+        {[...Array(10).keys()].map(i => (
+          <div key={i} style={{marginTop: 10, marginBottom: 10}}>
+            <Skeleton height={60} />
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
     <div className="FilterForm">
       <FormatFilter />

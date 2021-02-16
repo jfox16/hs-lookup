@@ -2,6 +2,7 @@
 import {
   filterTypes,
   dataTypes,
+  loadingItemsTypes,
   renderDataTypes,
 } from './actionTypes';
 
@@ -43,6 +44,24 @@ export const setFilter = ( filter ) => ({
 
 export const resetFilter = () => ({
   type: filterTypes.RESET_FILTER
+});
+
+
+
+// LOADING ITEMS ACTIONS
+
+export const addLoadingItem = ( itemToAdd ) => ({
+  type: loadingItemsTypes.ADD_LOADING_ITEM,
+  payload: itemToAdd
+});
+
+export const removeLoadingItem = ( itemToRemove ) => ({
+  type: loadingItemsTypes.REMOVE_LOADING_ITEM,
+  payload: itemToRemove
+});
+
+export const resetLoadingItems = () => ({
+  type: loadingItemsTypes.RESET_LOADING_ITEMS
 });
 
 

@@ -14,7 +14,7 @@ async function filterCardData(metadata, cardData, filter) {
     || !cardData || typeof cardData === 'string' 
     || !filter) 
   {
-    return [];
+    return null;
   }
 
   let cards = cardData.cards;

@@ -1,20 +1,18 @@
 
+import axios from 'axios';
+
 const fetchData = async (serverUrl, region, locale) => {
 
-  const metadata = fetch(`${serverUrl}${region}/metadata?locale=${locale}`)
-  .then((response) => response.json())
-  .then((metadataJson) => {
-    if (metadataJson.minionTypes) metadataJson.minionTypes.sort((a, b) => a.name > b.name); // sort minionTypes in alphabetical order
-    return metadataJson;
-  })
+  const metadata = axios.get(`${serverUrl}${region}/metadata?locale=${locale}`)
+  .then(res => res.data)
   .catch((err) => {
     console.error('Error fetching metadata:', err);
   });
 
-  const cardData = fetch(`${serverUrl}${region}/allcards?locale=${locale}`)
-  .then(response => response.json())
-  .then(cardDataJson => {
-    return cardDataJson;
+  const cardData = axios.get(`${serverUrl}${region}/allcards?locale=${locale}`)
+  .then(res => res.data)
+  .then(data => {
+    return data;
   })
   .catch((err) => {
     console.error('Error fetching card data:', err);

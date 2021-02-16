@@ -5,7 +5,7 @@ import { withResizeDetector } from 'react-resize-detector';
 import Helmet from 'react-helmet';
 
 //IMPORT COMPONENTS
-import FixedBackground from 'components/main/FixedBackground';
+import FixedBackground from 'components/FixedBackground';
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 import StatDisplay from 'components/StatDisplay';
@@ -37,7 +37,7 @@ import {
   DEBOUNCE_DELAY,
   DESKTOP_HEADER_HEIGHT,
   SIDEBAR_WIDTH,
-  MOBILE_BREAKPOINT_WIDTH
+  MOBILE_BREAKPOINT_WIDTH,
 } from 'globalConstants';
 
 import './Main.css';
@@ -55,7 +55,8 @@ const Main = ({
   filterDescription,
   setFilterDescription,
   filterFormOpen,
-  setFilterFormOpen,
+  addLoadingItem,
+  removeLoadingItem,
   isMobile,
   setIsMobile,
   selectedCard,
@@ -85,7 +86,7 @@ const Main = ({
   useEffect(() => {
     if (region && locale) {
       fetchData(SERVER_URL, region, locale)
-        .then(data => setData(data));
+      .then(data => setData(data));
     }
   }, [ region, locale ]);
 
@@ -124,7 +125,7 @@ const Main = ({
         }
       </Helmet>
 
-      <FixedBackground bgImage={bgImage} />
+      <FixedBackground backgroundImage={bgImage} />
 
       <Header />
 
