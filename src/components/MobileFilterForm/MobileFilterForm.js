@@ -5,6 +5,7 @@ import { CgClose } from 'react-icons/cg';
 
 import FilterForm from 'components/FilterForm';
 import IconButton from 'components/IconButton';
+import WhiteButton from 'components/WhiteButton';
 
 import { setFilterFormOpen } from 'store/actions';
 
@@ -26,9 +27,11 @@ const MobileFilterForm = ({ setFilterFormOpen }) => {
           <FilterForm />
         </SimpleBar>
       </div>
-      {/* <div className="MobileFilterFooter">
-        Return to cards
-      </div> */}
+      <div className="MobileFilterFooter">
+        <WhiteButton onClick={(() => setFilterFormOpen(false))} style={{width: 300}}>
+          VIEW RESULTS
+        </WhiteButton>
+      </div>
     </div>
   );
 }

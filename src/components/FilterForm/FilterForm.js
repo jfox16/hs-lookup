@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 
 import { resetFilter } from 'store/actions';
 
-import IconButton from 'components/IconButton';
+import WhiteButton from 'components/WhiteButton';
 import FormatFilter from 'components/FilterForm/FormatFilter';
 import ClassFilter from 'components/FilterForm/ClassFilter';
 import CardTypeFilter from 'components/FilterForm/CardTypeFilter';
@@ -35,9 +35,9 @@ const FilterForm = ({ metadata, resetFilter }) => {
   }
   return (
     <div className="FilterForm">
-      <button className='reset-button' onClick={resetFilter}>
+      <WhiteButton onClick={resetFilter} style={{width: 120, marginLeft: 5, marginBottom: 10}}>
         RESET FILTERS
-      </button>
+      </WhiteButton>
       <FormatFilter />
       <NumericFilters />
       <ClassFilter />
