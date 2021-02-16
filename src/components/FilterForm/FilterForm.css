@@ -4,53 +4,36 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: 12px;
-  padding-top: 8px;
+  padding-top: 24px;
 }
 
-.lookup-button {
-  background-color: #ef6c00;
-  border:none;
-  border-radius: 8px;
-  font-size: 20px;
-  padding: 15px;
-  width: 100%;
-  color: papayawhip;
-  margin-top: 1em;
+.FilterForm .reset-button {
+  display: inline-block;
+  width: -moz-fit-content;
+  background-color: snow;
+  color: hsl(0, 0%, 10%);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 hsla(0, 0%, 0%, 70%);
+  margin-bottom: 10px;
+  margin-left: 4px;
+  font-weight: bold;
+  font-size: 0.8em;
 }
 
-  .lookup-button:hover {
-    background-color: #f57c00;
-    cursor: pointer;
-  }
+.FilterForm .reset-button:hover {
+  background-color: hsl(0, 0%, 95%);
+}
 
-  .lookup-button:active {
-    background-color: #ff5722;
-  }
+.FilterForm .reset-button:active {
+  background-color: hsl(0, 0%, 89%);
+}
 
 .FilterForm > div {
   margin: 5px 5px;
 }
-
-.reset-button {
-  background-color: #9e8c7d;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  padding: 12px;
-  min-width: 30%;
-  color: white;
-  margin: auto;
-}
-
-  .reset-button:hover {
-    background-color: #af9c8d;
-    cursor: pointer;
-  }
-
-  .reset-button:active {
-    background-color: #867669;
-  }
-
   
 @media (max-width: 1200px), screen and (max-height: 500px) {
   .input-field p {

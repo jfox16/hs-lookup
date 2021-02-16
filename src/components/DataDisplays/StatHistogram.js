@@ -19,8 +19,9 @@ const StatHistogram = ({ width, data, color, minX, maxX, isLoading }) => {
   }
 
   // If there are less than 5 values, pad some values to the beginning and end to make it look better.
-  if (maxX - minX < 5) {
-    minX--;
+  if (maxX - minX < 4) {
+    if (minX > 0) minX--;
+    else maxX++;
     maxX++;
   }
 

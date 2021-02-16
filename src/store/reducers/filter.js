@@ -2,6 +2,8 @@
 import { filterTypes } from '../actionTypes';
 
 const initialState = {
+  format: 'standard',
+  cardType: 'minion',
 }
 
 export default (state = initialState, action) => {
