@@ -1,31 +1,24 @@
 
-import React from 'react';
-import Skeleton from 'react-loading-skeleton';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import './KeywordDisplay.css';
+import { MdExpandLess } from 'react-icons/md';
+import { FiMoreHorizontal } from 'react-icons/fi';
+import IconButton from 'components/IconButton';
 
-function KeywordDisplay({ cards, keywordTotals}) {
+function KeywordDisplay({ cards, keywordTotals, isMobile }) {
 
+  const [ showMore, setShowMore ] = useState(false);
 
   if (!cards || !keywordTotals ) {
-    return (
-      <div style={{textAlign: 'center'}}>
-        <div className="KeywordDisplay">
-          {(new Array(10)).map((_, i) => {
-            return (
-              <div className='KeywordDisplayDiv' key={i}>
-                <p><Skeleton /></p>
-                <p className='KeywordPercentage'><Skeleton /></p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
+    return <></>
   }
 
-  if (!keywordTotals.shouldBeDisplayed) return <></>
+  if (!keywordTotals.shouldBeDisplayed) {
+    return <></>;
+  }
   
-  const keywordsToShow = [];
+  let keywordsToShow = [];
 
   Object.keys(keywordTotals.keywordStats).forEach((key) => {
     if (keywordTotals.keywordStats[key].count !== 0) {
@@ -45,29 +38,56 @@ function KeywordDisplay({ cards, keywordTotals}) {
     }
   }
 
+  let displayItems = keywordsToShow.map(keyword => {
+    const total = keywordTotals.keywordStats[keyword];
+    const decimal = total.count / cards.length;
+    const name = total.name;
+    return { name, decimal };
+  });
+
+  displayItems = displayItems.sort((a,b) => a.decimal < b.decimal);
+
+  if (isMobile && !showMore) {
+    displayItems = displayItems.slice(0, 6);
+  }
+
   return (
     <div style={{textAlign: 'center'}}>
       <div className="KeywordDisplay">
-
-        {keywordsToShow.map(key => {
-          const total = keywordTotals.keywordStats[key];
-          const percentage = makePercentage(total.count / cards.length);
-          return (
-            <div className='KeywordDisplayDiv' key={'' + total.name + percentage}>
-              <p>{total.name}</p>
-              <p className='KeywordPercentage'>{percentage}</p>
-            </div>
-          );
-        })}
-
-        <div className='KeywordDisplayDiv'>
-          <p>Any Specific Card</p>
-          <p className='KeywordPercentage'>{makePercentage(1 / cards.length)}</p>
+        <div className='Keywords'>
+          {displayItems.map(item => {
+            return (
+              <div className='KeywordDisplayDiv' key={item.name}>
+                <p>{item.name}</p>
+                <p className='KeywordPercentage'>{makePercentage(item.decimal)}</p>
+              </div>
+            );
+          })}
+          <div className='KeywordDisplayDiv'>
+            <p>Any Specific Card</p>
+            <p className='KeywordPercentage'>{makePercentage(1 / cards.length)}</p>
+          </div>
         </div>
-        
+        {isMobile && 
+          <div style={{textAlign: 'center'}}>
+            <IconButton onClick={() => setShowMore(!showMore)} style={{fontSize: 24}}>
+              {showMore ? <MdExpandLess /> : <FiMoreHorizontal />}
+            </IconButton> 
+          </div>
+        }
       </div>
     </div>
   );
 }
 
-export default KeywordDisplay;
+
+
+const mapStateToProps = state => {
+  return {
+    isMobile: state.renderData.isMobile
+  };
+};
+
+export default connect(
+  mapStateToProps,
+)(KeywordDisplay);

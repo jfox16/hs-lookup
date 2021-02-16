@@ -1,5 +1,5 @@
 // IMPORT FROM PACKAGES
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
 
@@ -7,8 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import { generateStatTotals, generateKeywordTotals } from 'modules/hearthstone-card-stats';
 
 // IMPORT COMPONENTS
-import StatSummary from 'components/DataDisplays/StatSummary';
-import StatHistogram from 'components/DataDisplays/StatHistogram';
+import StatDiv from './StatDiv';
 import KeywordDisplay from 'components/DataDisplays/KeywordDisplay';
 
 // IMPORT ASSETS
@@ -28,11 +27,9 @@ const statsToTrack = [
 
 
 
-const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, metadata }) => {
+const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, isMobile, metadata }) => {
 
-  useEffect(() => {
-    console.log('filteredCards changed', filteredCards);
-  }, [filteredCards]);
+  const [ showMore, setShowMore ] = useState(false);
 
   const isLoading = (!filterDescription || !filteredCards || !metadata) 
   // const isLoading = true;
@@ -58,52 +55,13 @@ const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, metadat
       </div>
 
       <div className="StatDisplayData">
-        {(!isLoading) ?
-          statsToDisplay.map(stat => {
-            let totals = statTotals && statTotals[stat.accessor];
-            return (
-              <div className='StatDisplayDataGridDiv' key={stat.name + 'summary'}>
-                <div className="StatDisplayDataGroup" style={{zIndex: filterFormOpen ? -10 : 0}}>
-                  <div className='StatDisplayDataGroupHeader'>
-                    <img className='StatDisplayDataGroupIcon' src={stat.image} alt={stat.name} />
-                    <p className='StatDisplayDataGroupTitle'>{stat.name}</p>
-                  </div>
-                  <div className='StatDisplayDataGroupData'>
-                    {!isLoading ?
-                      <StatHistogram
-                        label={stat.name}
-                        color={stat.color}
-                        data={totals.frequencies}
-                        minX={totals.min}
-                        maxX={totals.max}
-                        maxY={totals.maxFrequency}
-                      />
-                      :
-                      <StatHistogram isLoading />
-                    }
-                    {!isLoading ?
-                      <div className='StatSummaryDiv'>
-                        <StatSummary
-                          mean={totals.mean}
-                          median={totals.median}
-                          stdev={totals.stdev}
-                        />
-                      </div>
-                      :
-                      <div className='StatSummaryDiv'>
-                        <StatSummary isLoading />
-                      </div>
-                    }
-                  </div>
-                </div>
-              </div>
-            );
-          })
+        {!isLoading ?
+          statsToDisplay.map(stat => (
+            <StatDiv stat={stat} totals={statTotals && statTotals[stat.accessor]} key={stat.name} />
+          ))
           :
-          [1,2,3].map(i => (
-            <div className='StatDisplayDataGridDiv' key={i}>
-              <Skeleton height={265} />
-            </div>
+          [...Array(3).keys()].map(i => (
+            <StatDiv isLoading key={i} />
           ))
         }
       </div>
@@ -120,6 +78,7 @@ const mapStateToProps = state => {
     filterDescription: state.renderData.filterDescription,
     filteredCards: state.renderData.filteredCards,
     filterFormOpen: state.renderData.filterFormOpen,
+    isMobile: state.renderData.isMobile,
     metadata: state.data.metadata
   };
 };

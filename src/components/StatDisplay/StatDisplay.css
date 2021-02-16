@@ -66,11 +66,15 @@
 @media screen and (max-width: 1200px), screen and (max-height: 500px) {
   .StatDisplay .card-count {
     margin-top: 4px;
-    font-size: 40px;
+    font-size: 32px;
   }
   
   .StatDisplay .filter-description {
     margin-left: 4px;
+    font-size: 18px;
+  }
+  
+  .StatDisplayDataGroupTitle {
     font-size: 18px;
   }
 }

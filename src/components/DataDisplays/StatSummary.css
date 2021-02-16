@@ -1,6 +1,4 @@
 .StatSummary {
-  position: relative;
-  top: -8px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -18,7 +16,7 @@
 
 @media screen and (max-width: 1200px), screen and (max-height: 500px) {
   .StatSummaryLabel {
-    font-size: 10px,
+    font-size: 16px;
   }
   .StatSummaryValue {
     font-size: 16px;
