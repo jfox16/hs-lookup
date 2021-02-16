@@ -37,6 +37,9 @@
 
 .MobileFilterFooter {
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: hsl(0, 0%, 7%);
   border-top: 1px solid hsl(0, 0%, 40%);
 }
