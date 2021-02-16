@@ -108,13 +108,7 @@ const StatDisplay = ({ filterDescription, filteredCards, filterFormOpen, metadat
         }
       </div>
 
-      {!isLoading ?
-        <KeywordDisplay keywordTotals={keywordTotals} cards={filteredCards} />
-        :
-        <div style={{margin: 2}}>
-          <Skeleton height={72} />
-        </div>
-      }
+      {!isLoading  && <KeywordDisplay keywordTotals={keywordTotals} cards={filteredCards} />}
     </div>
   );
 }

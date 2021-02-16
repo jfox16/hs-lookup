@@ -5,10 +5,6 @@ const fetchData = async (serverUrl, region, locale) => {
 
   const metadata = axios.get(`${serverUrl}${region}/metadata?locale=${locale}`)
   .then(res => res.data)
-  .then(metadata => {
-    if (metadata.minionTypes) metadata.minionTypes.sort((a, b) => a.name > b.name); // sort minionTypes in alphabetical order
-    return metadata;
-  })
   .catch((err) => {
     console.error('Error fetching metadata:', err);
   });

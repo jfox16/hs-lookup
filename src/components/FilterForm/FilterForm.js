@@ -22,11 +22,9 @@ const FilterForm = ({ metadata }) => {
   if (isLoading) {
     return (
       <div className="FilterForm">
-        {[1,2,3,4,5,6,7,8].map(i => (
-          <div key={i} style={{marginTop: 20}}>
-            <Skeleton height={16} width={80} />
-            <div style={{height: 6}} />
-            <Skeleton height={40} />
+        {[...Array(10).keys()].map(i => (
+          <div key={i} style={{marginTop: 10, marginBottom: 10}}>
+            <Skeleton height={60} />
           </div>
         ))}
       </div>

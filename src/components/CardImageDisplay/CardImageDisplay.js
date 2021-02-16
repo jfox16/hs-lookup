@@ -4,19 +4,16 @@ import Skeleton from 'react-loading-skeleton';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
-// IMPORT COMPONENTS
-import Loader from 'components/Loaders/Loader';
-
 // IMPORT FUNCTIONS
 import { selectCard } from 'store/actions';
 
 import './CardImageDisplay.css';
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 20;
 
 
 
-const CardImageDisplay = ({ filteredCards, selectCard }) => {
+const CardImageDisplay = ({ filteredCards, selectCard, isMobile }) => {
 
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ displayedCards, setDisplayedCards ] = useState([]);
@@ -63,9 +60,9 @@ const CardImageDisplay = ({ filteredCards, selectCard }) => {
               </div>
             ))
             :
-            [1,2,3,4,5,6,7,8,9,10].map(i => (
+            [...Array(30).keys()].map(i => (
               <div className='CardImageDisplayCardDiv' key={i} style={{ margin: '8px' }}>
-                <Skeleton height={250} />
+                <Skeleton height={isMobile ? 165 : 270} />
               </div>
             ))
           }
@@ -79,7 +76,8 @@ const CardImageDisplay = ({ filteredCards, selectCard }) => {
 
 const mapStateToProps = state => {
   return {
-    filteredCards: state.renderData.filteredCards
+    filteredCards: state.renderData.filteredCards,
+    isMobile: state.renderData.isMobile,
   };
 };
 

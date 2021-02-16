@@ -6,7 +6,7 @@
   max-height: 500px;
   text-align: center;
   animation-name: moveUp;
-  animation-duration: 0.8s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -20,6 +20,6 @@
 }
 
 @keyframes moveUp {
-  0% {transform: translateY(6%)}
+  0% {transform: translateY(4%)}
   100% {transform: translateY(0%)}
 }

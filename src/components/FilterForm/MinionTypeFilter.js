@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Dropdown from 'components/formComponents/Dropdown';
@@ -10,10 +10,19 @@ import { setFilterValue } from 'store/actions';
 
 function MinionTypeFilter({ metadata, filter, setFilterValue }) {
 
-  const options = [{label: 'Any', value: ''}];
-  metadata.minionTypes && metadata.minionTypes.forEach(minionType => {
-    options.push({label: minionType.name, value: minionType.slug})
-  });
+  const [ options, setOptions ] = useState([]);
+
+  useEffect(() => {
+    if (metadata.minionTypes) {
+      const newOptions = metadata.minionTypes
+        .sort((a, b) => a.name < b.name)
+        .map(minionType => (
+          { label: minionType.name, value: minionType.slug }
+        ));
+      newOptions.unshift( {label: 'Any', value: ''} );
+      setOptions(newOptions);
+    }
+  }, [ metadata ]);
 
   return (
     <div>
