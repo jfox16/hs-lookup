@@ -28,6 +28,6 @@
 
 @media screen and (max-width: 600px), screen and (max-height: 400px)  {
   .CardImageDisplay {
-    grid-template-columns: repeat(auto-fill,minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(100px, 1fr));
   }
 }

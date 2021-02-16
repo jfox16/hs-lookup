@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
 
+import { resetFilter } from 'store/actions';
+
+import IconButton from 'components/IconButton';
 import FormatFilter from 'components/FilterForm/FormatFilter';
 import ClassFilter from 'components/FilterForm/ClassFilter';
 import CardTypeFilter from 'components/FilterForm/CardTypeFilter';
@@ -15,7 +18,7 @@ import './FilterForm.css';
 
 
 
-const FilterForm = ({ metadata }) => {
+const FilterForm = ({ metadata, resetFilter }) => {
 
   const isLoading = !metadata;
 
@@ -32,6 +35,9 @@ const FilterForm = ({ metadata }) => {
   }
   return (
     <div className="FilterForm">
+      <button className='reset-button' onClick={resetFilter}>
+        RESET FILTERS
+      </button>
       <FormatFilter />
       <NumericFilters />
       <ClassFilter />
@@ -52,4 +58,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
+  { resetFilter }
 )(FilterForm);
