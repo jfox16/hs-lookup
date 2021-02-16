@@ -45,7 +45,7 @@ const StatHistogram = ({ width, data, color, minX, maxX, isLoading }) => {
         <CartesianGrid vertical={false} />
         <XAxis dataKey="name"  />
         <YAxis dataKey="count" />
-        <Tooltip />
+        {/* <Tooltip /> */}
         <Bar dataKey="count" fill={color} />
       </BarChart>
     </div>
