@@ -25,6 +25,6 @@ I pull the list of cards from the Blizzard Hearthstone API every time there's an
 Special note about keywords: Cards only count as having a keyword if it inherently has that keyword without other effects. For example, if you search for minions with Lifesteal, [Judicious Junior](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3233e0228d62c15562eaf726ecf1ecda1fda4b60d4793dc279c3b04774d3e834.png) would be counted, while [High Exarch Yrel](https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b77dc45899fdc7d2f18ce02b1dc3a9d191354f3b7eea825b63b2487f3811e386.png) would not. 
 
 ## Technology Used
-- **Front End**: React, JavaScript, CSS
+- **Front End**: React, JavaScript, CSS, Redux
 - **Back End**: Heroku, Node, Express
 - **Database**: Postgres
