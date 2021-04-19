@@ -1,90 +1,85 @@
-
 export const descriptionTokens = {
   classes: {
-    demonhunter: ' Demon Hunter',
-    druid: ' Druid',
-    hunter: ' Hunter',
-    mage: ' Mage',
-    paladin: ' Paladin',
-    priest: ' Priest',
-    rogue: ' Rogue',
-    shaman: ' Shaman',
-    warlock: ' Warlock',
-    warrior: ' Warrior',
-    neutral: ' Neutral'
+    demonhunter: " Demon Hunter",
+    druid: " Druid",
+    hunter: " Hunter",
+    mage: " Mage",
+    paladin: " Paladin",
+    priest: " Priest",
+    rogue: " Rogue",
+    shaman: " Shaman",
+    warlock: " Warlock",
+    warrior: " Warrior",
+    neutral: " Neutral",
   },
   rarity: {
-    free: ' Free',
-    common: ' Common',
-    rare: ' Rare',
-    epic: ' Epic',
-    legendary: ' Legendary'
+    free: " Free",
+    common: " Common",
+    rare: " Rare",
+    epic: " Epic",
+    legendary: " Legendary",
   },
   cardType: {
-    default: ' cards',
-    hero: ' hero cards',
-    minion: ' minions',
-    spell: ' spells',
-    weapon: ' weapons',
+    default: " cards",
+    hero: " hero cards",
+    minion: " minions",
+    spell: " spells",
+    weapon: " weapons",
   },
   keyword: {
-    taunt: ' Taunt',
-    spellpower: ' Spell Damage',
-    'divine-shield': ' Divine Shield',
-    dormant: ' Dormant',
-    charge: ' Charge',
-    stealth: ' Stealth',
-    battlecry: ' Battlecry',
-    windfury: ' Windfury',
-    deathrattle: ' Deathrattle',
-    combo: ' Combo',
-    overload: ' Overload',
-    inspire: ' Inspire',
-    quest: ' Quest',
-    poisonous: ' Poisonous',
-    lifesteal: ' Lifesteal',
-    echo: ' Echo',
-    rush: ' Rush',
-    overkill: ' Overkill',
-    modular: ' Magnetic',
-    twinspell: ' Twinspell',
-    reborn: ' Reborn',
-    outcast: ' Outcast',
-    spellburst: ' Spellburst',
-    corrupt: ' Corrupt',
+    taunt: " Taunt",
+    spellpower: " Spell Damage",
+    "divine-shield": " Divine Shield",
+    dormant: " Dormant",
+    charge: " Charge",
+    stealth: " Stealth",
+    battlecry: " Battlecry",
+    windfury: " Windfury",
+    deathrattle: " Deathrattle",
+    combo: " Combo",
+    overload: " Overload",
+    inspire: " Inspire",
+    quest: " Quest",
+    poisonous: " Poisonous",
+    lifesteal: " Lifesteal",
+    echo: " Echo",
+    rush: " Rush",
+    overkill: " Overkill",
+    modular: " Magnetic",
+    twinspell: " Twinspell",
+    reborn: " Reborn",
+    outcast: " Outcast",
+    spellburst: " Spellburst",
+    corrupt: " Corrupt",
   },
   minionType: {
-    murloc: ' Murlocs',
-    demon: ' Demons',
-    mech: ' Mechs',
-    elemental: ' Elementals',
-    beast: ' Beasts',
-    totem: ' Totems',
-    pirate: ' Pirates',
-    dragon: ' Dragons',
+    murloc: " Murlocs",
+    demon: " Demons",
+    mech: " Mechs",
+    elemental: " Elementals",
+    beast: " Beasts",
+    totem: " Totems",
+    pirate: " Pirates",
+    dragon: " Dragons",
     all: " 'All'-type minions",
   },
   format: {
-    wild: ' in Wild',
-    standard: ' in Standard',
-    duels: ' in Duels'
-  }
+    wild: " in Wild",
+    standard: " in Standard",
+    duels: " in Duels",
+  },
 };
 
-
-
 export const duelsCardSets = [
-  'basic',
-  'classic',
-  'naxxramas',
-  'whispers-of-the-old-gods',
-  'one-night-in-karazhan',
-  'scholomance-academy',
-  'demonhunter-initiate',
-  'madness-at-the-darkmoon-faire'
+  "basic",
+  "classic",
+  "naxxramas",
+  "whispers-of-the-old-gods",
+  "one-night-in-karazhan",
+  "scholomance-academy",
+  "demonhunter-initiate",
+  "madness-at-the-darkmoon-faire",
 ];
-
-
 
 export const keywordMinionExclusions = {
   battlecry: {
@@ -133,9 +128,7 @@ export const keywordMinionExclusions = {
   corrupt: {
     61945: true,
   },
-  dormant: {
-
-  },
+  dormant: {},
   deathrattle: {
     // 1-cost
     1910: true,
@@ -188,7 +181,7 @@ export const keywordMinionExclusions = {
     56412: true,
     61690: true,
   },
-  'divine-shield': {
+  "divine-shield": {
     // 1-cost
     38740: true,
     57182: true,
@@ -560,7 +553,7 @@ export const keywordMinionExclusions = {
     1990: true,
     56378: true,
     61168: true,
-    
+
     // 3-cost
     56527: true,
     // 4-cost
@@ -601,5 +594,4 @@ export const keywordMinionExclusions = {
     // spells
     51: true,
   },
-
-}
+};

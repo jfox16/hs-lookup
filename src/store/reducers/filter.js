@@ -1,22 +1,20 @@
-
-import { filterTypes } from '../actionTypes';
+import { filterTypes } from "../actionTypes";
 
 const initialState = {
-  format: 'standard',
-  cardType: 'minion',
-}
+  format: "standard",
+  cardType: "minion",
+};
 
 export default (state = initialState, action) => {
-  switch(action.type) {
-
+  switch (action.type) {
     case filterTypes.SET_FILTER_VALUE: {
       const { key, value } = action.payload;
       return {
         ...state,
-        [key]: value
-      }
+        [key]: value,
+      };
     }
-    
+
     case filterTypes.SET_FILTER: {
       return { ...action.payload };
     }
@@ -25,7 +23,7 @@ export default (state = initialState, action) => {
       return initialState;
     }
 
-    default: 
+    default:
       return state;
   }
-}
+};

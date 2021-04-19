@@ -1,4 +1,3 @@
-
 .FilterForm {
   display: flex;
   flex-direction: column;
@@ -34,7 +33,7 @@
 .FilterForm > div {
   margin: 5px 5px;
 }
-  
+
 @media (max-width: 1200px), screen and (max-height: 500px) {
   .input-field p {
     font-size: 12px;
@@ -47,7 +46,7 @@
   .input-field select {
     font-size: 16px;
   }
-  
+
   .lookup-button {
     font-size: 16px;
   }

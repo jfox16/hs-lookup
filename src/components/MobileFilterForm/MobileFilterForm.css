@@ -45,6 +45,12 @@
 }
 
 @keyframes mobileFormEnter {
-  0% {transform: translateY(15%); opacity: 0;}
-  100% {transform: translateY(0); opacity: 1;}
+  0% {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

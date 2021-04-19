@@ -5,9 +5,11 @@ export default class NumberRange {
 
   constructor(inputString) {
     if (!inputString) return;
-    const splitInput = inputString.split(/,(\s*)/).filter(n => n !== '' && n !== ' ');
+    const splitInput = inputString
+      .split(/,(\s*)/)
+      .filter((n) => n !== "" && n !== " ");
 
-    splitInput.forEach(input => {
+    splitInput.forEach((input) => {
       if (!Number.isNaN(input)) {
         this.numbers.push(Number(input));
       }

@@ -1,11 +1,11 @@
-import React from 'react';
-import './FilterFormLabel.css';
+import React from "react";
+import "./FilterFormLabel.css";
 
 function FilterFormLabel(props) {
   return (
-    <div className='FilterFormLabel'>
-      <span className='FilterFormLabelLabel'>{props.label}</span>
-      <div className='FilterFormLabelLine' />
+    <div className="FilterFormLabel">
+      <span className="FilterFormLabelLabel">{props.label}</span>
+      <div className="FilterFormLabelLine" />
     </div>
   );
 }

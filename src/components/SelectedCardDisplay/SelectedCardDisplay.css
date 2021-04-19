@@ -20,6 +20,10 @@
 }
 
 @keyframes moveUp {
-  0% {transform: translateY(4%)}
-  100% {transform: translateY(0%)}
+  0% {
+    transform: translateY(4%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
