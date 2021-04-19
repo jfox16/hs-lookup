@@ -7,6 +7,21 @@ import { FaGithubSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <div className="Footer">
+
+      <p>Copyright © {new Date().getFullYear()} Jonathan Fox </p>
+      <p>
+        Hearthstone is a trademark or registered trademark of Blizzard
+        Entertainment, Inc., in the U.S. and/or other countries.
+      </p>
+
+      <div style={{ height: "8px" }} />
+
+      <p>HSLookup v{VERSION_NUMBER}</p>
+
+      <p>Updated 2021/04/19 </p>
+
+      <div style={{ height: "8px" }} />
+
       <p>
         If you have any suggestions or questions, email me at:{" "}
         <a href="mailto:FoxJonathanP@gmail.com">FoxJonathanP@gmail.com</a>
@@ -21,18 +36,6 @@ export default function Footer() {
           </a>
         </p>
       </div>
-
-      <div style={{ height: "8px" }} />
-
-      <p>Copyright © {new Date().getFullYear()} Jonathan Fox </p>
-      <p>
-        Hearthstone is a trademark or registered trademark of Blizzard
-        Entertainment, Inc., in the U.S. and/or other countries.
-      </p>
-
-      <div style={{ height: "8px" }} />
-
-      <p>{"HSLookup v" + VERSION_NUMBER}</p>
 
       <div style={{ height: "8px" }} />
     </div>

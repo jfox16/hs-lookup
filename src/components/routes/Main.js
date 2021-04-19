@@ -39,6 +39,7 @@ import {
   SERVER_URL,
   DEBOUNCE_DELAY,
   DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
   SIDEBAR_WIDTH,
   MOBILE_BREAKPOINT_WIDTH,
 } from "globalConstants";
@@ -131,7 +132,7 @@ const Main = ({
         <div
           style={{
             paddingLeft: isMobile ? 0 : SIDEBAR_WIDTH,
-            paddingTop: DESKTOP_HEADER_HEIGHT,
+            paddingTop:  isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT,
           }}
         >
           <div className="Body">
