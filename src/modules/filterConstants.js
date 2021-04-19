@@ -51,6 +51,9 @@ export const descriptionTokens = {
     outcast: " Outcast",
     spellburst: " Spellburst",
     corrupt: " Corrupt",
+    "start-of-combat": " Start of Combat",
+    frenzy: " Frenzy",
+    spellPowerNature: " Nature Spell Damage"
   },
   minionType: {
     murloc: " Murlocs",
