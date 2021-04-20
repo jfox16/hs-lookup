@@ -22,3 +22,7 @@
   top: -26px;
   left: -5px;
 }
+
+.Dropdown option:disabled {
+  color: #c9c3c3;
+}
