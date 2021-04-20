@@ -62,9 +62,15 @@ function KeywordDisplay({ cards, keywordTotals, isMobile }) {
             );
           })}
           <div className="KeywordDisplayDiv">
-            <p>Any Specific Card</p>
+            <p>One Card</p>
             <p className="KeywordPercentage">
               {makePercentage(1 / cards.length)}
+            </p>
+          </div>
+          <div className="KeywordDisplayDiv">
+            <p>Discover One Card</p>
+            <p className="KeywordPercentage">
+              {makePercentage(3 / cards.length)}
             </p>
           </div>
         </div>

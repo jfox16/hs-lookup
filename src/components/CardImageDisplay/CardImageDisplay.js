@@ -30,9 +30,9 @@ const CardImageDisplay = ({ filteredCards, selectCard, isMobile }) => {
     );
   }
 
-  // sort cards by manaCost
+  // sort cards by name and manaCost
   const sortedCards =
-    filteredCards && filteredCards.sort((a, b) => a.manaCost - b.manaCost);
+    filteredCards && filteredCards.sort((a, b) => a.name.localeCompare(b.name)).sort((a, b) => a.manaCost - b.manaCost);
 
   // loadMore() is called by InfiniteScroll to load more cards when the bottom of the page is reached.
   const loadMore = () => {

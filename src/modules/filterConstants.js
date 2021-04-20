@@ -30,7 +30,6 @@ export const descriptionTokens = {
     taunt: " Taunt",
     spellpower: " Spell Damage",
     "divine-shield": " Divine Shield",
-    dormant: " Dormant",
     charge: " Charge",
     stealth: " Stealth",
     battlecry: " Battlecry",
@@ -51,9 +50,7 @@ export const descriptionTokens = {
     outcast: " Outcast",
     spellburst: " Spellburst",
     corrupt: " Corrupt",
-    "start-of-combat": " Start of Combat",
     frenzy: " Frenzy",
-    spellPowerNature: " Nature Spell Damage"
   },
   minionType: {
     murloc: " Murlocs",
@@ -66,22 +63,50 @@ export const descriptionTokens = {
     dragon: " Dragons",
     all: " 'All'-type minions",
   },
-  format: {
+  cardSet: {
     wild: " in Wild",
     standard: " in Standard",
     duels: " in Duels",
+    "legacy": " in the Legacy Set",
+    "forged-in-the-barrens": " in Forged in the Barrens",
+    "classic-cards": " in Classic Cards",
+    "core": " in the Core Set",
+    "madness-at-the-darkmoon-faire": " in Madness at the Darkmoon Faire",
+    "scholomance-academy": " in Scholomance Academy",
+    "demonhunter-initiate": " in Demon Hunter Initiate",
+    "ashes-of-outland": " in Ashes of Outland",
+    "galakronds-awakening": " in Galakrond’s Awakening",
+    "descent-of-dragons": " in Descent of Dragons",
+    "saviors-of-uldum": " in Saviors of Uldum",
+    "rise-of-shadows": " in Rise of Shadows",
+    "rastakhans-rumble": " in Rastakhan’s Rumble",
+    "the-boomsday-project": " in The Boomsday Project",
+    "the-witchwood": " in The Witchwood",
+    "kobolds-and-catacombs": " in Kobolds and Catacombs",
+    "knights-of-the-frozen-throne": " in Knights of the Frozen Throne",
+    "journey-to-ungoro": " in Journey to Un’Goro",
+    "mean-streets-of-gadgetzan": " in Mean Streets of Gadgetzan",
+    "one-night-in-karazhan": " in One Night in Karazhan",
+    "whispers-of-the-old-gods": " in Whispers of the Old Gods",
+    "league-of-explorers": " in League of Explorers",
+    "the-grand-tournament": " in The Grand Tournament",
+    "blackrock-mountain": " in Blackrock Mountain",
+    "goblins-vs-gnomes": " in Goblins vs Gnomes",
+    "naxxramas": " in Curse of Naxxramas",
   },
 };
 
 export const duelsCardSets = [
-  "basic",
-  "classic",
-  "naxxramas",
-  "whispers-of-the-old-gods",
-  "one-night-in-karazhan",
-  "scholomance-academy",
-  "demonhunter-initiate",
+  "core",
+  "classic-cards",
+  "legacy",
+  "forged-in-the-barrens",
   "madness-at-the-darkmoon-faire",
+  "scholomance-academy",
+  "journey-to-ungoro",
+  "one-night-in-karazhan",
+  "whispers-of-the-old-gods",
+  "naxxramas",
 ];
 
 export const keywordMinionExclusions = {
@@ -91,6 +116,7 @@ export const keywordMinionExclusions = {
     // 3-cost
     2949: true,
     40294: true,
+    62888: true,
     // 4-cost
     2888: true,
     2518: true,
@@ -123,6 +149,8 @@ export const keywordMinionExclusions = {
   combo: {
     // 2-cost
     53627: true,
+    /// 3-cost
+    62888: true,
     // 4-cost
     58975: true,
     // 6-cost
@@ -145,12 +173,16 @@ export const keywordMinionExclusions = {
     2891: true,
     2065: true,
     61950: true,
+    63381: true,
     // 4-cost
     47856: true,
     1915: true,
     41289: true,
     56824: true,
     56694: true,
+    69714: true,
+    63166: true,
+    69591: true,
     // 5-cost
     42615: true,
     38910: true,
@@ -171,6 +203,7 @@ export const keywordMinionExclusions = {
     47131: true,
     50443: true,
     38496: true,
+    63167: true,
     // spells
     38393: true,
     38329: true,
@@ -191,6 +224,7 @@ export const keywordMinionExclusions = {
     // 2-cost
     1022: true,
     47416: true,
+    69611: true,
     // 3-cost
     38911: true,
     42948: true,
@@ -198,6 +232,8 @@ export const keywordMinionExclusions = {
     2748: true,
     43473: true,
     61948: true,
+    62706: true,
+    69724: true,
     // 4-cost
     2075: true,
     41241: true,
@@ -244,10 +280,12 @@ export const keywordMinionExclusions = {
     // 3-cost
     47614: true,
     61203: true,
+    63165: true,
     // 4-cost
     46102: true,
     43029: true,
     45342: true,
+    62933: true,
     // 5-cost
     47085: true,
     // 7-cost
@@ -291,6 +329,7 @@ export const keywordMinionExclusions = {
     61961: true,
     // 3-cost
     774: true,
+    69628: true,
     // 4-cost
     48527: true,
     53990: true,
@@ -313,6 +352,7 @@ export const keywordMinionExclusions = {
     60004: true,
     43028: true,
     47607: true,
+    69708: true,
     // 4-cost
     47256: true,
     54863: true,
@@ -352,6 +392,7 @@ export const keywordMinionExclusions = {
     47133: true,
     52242: true,
     57183: true,
+    63195: true,
     // 2-cost
     58495: true,
     52603: true,
@@ -359,7 +400,9 @@ export const keywordMinionExclusions = {
     54411: true,
     61262: true,
     61235: true,
-
+    63007: true,
+    62484: true,
+    63002: true,
     // 3-cost
     46859: true,
     56734: true,
@@ -367,6 +410,11 @@ export const keywordMinionExclusions = {
     53173: true,
     55404: true,
     61639: true,
+    63072: true,
+    1009: true,
+    62481: true,
+    69504: true,
+    69549: true,
     // 4-cost
     47488: true,
     49361: true,
@@ -376,8 +424,10 @@ export const keywordMinionExclusions = {
     55408: true,
     56307: true,
     // 5-cost
+    692: true,
     50659: true,
     60892: true,
+    69595: true,
     // 6-cost
     55024: true,
     52486: true,
@@ -422,6 +472,7 @@ export const keywordMinionExclusions = {
     50083: true,
     52289: true,
     56391: true,
+    62485: true,
     // 3-cost
     52654: true,
     // 4-cost
@@ -444,6 +495,7 @@ export const keywordMinionExclusions = {
   taunt: {
     // 1-cost
     50796: true,
+    63323: true,
     // 2-cost
     42651: true,
     47416: true,
@@ -451,11 +503,18 @@ export const keywordMinionExclusions = {
     891: true,
     38538: true,
     50410: true,
+    63130: true,
+    63114: true,
+    63033: true,
+    63021: true,
+    69511: true,
     // 3-cost
     46859: true,
     47614: true,
     50315: true,
     43473: true,
+    69626: true,
+    69724: true,
     // 4-cost
     58202: true,
     40973: true,
@@ -473,6 +532,8 @@ export const keywordMinionExclusions = {
     58973: true,
     61129: true,
     61943: true,
+    63042: true,
+    69663: true,
     // 5-cost
     692: true,
     39489: true,
@@ -482,6 +543,8 @@ export const keywordMinionExclusions = {
     54153: true,
     59918: true,
     61581: true,
+    62581: true,
+    63279: true,
     // 6-cost
     54894: true,
     48100: true,
@@ -498,6 +561,7 @@ export const keywordMinionExclusions = {
     46988: true,
     54148: true,
     53439: true,
+    63038: true,
     // 8-cost
     60280: true,
     2945: true,
@@ -584,6 +648,7 @@ export const keywordMinionExclusions = {
     // 3-cost
     1155: true,
     2533: true,
+    63072: true,
     // 4-cost
     178: true,
     2075: true,
@@ -596,5 +661,8 @@ export const keywordMinionExclusions = {
     52902: true,
     // spells
     51: true,
+  },
+  frenzy: {
+    63274: true,
   },
 };

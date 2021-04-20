@@ -1,7 +1,7 @@
 const { filterCards } = require("modules/hearthstone-card-filter");
 const { generateStatTotals } = require("modules/hearthstone-card-stats");
 
-const formatNames = {
+const cardSetNames = {
   wild: "Wild",
   standard: "Standard",
   duels: "Duels",
@@ -10,10 +10,10 @@ const formatNames = {
 const generateMarkupTable = (metadata, cardData, filters) => {
   let markupTable = "\n";
 
-  if (!filters.format) {
+  if (!filters.cardSet) {
     markupTable += "# Wild\n";
   } else {
-    markupTable += `# ${formatNames[filters.format]}\n`;
+    markupTable += `# ${cardSetNames[filters.cardSet]}\n`;
   }
 
   markupTable += "Mana Cost|Avg. Attack|Avg. Health|Num. Minions\n";
@@ -42,13 +42,13 @@ export const generateTables = (cardData, metadata) => {
       "\n\n" +
       generateMarkupTable(metadata, cardData, {
         cardType: "minion",
-        format: "standard",
+        cardSet: "standard",
       });
     tableString +=
       "\n\n" +
       generateMarkupTable(metadata, cardData, {
         cardType: "minion",
-        format: "duels",
+        cardSet: "duels",
       });
     console.log(tableString);
   } else return;

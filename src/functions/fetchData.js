@@ -1,4 +1,6 @@
+
 import axios from "axios";
+import cardTextToKeywordIds from "functions/cardTextToKeywordIds";
 
 const fetchData = async (serverUrl, region, locale) => {
   const metadata = axios
@@ -20,8 +22,18 @@ const fetchData = async (serverUrl, region, locale) => {
 
   const promiseValues = await Promise.all([metadata, cardData]);
   const data = { metadata: promiseValues[0], cardData: promiseValues[1] };
+  initializeData(data.metadata, data.cardData);
   console.log("fetched data:", data);
   return data;
 };
+
+const initializeData = (metadata, cardData) => {
+  cardData.cards.forEach(card => {
+    if (card.keywordIds) {
+      const generatedKeywordIds = cardTextToKeywordIds(card.text, metadata);
+      card.keywordIds = generatedKeywordIds;
+    }
+  });
+}
 
 export default fetchData;

@@ -15,7 +15,7 @@ function Dropdown({ value, onChange, options }) {
         style={{ opacity: !value || value === "" ? 0.5 : 1 }}
       >
         {options.map((option) => (
-          <option value={option.value} key={option.value}>
+          <option value={option.value} key={option.value} disabled={option.disabled}>
             {option.label}
           </option>
         ))}

@@ -19,27 +19,34 @@ async function filterCardData(metadata, cardData, filter) {
 
   let cards = cardData.cards;
 
-  // Filter by Format, but no need if the format is wild.
-  if (filter.format && filter.format !== "wild") {
+  // Filter by Card Set, but no need if it's wild.
+  if (filter.cardSet && filter.cardSet !== "wild") {
     let includedSets;
 
-    if (filter.format === "standard") {
+    if (filter.cardSet === "standard") {
       const setGroup = metadata.setGroups.find(
         (setGroup) => setGroup.slug === "standard"
       );
       includedSets = setGroup.cardSets;
-    } else if (filter.format === "duels") {
+    } else if (filter.cardSet === "duels") {
       includedSets = duelsCardSets;
+    }
+    else {
+      includedSets = [filter.cardSet];
     }
 
     // put standard set ids in an array by index for quick lookup
     const includedSetIds = {};
-    metadata.sets.forEach((set) => {
+    metadata.sets.forEach((set, i) => {
       if (includedSets.includes(set.slug)) {
-        includedSetIds[set.id] = true;
+        if (set.slug === 'classic-cards') {
+          includedSetIds[3] = true;
+        }
+        else {
+          includedSetIds[set.id] = true;
+        }
       }
     });
-
     cards = cards.filter((card) => includedSetIds[card.cardSetId] === true);
   }
 
@@ -109,11 +116,7 @@ async function filterCardData(metadata, cardData, filter) {
       cards = cards.filter(
         (card) =>
           card.keywordIds &&
-          card.keywordIds.includes(selectedKeyword.id) &&
-          !(
-            keywordMinionExclusions[selectedKeyword.slug] &&
-            keywordMinionExclusions[selectedKeyword.slug][card.id]
-          )
+          card.keywordIds.includes(selectedKeyword.id)
       );
     }
   }
@@ -204,11 +207,11 @@ function generateFilterDescription(filter) {
     filterDescription += descriptionTokens.cardType.default;
   }
 
-  // Format
-  if (!filter.format) {
-    filterDescription += descriptionTokens.format.wild;
+  // Card Set
+  if (!filter.cardSet) {
+    filterDescription += descriptionTokens.cardSet.wild;
   } else {
-    filterDescription += descriptionTokens.format[filter.format];
+    filterDescription += descriptionTokens.cardSet[filter.cardSet];
   }
 
   return filterDescription;

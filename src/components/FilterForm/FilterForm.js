@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import { resetFilter } from "store/actions";
 
 import WhiteButton from "components/WhiteButton";
-import FormatFilter from "components/FilterForm/FormatFilter";
+import CardSetFilter from 'components/FilterForm/CardSetFilter';
 import ClassFilter from "components/FilterForm/ClassFilter";
 import CardTypeFilter from "components/FilterForm/CardTypeFilter";
 import KeywordFilter from "components/FilterForm/KeywordFilter";
@@ -38,7 +38,7 @@ const FilterForm = ({ metadata, resetFilter }) => {
       >
         RESET FILTERS
       </WhiteButton>
-      <FormatFilter />
+      <CardSetFilter />
       <NumericFilters />
       <ClassFilter />
       <CardTypeFilter />

@@ -63,12 +63,13 @@ const Main = ({
   setIsMobile,
   selectedCard,
   deselectCard,
+  metadata,
 }) => {
   const [region] = useState("us");
   const [locale] = useState("en_US");
 
   let defaultFilter = {
-    format: "standard",
+    cardSet: "standard",
     cardType: "minion",
   };
 

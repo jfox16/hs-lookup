@@ -1,7 +1,7 @@
 import { filterTypes } from "../actionTypes";
 
 const initialState = {
-  format: "standard",
+  cardSet: "standard",
   cardType: "minion",
 };
 

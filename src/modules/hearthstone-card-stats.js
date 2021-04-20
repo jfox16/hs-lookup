@@ -94,11 +94,7 @@ function generateKeywordTotals(cards, metadata) {
       card.keywordIds.forEach((keywordId) => {
         let slug = keywordSlugs[keywordId];
         if (
-          keywordStats[slug] &&
-          !(
-            keywordMinionExclusions[slug] &&
-            keywordMinionExclusions[slug][card.id]
-          )
+          keywordStats[slug]
         ) {
           keywordStats[slug].count++;
           shouldBeDisplayed = true;
