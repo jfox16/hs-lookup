@@ -5,7 +5,7 @@ import "./SelectedCardDisplay.css";
 const SelectedCardDisplay = ({ selectedCard }) => {
 
   useEffect(() => {
-    // console.log("Selected card:", selectedCard.name, selectedCard);
+    console.log("Selected card:", selectedCard.name, selectedCard);
   }, [ selectedCard ])
 
   return (

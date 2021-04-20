@@ -71,11 +71,13 @@ async function filterCardData(metadata, cardData, filter) {
     });
 
     cards = cards.filter((card) => {
-      if (selectedClassIds[card.classId]) return true;
       if (card.multiClassIds) {
         for (let i = 0, l = card.multiClassIds.length; i < l; i++) {
           if (selectedClassIds[card.multiClassIds[i]]) return true;
         }
+      }
+      else if (selectedClassIds[card.classId]) {
+        return true;
       }
       return false;
     });
