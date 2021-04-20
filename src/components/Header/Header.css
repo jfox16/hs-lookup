@@ -19,7 +19,7 @@
   height: 32px;
 }
 
-@media screen and (max-width: 1200px), screen and (max-height: 500px)  {
+@media screen and (max-width: 1200px), screen and (max-height: 500px) {
   .HeaderLogo {
     height: 22px;
   }

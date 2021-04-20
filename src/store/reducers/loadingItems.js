@@ -1,10 +1,9 @@
-import { loadingItemsTypes } from '../actionTypes';
+import { loadingItemsTypes } from "../actionTypes";
 
 const initialState = {};
 
 export default (state = initialState, action) => {
-  switch(action.type) {
-
+  switch (action.type) {
     case loadingItemsTypes.ADD_LOADING_ITEM:
       const itemToAdd = action.payload;
       return { ...state, [itemToAdd]: true };
@@ -19,4 +18,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};

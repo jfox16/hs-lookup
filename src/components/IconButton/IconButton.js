@@ -1,8 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './IconButton.css';
-
-
+import "./IconButton.css";
 
 const IconButton = ({ children, onClick, style }) => {
   return (
@@ -10,8 +8,6 @@ const IconButton = ({ children, onClick, style }) => {
       {children}
     </button>
   );
-}
-
-
+};
 
 export default IconButton;

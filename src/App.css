@@ -12,11 +12,13 @@ p {
   margin: 0;
 }
 
-input, select {
+input,
+select {
   outline: none;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   box-shadow: 0 0 3px 2px white;
 }
 

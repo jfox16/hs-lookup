@@ -1,2 +1,2 @@
-import WhiteButton from './WhiteButton';
+import WhiteButton from "./WhiteButton";
 export default WhiteButton;

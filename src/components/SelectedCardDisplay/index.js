@@ -1,2 +1,2 @@
-import SelectedCardDisplay from './SelectedCardDisplay';
+import SelectedCardDisplay from "./SelectedCardDisplay";
 export default SelectedCardDisplay;

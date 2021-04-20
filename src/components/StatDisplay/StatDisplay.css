@@ -14,8 +14,7 @@
 }
 
 .StatDisplayHeader {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
 }
 
 .StatDisplayData {
@@ -66,15 +65,19 @@
 @media screen and (max-width: 1200px), screen and (max-height: 500px) {
   .StatDisplay .card-count {
     margin-top: 4px;
-    font-size: 32px;
+    font-size: 28px;
   }
-  
+
   .StatDisplay .filter-description {
     margin-left: 4px;
     font-size: 18px;
   }
-  
+
   .StatDisplayDataGroupTitle {
     font-size: 18px;
+  }
+
+  .StatDisplayHeader {
+    padding: 5px 0;
   }
 }
