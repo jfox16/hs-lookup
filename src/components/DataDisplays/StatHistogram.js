@@ -1,28 +1,28 @@
-import React from "react";
-import Skeleton from "react-loading-skeleton";
+import React from 'react'
+import Skeleton from 'react-loading-skeleton'
 
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
-import { withResizeDetector } from "react-resize-detector";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts'
+import { withResizeDetector } from 'react-resize-detector'
 
 const StatHistogram = ({ width, data, color, minX, maxX, isLoading }) => {
   if (isLoading) {
-    return <Skeleton height={160} width={width} />;
+    return <Skeleton height={160} width={width} />
   }
 
   // If there are less than 5 values, pad some values to the beginning and end to make it look better.
   if (maxX - minX < 4) {
-    if (minX > 0) minX--;
-    else maxX++;
-    maxX++;
+    if (minX > 0) minX--
+    else maxX++
+    maxX++
   }
 
-  const chartData = [];
+  const chartData = []
 
   for (let i = minX; i <= maxX; i++) {
     chartData.push({
       name: i,
-      count: data[i] ? data[i] : 0,
-    });
+      count: data[i] ? data[i] : 0
+    })
   }
 
   return (
@@ -40,7 +40,7 @@ const StatHistogram = ({ width, data, color, minX, maxX, isLoading }) => {
         <Bar dataKey="count" fill={color} />
       </BarChart>
     </div>
-  );
-};
+  )
+}
 
-export default withResizeDetector(StatHistogram);
+export default withResizeDetector(StatHistogram)

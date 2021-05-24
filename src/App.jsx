@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 //@ts-ignore
-import Normalize from "react-normalize";
+import Normalize from 'react-normalize'
 
 // IMPORT REACT ROUTER ELEMENTS
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // -- APPEND PAGE IMPORTS HERE --
-import Lookup from "src/pages/Lookup";
+import Lookup from 'src/pages/Lookup'
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
         </Switch>
       </Router>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

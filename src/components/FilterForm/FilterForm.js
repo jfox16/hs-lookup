@@ -1,23 +1,24 @@
-import React from "react";
-import { connect } from "react-redux";
-import Skeleton from "react-loading-skeleton";
+import React from 'react'
+import { connect } from 'react-redux'
+import Skeleton from 'react-loading-skeleton'
 
-import { resetFilter } from "store/actions";
+import { resetFilter } from 'store/actions'
 
-import WhiteButton from "components/WhiteButton";
-import CardSetFilter from 'components/FilterForm/CardSetFilter';
-import ClassFilter from "components/FilterForm/ClassFilter";
-import CardTypeFilter from "components/FilterForm/CardTypeFilter";
-import KeywordFilter from "components/FilterForm/KeywordFilter";
-import RarityFilter from "components/FilterForm/RarityFilter";
-import MinionTypeFilter from "components/FilterForm/MinionTypeFilter";
-import NumericFilters from "components/FilterForm/NumericFilters";
-import Footer from "components/Footer";
+import WhiteButton from 'components/WhiteButton'
+import CardSetFilter from 'components/FilterForm/CardSetFilter'
+import ClassFilter from 'components/FilterForm/ClassFilter'
+import CardTypeFilter from 'components/FilterForm/CardTypeFilter'
+import KeywordFilter from 'components/FilterForm/KeywordFilter'
+import RarityFilter from 'components/FilterForm/RarityFilter'
+import MinionTypeFilter from 'components/FilterForm/MinionTypeFilter'
+import SpellSchoolFilter from 'components/FilterForm/SpellSchoolFilter'
+import NumericFilters from 'components/FilterForm/NumericFilters'
+import Footer from 'components/Footer'
 
-import "./FilterForm.css";
+import './FilterForm.css'
 
 const FilterForm = ({ metadata, resetFilter }) => {
-  const isLoading = !metadata;
+  const isLoading = !metadata
 
   if (isLoading) {
     return (
@@ -28,7 +29,7 @@ const FilterForm = ({ metadata, resetFilter }) => {
           </div>
         ))}
       </div>
-    );
+    )
   }
   return (
     <div className="FilterForm">
@@ -44,16 +45,17 @@ const FilterForm = ({ metadata, resetFilter }) => {
       <CardTypeFilter />
       <RarityFilter />
       <MinionTypeFilter />
+      <SpellSchoolFilter />
       <KeywordFilter />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
-    metadata: state.data.metadata,
-  };
-};
+    metadata: state.data.metadata
+  }
+}
 
-export default connect(mapStateToProps, { resetFilter })(FilterForm);
+export default connect(mapStateToProps, { resetFilter })(FilterForm)

@@ -1,5 +1,5 @@
-import React from "react";
-import "./FilterFormLabel.css";
+import React from 'react'
+import './FilterFormLabel.css'
 
 function FilterFormLabel(props) {
   return (
@@ -7,7 +7,7 @@ function FilterFormLabel(props) {
       <span className="FilterFormLabelLabel">{props.label}</span>
       <div className="FilterFormLabelLine" />
     </div>
-  );
+  )
 }
 
-export default FilterFormLabel;
+export default FilterFormLabel

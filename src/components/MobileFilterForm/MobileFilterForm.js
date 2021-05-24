@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import SimpleBar from "simplebar-react";
-import { CgClose } from "react-icons/cg";
+import React from 'react'
+import { connect } from 'react-redux'
+import SimpleBar from 'simplebar-react'
+import { CgClose } from 'react-icons/cg'
 
-import FilterForm from "components/FilterForm";
-import IconButton from "components/IconButton";
-import WhiteButton from "components/WhiteButton";
+import FilterForm from 'components/FilterForm'
+import IconButton from 'components/IconButton'
+import WhiteButton from 'components/WhiteButton'
 
-import { setFilterFormOpen } from "store/actions";
+import { setFilterFormOpen } from 'store/actions'
 
-import "./MobileFilterForm.css";
+import './MobileFilterForm.css'
 
 const MobileFilterForm = ({ setFilterFormOpen }) => {
   return (
@@ -21,7 +21,7 @@ const MobileFilterForm = ({ setFilterFormOpen }) => {
         </IconButton>
       </div>
       <div className="MobileFilterContent">
-        <SimpleBar style={{ height: "100%", padding: "0 8px" }}>
+        <SimpleBar style={{ height: '100%', padding: '0 8px' }}>
           <FilterForm />
         </SimpleBar>
       </div>
@@ -34,13 +34,11 @@ const MobileFilterForm = ({ setFilterFormOpen }) => {
         </WhiteButton>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
-  return {};
-};
+  return {}
+}
 
-export default connect(mapStateToProps, { setFilterFormOpen })(
-  MobileFilterForm
-);
+export default connect(mapStateToProps, { setFilterFormOpen })(MobileFilterForm)

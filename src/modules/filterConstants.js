@@ -1,113 +1,122 @@
 export const descriptionTokens = {
   classes: {
-    demonhunter: " Demon Hunter",
-    druid: " Druid",
-    hunter: " Hunter",
-    mage: " Mage",
-    paladin: " Paladin",
-    priest: " Priest",
-    rogue: " Rogue",
-    shaman: " Shaman",
-    warlock: " Warlock",
-    warrior: " Warrior",
-    neutral: " Neutral",
+    demonhunter: ' Demon Hunter',
+    druid: ' Druid',
+    hunter: ' Hunter',
+    mage: ' Mage',
+    paladin: ' Paladin',
+    priest: ' Priest',
+    rogue: ' Rogue',
+    shaman: ' Shaman',
+    warlock: ' Warlock',
+    warrior: ' Warrior',
+    neutral: ' Neutral'
   },
   rarity: {
-    free: " Free",
-    common: " Common",
-    rare: " Rare",
-    epic: " Epic",
-    legendary: " Legendary",
+    free: ' Free',
+    common: ' Common',
+    rare: ' Rare',
+    epic: ' Epic',
+    legendary: ' Legendary'
   },
   cardType: {
-    default: " cards",
-    hero: " hero cards",
-    minion: " minions",
-    spell: " spells",
-    weapon: " weapons",
+    default: ' cards',
+    hero: ' hero cards',
+    minion: ' minions',
+    spell: ' spells',
+    weapon: ' weapons'
   },
   keyword: {
-    taunt: " Taunt",
-    spellpower: " Spell Damage",
-    "divine-shield": " Divine Shield",
-    charge: " Charge",
-    stealth: " Stealth",
-    battlecry: " Battlecry",
-    windfury: " Windfury",
-    deathrattle: " Deathrattle",
-    combo: " Combo",
-    overload: " Overload",
-    inspire: " Inspire",
-    quest: " Quest",
-    poisonous: " Poisonous",
-    lifesteal: " Lifesteal",
-    echo: " Echo",
-    rush: " Rush",
-    overkill: " Overkill",
-    modular: " Magnetic",
-    twinspell: " Twinspell",
-    reborn: " Reborn",
-    outcast: " Outcast",
-    spellburst: " Spellburst",
-    corrupt: " Corrupt",
-    frenzy: " Frenzy",
+    taunt: ' Taunt',
+    spellpower: ' Spell Damage',
+    'divine-shield': ' Divine Shield',
+    charge: ' Charge',
+    stealth: ' Stealth',
+    battlecry: ' Battlecry',
+    windfury: ' Windfury',
+    deathrattle: ' Deathrattle',
+    combo: ' Combo',
+    overload: ' Overload',
+    inspire: ' Inspire',
+    quest: ' Quest',
+    poisonous: ' Poisonous',
+    lifesteal: ' Lifesteal',
+    echo: ' Echo',
+    rush: ' Rush',
+    overkill: ' Overkill',
+    modular: ' Magnetic',
+    twinspell: ' Twinspell',
+    reborn: ' Reborn',
+    outcast: ' Outcast',
+    spellburst: ' Spellburst',
+    corrupt: ' Corrupt',
+    frenzy: ' Frenzy'
   },
   minionType: {
-    murloc: " Murlocs",
-    demon: " Demons",
-    mech: " Mechs",
-    elemental: " Elementals",
-    beast: " Beasts",
-    totem: " Totems",
-    pirate: " Pirates",
-    dragon: " Dragons",
-    all: " 'All'-type minions",
+    murloc: ' Murlocs',
+    demon: ' Demons',
+    mech: ' Mechs',
+    elemental: ' Elementals',
+    beast: ' Beasts',
+    totem: ' Totems',
+    pirate: ' Pirates',
+    dragon: ' Dragons',
+    all: " 'All'-type minions"
+  },
+  spellSchool: {
+    shadow: ' Shadow',
+    nature: ' Nature',
+    holy: ' Holy',
+    frost: ' Frost',
+    fire: ' Fire',
+    fel: ' Fel',
+    arcane: ' Arcane'
   },
   cardSet: {
-    wild: " in Wild",
-    standard: " in Standard",
-    duels: " in Duels",
-    "legacy": " in the Legacy Set",
-    "forged-in-the-barrens": " in Forged in the Barrens",
-    "classic-cards": " in Classic Cards",
-    "core": " in the Core Set",
-    "madness-at-the-darkmoon-faire": " in Madness at the Darkmoon Faire",
-    "scholomance-academy": " in Scholomance Academy",
-    "demonhunter-initiate": " in Demon Hunter Initiate",
-    "ashes-of-outland": " in Ashes of Outland",
-    "galakronds-awakening": " in Galakrond’s Awakening",
-    "descent-of-dragons": " in Descent of Dragons",
-    "saviors-of-uldum": " in Saviors of Uldum",
-    "rise-of-shadows": " in Rise of Shadows",
-    "rastakhans-rumble": " in Rastakhan’s Rumble",
-    "the-boomsday-project": " in The Boomsday Project",
-    "the-witchwood": " in The Witchwood",
-    "kobolds-and-catacombs": " in Kobolds and Catacombs",
-    "knights-of-the-frozen-throne": " in Knights of the Frozen Throne",
-    "journey-to-ungoro": " in Journey to Un’Goro",
-    "mean-streets-of-gadgetzan": " in Mean Streets of Gadgetzan",
-    "one-night-in-karazhan": " in One Night in Karazhan",
-    "whispers-of-the-old-gods": " in Whispers of the Old Gods",
-    "league-of-explorers": " in League of Explorers",
-    "the-grand-tournament": " in The Grand Tournament",
-    "blackrock-mountain": " in Blackrock Mountain",
-    "goblins-vs-gnomes": " in Goblins vs Gnomes",
-    "naxxramas": " in Curse of Naxxramas",
-  },
-};
+    wild: ' in Wild',
+    standard: ' in Standard',
+    duels: ' in Duels',
+    legacy: ' in the Legacy Set',
+    'forged-in-the-barrens': ' in Forged in the Barrens',
+    'classic-cards': ' in Classic Cards',
+    core: ' in the Core Set',
+    'madness-at-the-darkmoon-faire': ' in Madness at the Darkmoon Faire',
+    'scholomance-academy': ' in Scholomance Academy',
+    'demonhunter-initiate': ' in Demon Hunter Initiate',
+    'ashes-of-outland': ' in Ashes of Outland',
+    'galakronds-awakening': ' in Galakrond’s Awakening',
+    'descent-of-dragons': ' in Descent of Dragons',
+    'saviors-of-uldum': ' in Saviors of Uldum',
+    'rise-of-shadows': ' in Rise of Shadows',
+    'rastakhans-rumble': ' in Rastakhan’s Rumble',
+    'the-boomsday-project': ' in The Boomsday Project',
+    'the-witchwood': ' in The Witchwood',
+    'kobolds-and-catacombs': ' in Kobolds and Catacombs',
+    'knights-of-the-frozen-throne': ' in Knights of the Frozen Throne',
+    'journey-to-ungoro': ' in Journey to Un’Goro',
+    'mean-streets-of-gadgetzan': ' in Mean Streets of Gadgetzan',
+    'one-night-in-karazhan': ' in One Night in Karazhan',
+    'whispers-of-the-old-gods': ' in Whispers of the Old Gods',
+    'league-of-explorers': ' in League of Explorers',
+    'the-grand-tournament': ' in The Grand Tournament',
+    'blackrock-mountain': ' in Blackrock Mountain',
+    'goblins-vs-gnomes': ' in Goblins vs Gnomes',
+    naxxramas: ' in Curse of Naxxramas'
+  }
+}
 
 export const duelsCardSets = [
-  "core",
-  "classic-cards",
-  "legacy",
-  "forged-in-the-barrens",
-  "madness-at-the-darkmoon-faire",
-  "scholomance-academy",
-  "journey-to-ungoro",
-  "one-night-in-karazhan",
-  "whispers-of-the-old-gods",
-  "naxxramas",
-];
+  'core',
+  'classic-cards',
+  'legacy',
+  'forged-in-the-barrens',
+  'madness-at-the-darkmoon-faire',
+  'scholomance-academy',
+  'journey-to-ungoro',
+  'one-night-in-karazhan',
+  'whispers-of-the-old-gods',
+  'naxxramas'
+]
 
 export const keywordMinionExclusions = {
   battlecry: {
@@ -123,7 +132,7 @@ export const keywordMinionExclusions = {
     // spells
     48393: true,
     54369: true,
-    56094: true,
+    56094: true
   },
   charge: {
     // 1-cost
@@ -144,7 +153,7 @@ export const keywordMinionExclusions = {
     40613: true,
     // spells
     344: true,
-    1243: true,
+    1243: true
   },
   combo: {
     // 2-cost
@@ -154,10 +163,10 @@ export const keywordMinionExclusions = {
     // 4-cost
     58975: true,
     // 6-cost
-    47071: true,
+    47071: true
   },
   corrupt: {
-    61945: true,
+    61945: true
   },
   dormant: {},
   deathrattle: {
@@ -215,9 +224,9 @@ export const keywordMinionExclusions = {
     381: true,
     54873: true,
     56412: true,
-    61690: true,
+    61690: true
   },
-  "divine-shield": {
+  'divine-shield': {
     // 1-cost
     38740: true,
     57182: true,
@@ -265,13 +274,13 @@ export const keywordMinionExclusions = {
     2027: true,
     38745: true,
     58791: true,
-    59602: true,
+    59602: true
   },
   echo: {
     // 4-cost
     46908: true,
     // 6-cost
-    47295: true,
+    47295: true
   },
   lifesteal: {
     // 2-cost
@@ -301,11 +310,11 @@ export const keywordMinionExclusions = {
     56623: true,
     // heroes
     43419: true,
-    43406: true,
+    43406: true
   },
   modular: {
     // spells
-    49009: true,
+    49009: true
   },
   outcast: {
     // 1-cost
@@ -315,7 +324,7 @@ export const keywordMinionExclusions = {
     // 3-cost
     61123: true,
     // spells
-    59606: true,
+    59606: true
   },
   overload: {
     // 1-cost
@@ -340,7 +349,7 @@ export const keywordMinionExclusions = {
     // 7-cost
     43331: true,
     // 11-cost lul
-    42765: true,
+    42765: true
   },
   poisonous: {
     // 1-cost
@@ -367,14 +376,14 @@ export const keywordMinionExclusions = {
     41834: true,
     42649: true,
     // heroes
-    43417: true,
+    43417: true
   },
   quest: {
     // 2-cost
     53947: true,
     56120: true,
     // 4-cost
-    56307: true,
+    56307: true
   },
   reborn: {
     // 1-cost
@@ -385,7 +394,7 @@ export const keywordMinionExclusions = {
     54284: true,
     // spells
     53907: true,
-    53932: true,
+    53932: true
   },
   rush: {
     // 1-cost
@@ -461,7 +470,7 @@ export const keywordMinionExclusions = {
     53860: true,
     // heroes
     57427: true,
-    48146: true,
+    48146: true
   },
   spellpower: {
     // 1-cost
@@ -490,7 +499,7 @@ export const keywordMinionExclusions = {
     59639: true,
     39694: true,
     58790: true,
-    48803: true,
+    48803: true
   },
   taunt: {
     // 1-cost
@@ -612,7 +621,7 @@ export const keywordMinionExclusions = {
     2756: true,
     61189: true,
     // heroes
-    43417: true,
+    43417: true
   },
   stealth: {
     // 2-cost
@@ -642,7 +651,7 @@ export const keywordMinionExclusions = {
     61156: true,
     61154: true,
     // heroes
-    43392: true,
+    43392: true
   },
   windfury: {
     // 3-cost
@@ -660,9 +669,9 @@ export const keywordMinionExclusions = {
     // 8-cost
     52902: true,
     // spells
-    51: true,
+    51: true
   },
   frenzy: {
-    63274: true,
-  },
-};
+    63274: true
+  }
+}

@@ -1,10 +1,10 @@
-import React from "react";
-import "./Dropdown.css";
-import { GoChevronDown } from "react-icons/go";
+import React from 'react'
+import './Dropdown.css'
+import { GoChevronDown } from 'react-icons/go'
 
 function Dropdown({ value, onChange, options }) {
   if (!Array.isArray(options)) {
-    return <></>;
+    return <></>
   }
   return (
     <div>
@@ -12,10 +12,14 @@ function Dropdown({ value, onChange, options }) {
         className="Dropdown"
         onChange={onChange}
         value={value}
-        style={{ opacity: !value || value === "" ? 0.5 : 1 }}
+        style={{ opacity: !value || value === '' ? 0.5 : 1 }}
       >
         {options.map((option) => (
-          <option value={option.value} key={option.value} disabled={option.disabled}>
+          <option
+            value={option.value}
+            key={option.value}
+            disabled={option.disabled}
+          >
             {option.label}
           </option>
         ))}
@@ -24,7 +28,7 @@ function Dropdown({ value, onChange, options }) {
         <GoChevronDown />
       </div>
     </div>
-  );
+  )
 }
 
-export default Dropdown;
+export default Dropdown

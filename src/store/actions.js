@@ -2,25 +2,25 @@ import {
   filterTypes,
   dataTypes,
   loadingItemsTypes,
-  renderDataTypes,
-} from "./actionTypes";
+  renderDataTypes
+} from './actionTypes'
 
 // DATA ACTIONS
 
 export const setData = (data) => ({
   type: dataTypes.SET_DATA,
-  payload: data,
-});
+  payload: data
+})
 
 export const setMetadata = (metadata) => ({
   type: dataTypes.SET_METADATA,
-  payload: metadata,
-});
+  payload: metadata
+})
 
 export const setCardData = (cardData) => ({
   type: dataTypes.SET_CARD_DATA,
-  payload: cardData,
-});
+  payload: cardData
+})
 
 // FILTER ACTIONS
 
@@ -28,62 +28,62 @@ export const setFilterValue = (key, value) => ({
   type: filterTypes.SET_FILTER_VALUE,
   payload: {
     key: key,
-    value: value,
-  },
-});
+    value: value
+  }
+})
 
 export const setFilter = (filter) => ({
   type: filterTypes.SET_FILTER,
-  payload: filter,
-});
+  payload: filter
+})
 
 export const resetFilter = () => ({
-  type: filterTypes.RESET_FILTER,
-});
+  type: filterTypes.RESET_FILTER
+})
 
 // LOADING ITEMS ACTIONS
 
 export const addLoadingItem = (itemToAdd) => ({
   type: loadingItemsTypes.ADD_LOADING_ITEM,
-  payload: itemToAdd,
-});
+  payload: itemToAdd
+})
 
 export const removeLoadingItem = (itemToRemove) => ({
   type: loadingItemsTypes.REMOVE_LOADING_ITEM,
-  payload: itemToRemove,
-});
+  payload: itemToRemove
+})
 
 export const resetLoadingItems = () => ({
-  type: loadingItemsTypes.RESET_LOADING_ITEMS,
-});
+  type: loadingItemsTypes.RESET_LOADING_ITEMS
+})
 
 // RENDER DATA ACTIONS
 
 export const setFilteredCards = (filteredCards) => ({
   type: renderDataTypes.SET_FILTERED_CARDS,
-  payload: filteredCards,
-});
+  payload: filteredCards
+})
 
 export const setFilterDescription = (filterDescription) => ({
   type: renderDataTypes.SET_FILTER_DESCRIPTION,
-  payload: filterDescription,
-});
+  payload: filterDescription
+})
 
 export const setFilterFormOpen = (open) => ({
   type: renderDataTypes.SET_FILTER_FORM_OPEN,
-  payload: open,
-});
+  payload: open
+})
 
 export const setIsMobile = (isMobile) => ({
   type: renderDataTypes.SET_IS_MOBILE,
-  payload: isMobile,
-});
+  payload: isMobile
+})
 
 export const selectCard = (card) => ({
   type: renderDataTypes.SELECT_CARD,
-  payload: card,
-});
+  payload: card
+})
 
 export const deselectCard = () => ({
-  type: renderDataTypes.DESELECT_CARD,
-});
+  type: renderDataTypes.DESELECT_CARD
+})

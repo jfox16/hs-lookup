@@ -1,2 +1,2 @@
-import StatDisplay from "./StatDisplay";
-export default StatDisplay;
+import StatDisplay from './StatDisplay'
+export default StatDisplay

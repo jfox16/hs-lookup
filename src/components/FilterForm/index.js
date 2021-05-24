@@ -1,2 +1,2 @@
-import FilterForm from "./FilterForm";
-export default FilterForm;
+import FilterForm from './FilterForm'
+export default FilterForm

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import "./Modal.css";
+import './Modal.css'
 
 const Modal = ({ isOpen, closeModal, children }) => {
   return (
@@ -11,7 +11,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

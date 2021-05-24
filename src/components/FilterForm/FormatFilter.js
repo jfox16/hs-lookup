@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { setFilterValue } from "store/actions";
+import React from 'react'
+import { connect } from 'react-redux'
+import { setFilterValue } from 'store/actions'
 
-import FilterFormLabel from "./FilterFormLabel";
-import "./FormatFilter.css";
+import FilterFormLabel from './FilterFormLabel'
+import './FormatFilter.css'
 
 function FormatFilter({ format, setFormat }) {
   return (
@@ -12,10 +12,10 @@ function FormatFilter({ format, setFormat }) {
       <div className="FormatFilter">
         <div
           className="FormatFilterButton"
-          onClick={() => setFormat("wild")}
+          onClick={() => setFormat('wild')}
           style={
-            !format || format === "wild"
-              ? { backgroundColor: "hsl(0, 0%, 28%)", color: "snow" }
+            !format || format === 'wild'
+              ? { backgroundColor: 'hsl(0, 0%, 28%)', color: 'snow' }
               : {}
           }
         >
@@ -23,10 +23,10 @@ function FormatFilter({ format, setFormat }) {
         </div>
         <div
           className="FormatFilterButton"
-          onClick={() => setFormat("standard")}
+          onClick={() => setFormat('standard')}
           style={
-            format === "standard"
-              ? { backgroundColor: "hsl(0, 0%, 28%)", color: "snow" }
+            format === 'standard'
+              ? { backgroundColor: 'hsl(0, 0%, 28%)', color: 'snow' }
               : {}
           }
         >
@@ -34,10 +34,10 @@ function FormatFilter({ format, setFormat }) {
         </div>
         <div
           className="FormatFilterButton"
-          onClick={() => setFormat("duels")}
+          onClick={() => setFormat('duels')}
           style={
-            format === "duels"
-              ? { backgroundColor: "hsl(0, 0%, 28%)", color: "snow" }
+            format === 'duels'
+              ? { backgroundColor: 'hsl(0, 0%, 28%)', color: 'snow' }
               : {}
           }
         >
@@ -45,15 +45,15 @@ function FormatFilter({ format, setFormat }) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
-    format: state.filter.format,
-  };
-};
+    format: state.filter.format
+  }
+}
 
 export default connect(mapStateToProps, {
-  setFormat: (format) => setFilterValue("format", format),
-})(FormatFilter);
+  setFormat: (format) => setFilterValue('format', format)
+})(FormatFilter)

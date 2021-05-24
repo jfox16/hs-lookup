@@ -1,2 +1,2 @@
-import FixedBackground from "./FixedBackground";
-export default FixedBackground;
+import FixedBackground from './FixedBackground'
+export default FixedBackground

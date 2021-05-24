@@ -6,16 +6,16 @@ import FilterFormLabel from './FilterFormLabel'
 
 import { setFilterValue } from 'store/actions'
 
-function MinionTypeFilter({ metadata, filter, setFilterValue }) {
+function SpellSchoolFilter({ metadata, filter, setFilterValue }) {
   const [options, setOptions] = useState([])
 
   useEffect(() => {
-    if (metadata.minionTypes) {
-      const newOptions = metadata.minionTypes
+    if (metadata.spellSchools) {
+      const newOptions = metadata.spellSchools
         .sort((a, b) => a.name > b.name)
-        .map((minionType) => ({
-          label: minionType.name,
-          value: minionType.slug
+        .map((spellSchool) => ({
+          label: spellSchool.name,
+          value: spellSchool.slug
         }))
       newOptions.unshift({ label: 'Any', value: '' })
       setOptions(newOptions)
@@ -24,11 +24,11 @@ function MinionTypeFilter({ metadata, filter, setFilterValue }) {
 
   return (
     <div>
-      <FilterFormLabel label="MINION TYPE" />
+      <FilterFormLabel label="SPELL SCHOOL" />
       <Dropdown
         options={options}
-        onChange={(e) => setFilterValue('minionType', e.target.value)}
-        value={filter.minionType || ''}
+        onChange={(e) => setFilterValue('spellSchool', e.target.value)}
+        value={filter.spellSchool || ''}
       />
     </div>
   )
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setFilterValue })(MinionTypeFilter)
+export default connect(mapStateToProps, { setFilterValue })(SpellSchoolFilter)

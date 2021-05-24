@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function ClassFilterButton({
   hsClass,
@@ -6,7 +6,7 @@ function ClassFilterButton({
   borderColor,
   selected,
   darkened,
-  onClick,
+  onClick
 }) {
   return (
     <div
@@ -20,12 +20,12 @@ function ClassFilterButton({
         src={image}
         style={{
           border: `3px solid ${borderColor}`,
-          boxShadow: selected ? "0 0 3px 2px white" : "none",
+          boxShadow: selected ? '0 0 3px 2px white' : 'none'
         }}
       />
       <div className="ClassFilterButtonLabel">{hsClass.name}</div>
     </div>
-  );
+  )
 }
 
-export default ClassFilterButton;
+export default ClassFilterButton

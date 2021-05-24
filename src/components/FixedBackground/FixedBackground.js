@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import "./FixedBackground.css";
+import './FixedBackground.css'
 
 const FixedBackground = ({ backgroundImage }) => {
   return (
@@ -8,7 +8,7 @@ const FixedBackground = ({ backgroundImage }) => {
       className="FixedBackground fullscreen"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     />
-  );
-};
+  )
+}
 
-export default FixedBackground;
+export default FixedBackground

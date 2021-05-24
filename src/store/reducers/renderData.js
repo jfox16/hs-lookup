@@ -1,53 +1,53 @@
-import { renderDataTypes } from "../actionTypes";
+import { renderDataTypes } from '../actionTypes'
 
-const initialState = {};
+const initialState = {}
 
 const selectedCardReducer = (state = initialState, action) => {
   switch (action.type) {
     case renderDataTypes.SET_FILTERED_CARDS:
-      const filteredCards = action.payload;
+      const filteredCards = action.payload
       return {
         ...state,
-        filteredCards: filteredCards,
-      };
+        filteredCards: filteredCards
+      }
 
     case renderDataTypes.SET_FILTER_DESCRIPTION:
-      const filterDescription = action.payload;
+      const filterDescription = action.payload
       return {
         ...state,
-        filterDescription: filterDescription,
-      };
+        filterDescription: filterDescription
+      }
 
     case renderDataTypes.SET_FILTER_FORM_OPEN:
-      const filterFormOpen = action.payload;
+      const filterFormOpen = action.payload
       return {
         ...state,
-        filterFormOpen: filterFormOpen,
-      };
+        filterFormOpen: filterFormOpen
+      }
 
     case renderDataTypes.SET_IS_MOBILE:
-      const isMobile = action.payload;
+      const isMobile = action.payload
       return {
         ...state,
-        isMobile: isMobile,
-      };
+        isMobile: isMobile
+      }
 
     case renderDataTypes.SELECT_CARD:
-      const selectedCard = action.payload;
+      const selectedCard = action.payload
       return {
         ...state,
-        selectedCard: selectedCard,
-      };
+        selectedCard: selectedCard
+      }
 
     case renderDataTypes.DESELECT_CARD:
       return {
         ...state,
-        selectedCard: null,
-      };
+        selectedCard: null
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default selectedCardReducer;
+export default selectedCardReducer

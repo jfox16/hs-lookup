@@ -1,2 +1,2 @@
-import MobileFilterForm from "./MobileFilterForm";
-export default MobileFilterForm;
+import MobileFilterForm from './MobileFilterForm'
+export default MobileFilterForm

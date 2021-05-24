@@ -1,2 +1,2 @@
-import CardImageDisplay from "./CardImageDisplay";
-export default CardImageDisplay;
+import CardImageDisplay from './CardImageDisplay'
+export default CardImageDisplay
